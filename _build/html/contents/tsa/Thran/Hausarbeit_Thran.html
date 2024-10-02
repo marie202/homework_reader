@@ -1,0 +1,1830 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin &#8212; Machine Learning Online Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/tsa/Thran/Hausarbeit_Thran';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg" href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html" />
+    <link rel="prev" title="3. Einfache Zeitreihenanalyse" href="../../timeseries_landing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Machine Learning Course Projects
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dt/Wagemann/Hausarbeit_Wagemann_Nguyen.html">1.2. Grundwasservorhersage mittels eines Decision Trees, Sachsen</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html">3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html">3.3. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html">3.4. Mächtigkeit der aktiven Schicht von Permafrost</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fcontents/tsa/Thran/Hausarbeit_Thran.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/contents/tsa/Thran/Hausarbeit_Thran.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">3.1.1. Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode">3.1.2. Methode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">3.1.2.1. Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung-dahlem">3.1.2.1.1. Datenvorbereitung Dahlem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erlauterung-zur-auswahl-des-temperaturparameters">3.1.2.1.2. Erläuterung zur Auswahl des Temperaturparameters:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung-angermunde">3.1.2.1.3. Datenvorbereitung Angermünde</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisierung-der-zeitreihen">3.1.3. 2.2. Visualisierung der Zeitreihen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnung-und-visualsierung-der-monats-und-wochenmitteltemperaturen">3.1.3.1. Berechnung und Visualsierung der Monats- und Wochenmitteltemperaturen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dahlem">3.1.3.1.1. Dahlem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angermunde">3.1.3.1.2. Angermünde</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-monatsmittel-von-dahlem-und-angermunde">3.1.3.2. Vergleich der Monatsmittel von Dahlem und Angermünde</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisierung-der-diffenz-des-temperaturunterschiedes-von-dahlem-und-angermunde">3.1.3.3. Visualisierung der Diffenz des Temperaturunterschiedes von Dahlem und Angermünde</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schlussfolgerung">3.1.4. Schlussfolgerung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">3.1.5. Literatur</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-berlin">
+<h1><span class="section-number">3.1. </span>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin<a class="headerlink" href="#urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-berlin" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>author: Anna-Lena Thran und Mira Pruß</p>
+<p>area: in Berlin (Dahlem) und Brandenburg (Angermünde)</p>
+<p>date: 26.08.2024</p>
+</div></blockquote>
+<section id="einleitung">
+<h2><span class="section-number">3.1.1. </span>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
+<p>Die Auswirkungen des Klimawandel sind bereits heute in allen Regionen der Welt zu spüren. Wetter- und Klimaextreme wie langanhaltene Hitzeperioden führen zu negativen Auswirkungen, z.B. auf die Ernährungssicherheit, die Wasserversorgung oder die menschliche Gesundheit (Calvin et al 2023). Der Anteil der Bevölkerung, der in städtischen Gebieten lebt, ist in den letzten Jahrzehnten stetig gewachsen. Im Jahr 2020 lebte fast die Hälfte der Weltbevölkerung in Städten. Neben den Herausforderungen durch den Klimawandel ergeben sich also auch durch die Urbanisierung vielfältige wirtschaftliche, soziale und ökologische Herausforderungen (World Cities Report 2022).</p>
+<p>Bei der Untersuchung der thermischen Verhältnisse in urbanen Gebieten lässt sich das Phänomen der städtischen Wärmeinsel feststellen (Urban Heat Island, kurz UHI). Die erhöhte Bebauungsdichte, eine größere thermische Masse der Baumaterialien, eine reduzierte Vegetationsbedeckung sowie veränderte Windströmungsmuster führen in städtischen Gebieten im Vergleich zu ländlichen Regionen zu höheren Temperaturen (Rizwan et al., Oke 1973, Wilby 2003). Die Gefahrenlage bei Hitzewellen ist demzufolge in Städten intensiviert.</p>
+<p>Mithilfe von meteorologischen Daten des Deutschen Wetterdienstes (DWD) möchten wir herausfinden, ob der UHI-Effekt in der vergleichenden Betrachtung von Berlin als städtisches Gebiet und Angermünde (Brandenburg) als ländliches Gebiet zu beobachten ist. Hieraus ergeben sich folglich zwei Forschungsfragen:</p>
+<ol class="arabic simple">
+<li><p><strong>Inwieweit lässt sich der UHI-Effekt mithilfe von Temperaturdaten von 2023 an den Wetterstationen Berlin Dahlem und Angermünde erkennen?</strong></p></li>
+<li><p><strong>In welchen Monaten ist der UHI-Effekt besonders sichtbar?</strong></p></li>
+</ol>
+</section>
+<section id="methode">
+<h2><span class="section-number">3.1.2. </span>Methode<a class="headerlink" href="#methode" title="Link to this heading">#</a></h2>
+<p>Für die Beantwortung der Forschungsfragen werden nachfolgend die nötigen Schritte der Datenverarbeitung und Analyse erläutert.</p>
+<p>Wofür die nachfolgenden Paketinstallation genutzt werden:</p>
+<ol class="arabic simple">
+<li><p>pandas: Strukturierung, Manipulation und Analyse der Daten</p></li>
+<li><p>matpilot: Möglichkeit zur interaktiven Anpassung der Datenvisualsierung</p></li>
+<li><p>seaborn: ansprechender Datenvisualierung (aufbauend auf matpilot)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Importieren der Pakete</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1">#Nutzung der Standartvorgaben von Seaborn und Festlegung der Standart Tabellen/ Grafikgröße</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="datenvorbereitung">
+<h3><span class="section-number">3.1.2.1. </span>Datenvorbereitung<a class="headerlink" href="#datenvorbereitung" title="Link to this heading">#</a></h3>
+<p>Der DWD liefert die Daten als Textdatei, für die Analyse benötigen wir die Datei im CSV Format.</p>
+<section id="datenvorbereitung-dahlem">
+<h4><span class="section-number">3.1.2.1.1. </span>Datenvorbereitung Dahlem<a class="headerlink" href="#datenvorbereitung-dahlem" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Dahlem Stations ID 403</span>
+
+<span class="c1">#Textdatei in CSV-Datei umwandeln (einmalig)</span>
+<span class="c1">#with open(&#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00403.txt&#39;, &#39;r&#39;) as file:</span>
+<span class="c1">#inhalt = file.read()</span>
+    
+<span class="c1">#eingabedatei = &#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00403.txt&#39;</span>
+<span class="c1">#ausgabedatei = &#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00403.csv&#39;</span>
+
+<span class="c1">#df = pd.read_csv(eingabedatei, sep=&#39;,&#39;)</span>
+<span class="c1">#df.to_csv(ausgabedatei, index=False)</span>
+<span class="c1">#print(f&#39;Die Datei wurde erfolgreich als {ausgabedatei} gespeichert.&#39;)</span>
+
+<span class="c1">#Daten einlesen:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230113_20240715_00403.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#Spalten löschen</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;STATIONS_ID&#39;</span><span class="p">,</span><span class="s1">&#39;QN_3&#39;</span><span class="p">,</span><span class="s1">&#39;FX&#39;</span><span class="p">,</span><span class="s1">&#39;FM&#39;</span><span class="p">,</span><span class="s1">&#39;QN_4&#39;</span><span class="p">,</span><span class="s1">&#39;RSK&#39;</span><span class="p">,</span><span class="s1">&#39;RSKF&#39;</span><span class="p">,</span><span class="s1">&#39;SDK&#39;</span><span class="p">,</span><span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span><span class="s1">&#39;NM&#39;</span><span class="p">,</span><span class="s1">&#39;VPM&#39;</span><span class="p">,</span><span class="s1">&#39;PM&#39;</span><span class="p">,</span><span class="s1">&#39;UPM&#39;</span><span class="p">,</span><span class="s1">&#39;TXK&#39;</span><span class="p">,</span><span class="s1">&#39;TNK&#39;</span><span class="p">,</span><span class="s1">&#39;TGK&#39;</span><span class="p">,</span><span class="s1">&#39;eor&#39;</span><span class="p">])</span>
+             
+<span class="c1">#Spalten umbenennen</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+
+<span class="c1">#Datum als Index umformatieren</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+
+<span class="c1">#Daten nach Datum sortieren</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+             
+<span class="c1">#Das Jahr 2023 extrahieren 13.01.2023 - 31.12.2023</span>
+<span class="n">Dahlem</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2023-01-13&#39;</span><span class="p">:</span><span class="s1">&#39;2023-12-31&#39;</span><span class="p">]</span>
+             
+<span class="c1">#auf NAs kontrollieren</span>
+<span class="n">Dahlem</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">Dahlem</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Dahlem Stations ID 403</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="nn">      3 #Textdatei</span> in <span class="ni">CSV-Datei umwandeln </span><span class="nt">(einmalig)</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1">#Daten einlesen:</span>
+<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230113_20240715_00403.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1">#Spalten löschen</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;STATIONS_ID&#39;</span><span class="p">,</span><span class="s1">&#39;QN_3&#39;</span><span class="p">,</span><span class="s1">&#39;FX&#39;</span><span class="p">,</span><span class="s1">&#39;FM&#39;</span><span class="p">,</span><span class="s1">&#39;QN_4&#39;</span><span class="p">,</span><span class="s1">&#39;RSK&#39;</span><span class="p">,</span><span class="s1">&#39;RSKF&#39;</span><span class="p">,</span><span class="s1">&#39;SDK&#39;</span><span class="p">,</span><span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span><span class="s1">&#39;NM&#39;</span><span class="p">,</span><span class="s1">&#39;VPM&#39;</span><span class="p">,</span><span class="s1">&#39;PM&#39;</span><span class="p">,</span><span class="s1">&#39;UPM&#39;</span><span class="p">,</span><span class="s1">&#39;TXK&#39;</span><span class="p">,</span><span class="s1">&#39;TNK&#39;</span><span class="p">,</span><span class="s1">&#39;TGK&#39;</span><span class="p">,</span><span class="s1">&#39;eor&#39;</span><span class="p">])</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230113_20240715_00403.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erlauterung-zur-auswahl-des-temperaturparameters">
+<h4><span class="section-number">3.1.2.1.2. </span>Erläuterung zur Auswahl des Temperaturparameters:<a class="headerlink" href="#erlauterung-zur-auswahl-des-temperaturparameters" title="Link to this heading">#</a></h4>
+<p>Um die beiden Zeitreihen im Hinblick auf den UHI-Effekt zu untersuchen, wird im weiteren Verlauf nur die Durchschnittstemperatur verwendet. Diese ist im Vergleich zur Maximaltemperatur weniger anfällig für mikroskalige Parameter (direkte Umgebung mit oder ohne Vegetation, Bebauung, Windverhältnisse etc.), die die Aufnahme der Wetterstationen beeinflussen könnten, denn der UHI-Effekt findet klimatisch gesehen, auf der Mesoskala und nicht auf der Mikroskala statt (Oke et al. 2017).</p>
+</section>
+<section id="datenvorbereitung-angermunde">
+<h4><span class="section-number">3.1.2.1.3. </span>Datenvorbereitung Angermünde<a class="headerlink" href="#datenvorbereitung-angermunde" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Angermünde Stations ID 164</span>
+
+<span class="c1">#Textdatei in CSV-Datei umwandeln (einmalig)</span>
+<span class="c1">#with open(&#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00164.txt&#39;, &#39;r&#39;) as file:</span>
+<span class="c1">#inhalt = file.read()</span>
+    
+<span class="c1">#eingabedatei = &#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00164.txt&#39;</span>
+<span class="c1">#ausgabedatei = &#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230116_20240718_00164.csv&#39;</span>
+
+<span class="c1">#df = pd.read_csv(eingabedatei, sep=&#39;,&#39;)</span>
+<span class="c1">#df.to_csv(ausgabedatei, index=False)</span>
+<span class="c1">#print(f&#39;Die Datei wurde erfolgreich als {ausgabedatei} gespeichert.&#39;)</span>
+
+<span class="c1">#Daten einlesen</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/anna-/OneDrive/Desktop/Studium/6. Semester/KI/Zeitreihenanalyse/Hausarbeit/produkt_klima_tag_20230113_20240715_00164.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#Spalten löschen</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;STATIONS_ID&#39;</span><span class="p">,</span><span class="s1">&#39;QN_3&#39;</span><span class="p">,</span><span class="s1">&#39;FX&#39;</span><span class="p">,</span><span class="s1">&#39;FM&#39;</span><span class="p">,</span><span class="s1">&#39;QN_4&#39;</span><span class="p">,</span><span class="s1">&#39;RSK&#39;</span><span class="p">,</span><span class="s1">&#39;RSKF&#39;</span><span class="p">,</span><span class="s1">&#39;SDK&#39;</span><span class="p">,</span><span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span><span class="s1">&#39;NM&#39;</span><span class="p">,</span><span class="s1">&#39;VPM&#39;</span><span class="p">,</span><span class="s1">&#39;PM&#39;</span><span class="p">,</span><span class="s1">&#39;UPM&#39;</span><span class="p">,</span><span class="s1">&#39;TXK&#39;</span><span class="p">,</span><span class="s1">&#39;TNK&#39;</span><span class="p">,</span><span class="s1">&#39;TGK&#39;</span><span class="p">,</span><span class="s1">&#39;eor&#39;</span><span class="p">])</span>
+             
+<span class="c1">#Spalten umbenennen</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+
+<span class="c1">#Datum als Index umformatieren</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+
+<span class="c1">#nach Datum sortieren</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+             
+<span class="c1">#Das Jahr 2023 extrahieren 13.01.2023 - 31.12.2023</span>
+<span class="n">Angermünde</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2023-01-13&#39;</span><span class="p">:</span><span class="s1">&#39;2023-12-31&#39;</span><span class="p">]</span>
+             
+<span class="c1">#auf NAs kontrollieren</span>
+<span class="n">Angermünde</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">Angermünde</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Temp_Mean    0
+ dtype: int64,
+             Temp_Mean
+ Date                 
+ 2023-01-13        8.7
+ 2023-01-14        7.0
+ 2023-01-15        6.5
+ 2023-01-16        4.4
+ 2023-01-17        2.3
+ ...               ...
+ 2023-12-27        3.4
+ 2023-12-28        7.9
+ 2023-12-29        8.6
+ 2023-12-30        5.9
+ 2023-12-31        5.0
+ 
+ [353 rows x 1 columns])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="visualisierung-der-zeitreihen">
+<h2><span class="section-number">3.1.3. </span>2.2. Visualisierung der Zeitreihen<a class="headerlink" href="#visualisierung-der-zeitreihen" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualisierung der Daten in eine Grafik</span>
+<span class="n">Dahlem</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/87ae04cddc18682530fbbe4fccddedb1cf03465978f009faacfd5dec3e1bdfb8.png" src="../../../_images/87ae04cddc18682530fbbe4fccddedb1cf03465978f009faacfd5dec3e1bdfb8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gemeinsame Darstellung der beiden Zeitreihen und Steigerung der Grafikinformationen</span>
+<span class="c1"># Erstellen eines neuen Plots mit der Festlegung der Größe der Grafik</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plotten der ersten Zeitreihe (Dahlem)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Dahlem</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Dahlem</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dahlem&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotten der zweiten Zeitreihe (Angermünde)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Angermünde</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Angermünde</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Angermünde&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hinzufügen von Titel und Achsenbeschriftungen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Temperaturverlauf 2023 in Dahlem und Angermünde&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Monat&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tagesmitteltemperatur (C°)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hinzufügen einer Legende</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Anzeigen des Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/243d8304e6806cab1656444e13f8fa11fbd8a54111327e6d791538f9d2efe3b0.png" src="../../../_images/243d8304e6806cab1656444e13f8fa11fbd8a54111327e6d791538f9d2efe3b0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Temperaturwerte auf die zweite Nachkommastelle runden </span>
+<span class="n">Dahlem</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Angermünde</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(       Temp_Mean
+ count     353.00
+ mean       11.30
+ std         7.26
+ min        -4.80
+ 25%         5.90
+ 50%        11.00
+ 75%        17.60
+ max        25.30,
+        Temp_Mean
+ count     353.00
+ mean       10.66
+ std         7.37
+ min        -7.70
+ 25%         5.00
+ 50%        10.30
+ 75%        17.30
+ max        26.00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Weitere Visualiserungsoption in einem Boxplot-Diagramm</span>
+<span class="c1">#Um das Datum in den Datensätzen Dahlem und Angermünde als Spalte benutzen zu können müssen diese umformatiert werden:</span>
+<span class="n">Dahlem_reset</span> <span class="o">=</span> <span class="n">Dahlem</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">Dahlem_reset</span>
+<span class="n">Angermünde_reset</span> <span class="o">=</span> <span class="n">Angermünde</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">Angermünde_reset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Temp_Mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-01-13</td>
+      <td>8.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-01-14</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-01-15</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-01-16</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-01-17</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>2023-12-27</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>2023-12-28</td>
+      <td>7.9</td>
+    </tr>
+    <tr>
+      <th>350</th>
+      <td>2023-12-29</td>
+      <td>8.6</td>
+    </tr>
+    <tr>
+      <th>351</th>
+      <td>2023-12-30</td>
+      <td>5.9</td>
+    </tr>
+    <tr>
+      <th>352</th>
+      <td>2023-12-31</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>353 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Extrahierung der Monatsnamen</span>
+<span class="n">Dahlem_reset</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dahlem_reset</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%B&#39;</span><span class="p">)</span>
+<span class="n">Angermünde_reset</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Angermünde_reset</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%B&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualisierung der Temperatur in Dahlem</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">Dahlem_reset</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot der Durchschnittstemperatur für 12 Monate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/fc898146981101e9138d6f6edc979e1833dade9ec8dda7ba19e35587e75160a4.png" src="../../../_images/fc898146981101e9138d6f6edc979e1833dade9ec8dda7ba19e35587e75160a4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualisierung der Temperatur in Dahlem</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">Angermünde_reset</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot der Durchschnittstemperatur für 12 Monate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/b0889d5e25db0e65531850ff006373dad56483ce7f768b23c6fa065b8e37fb18.png" src="../../../_images/b0889d5e25db0e65531850ff006373dad56483ce7f768b23c6fa065b8e37fb18.png" />
+</div>
+</div>
+<section id="berechnung-und-visualsierung-der-monats-und-wochenmitteltemperaturen">
+<h3><span class="section-number">3.1.3.1. </span>Berechnung und Visualsierung der Monats- und Wochenmitteltemperaturen<a class="headerlink" href="#berechnung-und-visualsierung-der-monats-und-wochenmitteltemperaturen" title="Link to this heading">#</a></h3>
+<section id="dahlem">
+<h4><span class="section-number">3.1.3.1.1. </span>Dahlem<a class="headerlink" href="#dahlem" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz Monatsmittel erstellen </span>
+<span class="n">data_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+<span class="n">Dahlem_Monatsmittel</span> <span class="o">=</span> <span class="n">Dahlem</span><span class="p">[</span><span class="n">data_columns</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Dahlem_Monatsmittel</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temp_Mean</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-31</th>
+      <td>2.352632</td>
+    </tr>
+    <tr>
+      <th>2023-02-28</th>
+      <td>3.317857</td>
+    </tr>
+    <tr>
+      <th>2023-03-31</th>
+      <td>5.896774</td>
+    </tr>
+    <tr>
+      <th>2023-04-30</th>
+      <td>8.243333</td>
+    </tr>
+    <tr>
+      <th>2023-05-31</th>
+      <td>14.177419</td>
+    </tr>
+    <tr>
+      <th>2023-06-30</th>
+      <td>19.293333</td>
+    </tr>
+    <tr>
+      <th>2023-07-31</th>
+      <td>19.541935</td>
+    </tr>
+    <tr>
+      <th>2023-08-31</th>
+      <td>19.196774</td>
+    </tr>
+    <tr>
+      <th>2023-09-30</th>
+      <td>17.853333</td>
+    </tr>
+    <tr>
+      <th>2023-10-31</th>
+      <td>11.909677</td>
+    </tr>
+    <tr>
+      <th>2023-11-30</th>
+      <td>5.776667</td>
+    </tr>
+    <tr>
+      <th>2023-12-31</th>
+      <td>3.951613</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Erstellung eines Balkendiagramms der Monatsmitteltemperatur</span>
+<span class="n">Dahlem</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/a258d38c4070a68f19eccd2c10e952fab0c607c055b5489a1e7e0aad854aeb90.png" src="../../../_images/a258d38c4070a68f19eccd2c10e952fab0c607c055b5489a1e7e0aad854aeb90.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz für Wochenmittel erstellen </span>
+<span class="n">data_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+<span class="n">Dahlem_Wochenmittel</span> <span class="o">=</span> <span class="n">Dahlem</span><span class="p">[</span><span class="n">data_columns</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Dahlem_Wochenmittel</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temp_Mean</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-15</th>
+      <td>7.533333</td>
+    </tr>
+    <tr>
+      <th>2023-01-22</th>
+      <td>1.257143</td>
+    </tr>
+    <tr>
+      <th>2023-01-29</th>
+      <td>0.757143</td>
+    </tr>
+    <tr>
+      <th>2023-02-05</th>
+      <td>2.928571</td>
+    </tr>
+    <tr>
+      <th>2023-02-12</th>
+      <td>0.757143</td>
+    </tr>
+    <tr>
+      <th>2023-02-19</th>
+      <td>5.671429</td>
+    </tr>
+    <tr>
+      <th>2023-02-26</th>
+      <td>4.928571</td>
+    </tr>
+    <tr>
+      <th>2023-03-05</th>
+      <td>1.271429</td>
+    </tr>
+    <tr>
+      <th>2023-03-12</th>
+      <td>1.485714</td>
+    </tr>
+    <tr>
+      <th>2023-03-19</th>
+      <td>8.057143</td>
+    </tr>
+    <tr>
+      <th>2023-03-26</th>
+      <td>10.442857</td>
+    </tr>
+    <tr>
+      <th>2023-04-02</th>
+      <td>6.685714</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Tasges- Wochen und Monatsmittel in einem Diagramm darstellen</span>
+<span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2023-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-12&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Dahlem</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Daily&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Dahlem_Wochenmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weekly Mean Resample&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Dahlem_Monatsmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly Mean Resample&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/36a2c74a8c83594686fd6512df00ca5adaeb6cbf18f963da74a2e46ca99dd416.png" src="../../../_images/36a2c74a8c83594686fd6512df00ca5adaeb6cbf18f963da74a2e46ca99dd416.png" />
+</div>
+</div>
+</section>
+<section id="angermunde">
+<h4><span class="section-number">3.1.3.1.2. </span>Angermünde<a class="headerlink" href="#angermunde" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz für Monatsmittel erstellen </span>
+<span class="n">data_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+<span class="n">Angermünde_Monatsmittel</span> <span class="o">=</span> <span class="n">Angermünde</span><span class="p">[</span><span class="n">data_columns</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Angermünde_Monatsmittel</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temp_Mean</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-31</th>
+      <td>1.789474</td>
+    </tr>
+    <tr>
+      <th>2023-02-28</th>
+      <td>2.439286</td>
+    </tr>
+    <tr>
+      <th>2023-03-31</th>
+      <td>5.074194</td>
+    </tr>
+    <tr>
+      <th>2023-04-30</th>
+      <td>7.466667</td>
+    </tr>
+    <tr>
+      <th>2023-05-31</th>
+      <td>13.193548</td>
+    </tr>
+    <tr>
+      <th>2023-06-30</th>
+      <td>18.213333</td>
+    </tr>
+    <tr>
+      <th>2023-07-31</th>
+      <td>19.193548</td>
+    </tr>
+    <tr>
+      <th>2023-08-31</th>
+      <td>18.816129</td>
+    </tr>
+    <tr>
+      <th>2023-09-30</th>
+      <td>18.036667</td>
+    </tr>
+    <tr>
+      <th>2023-10-31</th>
+      <td>11.254839</td>
+    </tr>
+    <tr>
+      <th>2023-11-30</th>
+      <td>5.250000</td>
+    </tr>
+    <tr>
+      <th>2023-12-31</th>
+      <td>3.190323</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz im Balkendiagramm anzeigen  </span>
+<span class="n">Angermünde</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/03343794612291870dd83fc41f1037809b6566fd6ac4d3417d58bb842230df0f.png" src="../../../_images/03343794612291870dd83fc41f1037809b6566fd6ac4d3417d58bb842230df0f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz für Wochenmittel erstellen </span>
+<span class="n">data_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]</span>
+<span class="n">Angermünde_Wochenmittel</span> <span class="o">=</span> <span class="n">Angermünde</span><span class="p">[</span><span class="n">data_columns</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Angermünde_Wochenmittel</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temp_Mean</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-15</th>
+      <td>7.400000</td>
+    </tr>
+    <tr>
+      <th>2023-01-22</th>
+      <td>0.528571</td>
+    </tr>
+    <tr>
+      <th>2023-01-29</th>
+      <td>0.128571</td>
+    </tr>
+    <tr>
+      <th>2023-02-05</th>
+      <td>2.128571</td>
+    </tr>
+    <tr>
+      <th>2023-02-12</th>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>2023-02-19</th>
+      <td>4.057143</td>
+    </tr>
+    <tr>
+      <th>2023-02-26</th>
+      <td>3.928571</td>
+    </tr>
+    <tr>
+      <th>2023-03-05</th>
+      <td>0.357143</td>
+    </tr>
+    <tr>
+      <th>2023-03-12</th>
+      <td>0.700000</td>
+    </tr>
+    <tr>
+      <th>2023-03-19</th>
+      <td>7.357143</td>
+    </tr>
+    <tr>
+      <th>2023-03-26</th>
+      <td>9.614286</td>
+    </tr>
+    <tr>
+      <th>2023-04-02</th>
+      <td>5.614286</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tages-, Wochen und Monatsmittel in einem Diagramm darstellen</span>
+<span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2023-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-12&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Angermünde</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Daily&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Angermünde_Wochenmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weekly Mean Resample&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Angermünde_Monatsmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly Mean Resample&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/528c97ba6e8213cd069ceb3789fddc9e6a718917502dbce6ebd72b418f0116de.png" src="../../../_images/528c97ba6e8213cd069ceb3789fddc9e6a718917502dbce6ebd72b418f0116de.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="vergleich-der-monatsmittel-von-dahlem-und-angermunde">
+<h3><span class="section-number">3.1.3.2. </span>Vergleich der Monatsmittel von Dahlem und Angermünde<a class="headerlink" href="#vergleich-der-monatsmittel-von-dahlem-und-angermunde" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz für beide Standorte gemeinsam erstellen</span>
+<span class="n">Monatsmittel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">Dahlem_Monatsmittel</span><span class="p">,</span> <span class="n">Angermünde_Monatsmittel</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Monatsmittel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Dahlem_Monatsmittel&#39;</span><span class="p">,</span> <span class="s1">&#39;Angermünde_Monatsmittel&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Monatsmittel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Dahlem_Monatsmittel  Angermünde_Monatsmittel
+Date                                                    
+2023-01-31             2.352632                 1.789474
+2023-02-28             3.317857                 2.439286
+2023-03-31             5.896774                 5.074194
+2023-04-30             8.243333                 7.466667
+2023-05-31            14.177419                13.193548
+2023-06-30            19.293333                18.213333
+2023-07-31            19.541935                19.193548
+2023-08-31            19.196774                18.816129
+2023-09-30            17.853333                18.036667
+2023-10-31            11.909677                11.254839
+2023-11-30             5.776667                 5.250000
+2023-12-31             3.951613                 3.190323
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nach einer ersten visuelle Analyse fallen die Differenzen der Temperaturen auf. Für eine vereinfachte Auswertung wird nachfolgend eine Spalte hinzugefügt, die die Temperaturdifferenz direkt anzeigt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Datensatz erstellen der auch die Temperaturdifferenzen anzeigt</span>
+<span class="n">Monatsmittel</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Monatsmittel</span><span class="p">[</span><span class="s1">&#39;Dahlem_Monatsmittel&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">Monatsmittel</span><span class="p">[</span><span class="s1">&#39;Angermünde_Monatsmittel&#39;</span><span class="p">]</span>
+<span class="n">Monatsmittel</span>
+
+<span class="n">Monatsmittel</span> <span class="o">=</span> <span class="n">Monatsmittel</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Monatsmittel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dahlem_Monatsmittel</th>
+      <th>Angermünde_Monatsmittel</th>
+      <th>Temp_Diff</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-31</th>
+      <td>2.35</td>
+      <td>1.79</td>
+      <td>0.56</td>
+    </tr>
+    <tr>
+      <th>2023-02-28</th>
+      <td>3.32</td>
+      <td>2.44</td>
+      <td>0.88</td>
+    </tr>
+    <tr>
+      <th>2023-03-31</th>
+      <td>5.90</td>
+      <td>5.07</td>
+      <td>0.82</td>
+    </tr>
+    <tr>
+      <th>2023-04-30</th>
+      <td>8.24</td>
+      <td>7.47</td>
+      <td>0.78</td>
+    </tr>
+    <tr>
+      <th>2023-05-31</th>
+      <td>14.18</td>
+      <td>13.19</td>
+      <td>0.98</td>
+    </tr>
+    <tr>
+      <th>2023-06-30</th>
+      <td>19.29</td>
+      <td>18.21</td>
+      <td>1.08</td>
+    </tr>
+    <tr>
+      <th>2023-07-31</th>
+      <td>19.54</td>
+      <td>19.19</td>
+      <td>0.35</td>
+    </tr>
+    <tr>
+      <th>2023-08-31</th>
+      <td>19.20</td>
+      <td>18.82</td>
+      <td>0.38</td>
+    </tr>
+    <tr>
+      <th>2023-09-30</th>
+      <td>17.85</td>
+      <td>18.04</td>
+      <td>-0.18</td>
+    </tr>
+    <tr>
+      <th>2023-10-31</th>
+      <td>11.91</td>
+      <td>11.25</td>
+      <td>0.65</td>
+    </tr>
+    <tr>
+      <th>2023-11-30</th>
+      <td>5.78</td>
+      <td>5.25</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>2023-12-31</th>
+      <td>3.95</td>
+      <td>3.19</td>
+      <td>0.76</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Die neu erzeugte Spalte zeigt, dass die durchschnittliche Luftemperatur in Dahlem in jedem Monat höher und lediglich in einem Monat niedriger ist.</p>
+<p>Für die erweiterte Analyse, welche Monate die stärksten und welche die geringsten Temperaturunterschiede aufweisen kann mithilfe des folgenden Codes gearbeitet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Anzeige maximale Temperaturdifferenz</span>
+<span class="n">max_diff_index</span> <span class="o">=</span> <span class="n">Monatsmittel</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">max_diff_index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timestamp(&#39;2023-06-30 00:00:00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Anzeige minimale Temperaturdifferenz</span>
+<span class="n">min_diff_index</span> <span class="o">=</span> <span class="n">Monatsmittel</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+<span class="n">min_diff_index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timestamp(&#39;2023-09-30 00:00:00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Erste Auswertung: Im Juni sind die Unterschiede der monatlichen Durchschnittstemperatur am stärksten, im September am geringsten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#zwei Datensätze für Juni und September erstellen um maximale und minimale Temperaturunterschiede genauer zu untersuchen</span>
+<span class="n">Angermünde_Juni</span> <span class="o">=</span> <span class="n">Angermünde</span><span class="p">[</span><span class="s1">&#39;2023-05-31&#39;</span><span class="p">:</span><span class="s1">&#39;2023-06-30&#39;</span><span class="p">]</span>
+<span class="n">Dahlem_Juni</span> <span class="o">=</span> <span class="n">Dahlem</span><span class="p">[</span><span class="s1">&#39;2023-05-31&#39;</span><span class="p">:</span><span class="s1">&#39;2023-06-30&#39;</span><span class="p">]</span>
+<span class="n">Angermünde_September</span> <span class="o">=</span> <span class="n">Angermünde</span><span class="p">[</span><span class="s1">&#39;2023-08-31&#39;</span><span class="p">:</span><span class="s1">&#39;2023-09-30&#39;</span><span class="p">]</span>
+<span class="n">Dahlem_September</span> <span class="o">=</span> <span class="n">Dahlem</span><span class="p">[</span><span class="s1">&#39;2023-08-31&#39;</span><span class="p">:</span><span class="s1">&#39;2023-09-30&#39;</span><span class="p">]</span>
+
+<span class="c1">#die Unterschiede der maximalen und minimalen Temperaturunterschiede in einem Boxplot darstellen</span>
+<span class="c1">#Einstellung der Abbildungsgröße</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1">#Boxplot für den Monat mit dem maximalen Temperaturunterschied</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">Dahlem_Juni</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span> <span class="n">Angermünde_Juni</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dahlem&#39;</span><span class="p">,</span> <span class="s1">&#39;Angermünde&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (C°)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Temperaturverteilung im Juni&#39;</span><span class="p">)</span>
+
+<span class="c1">#Boxplot für den Monat mit dem minimalen Temperaturunterschied</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">Dahlem_September</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span> <span class="n">Angermünde_September</span><span class="p">[</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">]],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dahlem&#39;</span><span class="p">,</span> <span class="s1">&#39;Angermünde&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (C°)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Temperaturverteilung im September&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/f68d656297d5ac237bf4d34313e1cea03aeda7bf975d67ae93b454855334933e.png" src="../../../_images/f68d656297d5ac237bf4d34313e1cea03aeda7bf975d67ae93b454855334933e.png" />
+</div>
+</div>
+<p>Der maximale Temperaturunterschied zwischen Dahlem und Angermünde findet im Juni 2023 statt, der minimalste Temperaturunterschied hingegen im September 2023.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Monatsmittel im Kurvendiagramm vergleichen</span>
+<span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2023-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-12&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Dahlem_Monatsmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dahlem&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Angermünde_Monatsmittel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">,</span> <span class="s1">&#39;Temp_Mean&#39;</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Angermünde&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temp_Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Monatsmittel-Temperaturverlauf 2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (C°)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/8af05dcd819e4ec77474eac079fbd18b5362bd1dfc7ac596465607224f24ed4a.png" src="../../../_images/8af05dcd819e4ec77474eac079fbd18b5362bd1dfc7ac596465607224f24ed4a.png" />
+</div>
+</div>
+</section>
+<section id="visualisierung-der-diffenz-des-temperaturunterschiedes-von-dahlem-und-angermunde">
+<h3><span class="section-number">3.1.3.3. </span>Visualisierung der Diffenz des Temperaturunterschiedes von Dahlem und Angermünde<a class="headerlink" href="#visualisierung-der-diffenz-des-temperaturunterschiedes-von-dahlem-und-angermunde" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zusammefügen der Datensätze Dahlem &amp; Angermünde</span>
+<span class="n">Differenz</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">Dahlem</span><span class="p">,</span> <span class="n">Angermünde</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Umbenennung der Spalten </span>
+<span class="n">Differenz</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp_Dahlem&#39;</span><span class="p">,</span><span class="s1">&#39;Temp_Angermünde&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Berechnung der täglichen Differenzen </span>
+<span class="n">Differenz</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Differenz</span><span class="p">[</span><span class="s1">&#39;Temp_Dahlem&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">Differenz</span><span class="p">[</span><span class="s1">&#39;Temp_Angermünde&#39;</span><span class="p">]</span>
+<span class="n">Differenz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temp_Dahlem</th>
+      <th>Temp_Angermünde</th>
+      <th>Temp_Diff</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-13</th>
+      <td>9.0</td>
+      <td>8.7</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>2023-01-14</th>
+      <td>7.3</td>
+      <td>7.0</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>2023-01-15</th>
+      <td>6.3</td>
+      <td>6.5</td>
+      <td>-0.2</td>
+    </tr>
+    <tr>
+      <th>2023-01-16</th>
+      <td>4.7</td>
+      <td>4.4</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>2023-01-17</th>
+      <td>2.5</td>
+      <td>2.3</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-12-27</th>
+      <td>4.0</td>
+      <td>3.4</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2023-12-28</th>
+      <td>8.4</td>
+      <td>7.9</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2023-12-29</th>
+      <td>9.5</td>
+      <td>8.6</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <th>2023-12-30</th>
+      <td>6.1</td>
+      <td>5.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2023-12-31</th>
+      <td>5.9</td>
+      <td>5.0</td>
+      <td>0.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>353 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotten der täglichen Temperaturdifferenz in einer Zeitreihe</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Differenz</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Differenz</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tägliche Differenz&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tägliche Temperaturdifferenz zwischen Dahlem und Angermünde 2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperaturdifferenz (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/66cb43c87e6a3aeff3b16d4cea6632f8aadaefc772be608041fa92a6be41ebde.png" src="../../../_images/66cb43c87e6a3aeff3b16d4cea6632f8aadaefc772be608041fa92a6be41ebde.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="schlussfolgerung">
+<h2><span class="section-number">3.1.4. </span>Schlussfolgerung<a class="headerlink" href="#schlussfolgerung" title="Link to this heading">#</a></h2>
+<p>Mithilfe der Zeitreihenanalyse konnten die Foschungsfragen dieser Arbeit beantwortet werden. Tatsächlich lässt sich der Effekt der urbanen Hitzeinsel anhand der Temperaturdaten aus dem Jahr 2023 zwischen den Wetterstationen Berlin-Dahlem (städtischer Standort) und Angermünde (ländlicher Standort) identifizieren. Obwohl die Wetterstationen nur 101 km voneinander entfernt liegen, zeigen die Daten, dass in Berlin in elf von zwölf Monaten eine höhere Lufttemperatur herrscht als in Angermünde. Die dichte Bebauung und der Versiegelungsgrad tragen mitunter dazu bei, dass eine urbane Hitzeinsel in und über Berlin entstehen kann. Besonders sichtbar wird der UHI-Effekt und der damit verbundene Temperaturunterschied im Juni, die geringsten Abweichungen finden dagegen im September statt. Bei der Interpretation der Ergebnisse wird dennoch darauf hingewiesen, dass keine Informationen dazu vorliegen, ob die die Temperaturunterschiede der beiden Wetterstationen durch andere Faktoren begründet werden könnten.</p>
+</section>
+<section id="literatur">
+<h2><span class="section-number">3.1.5. </span>Literatur<a class="headerlink" href="#literatur" title="Link to this heading">#</a></h2>
+<p>Calvin, Katherine, Dipak Dasgupta, Gerhard Krinner, Aditi Mukherji, Peter W. Thorne, Christopher Trisos, José Romero, u. a. (2023). „IPCC, 2023: Climate Change 2023: Synthesis Report. Contribution of Working Groups I, II and III to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, H. Lee and J. Romero (Eds.)]. IPCC, Geneva, Switzerland.“ First. Intergovernmental Panel on Climate Change (IPCC). <a class="reference external" href="https://doi.org/10.59327/IPCC/AR6-9789291691647">https://doi.org/10.59327/IPCC/AR6-9789291691647</a>.</p>
+<p>Oke, T. R., G. Mills, A. Christen, and J. A. Voogt. Urban Climates. Cambridge: Cambridge University Press (2017). „City size and the urban heat island“. Atmospheric Environment (1967) 7 (8): 769–79. <a class="reference external" href="https://doi.org/10.1016/0004-6981(73)90140-6">https://doi.org/10.1016/0004-6981(73)90140-6</a>.</p>
+<p>Oginga Martins, Judith, und Ayyoob Sharifi (2022). World Cities Report 2022: Envisaging the Future of Cities. <a class="reference external" href="https://www.researchgate.net/profile/Judith-Oginga-Martins-2/publication/362479003_World_Cities_Report_2022_Envisaging_the_Future_of_Cities/links/62ebe42a0b37cc34476e2443/World-Cities-Report-2022-Envisaging-the-Future-of-Cities.pdf">https://www.researchgate.net/profile/Judith-Oginga-Martins-2/publication/362479003_World_Cities_Report_2022_Envisaging_the_Future_of_Cities/links/62ebe42a0b37cc34476e2443/World-Cities-Report-2022-Envisaging-the-Future-of-Cities.pdf</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contents/tsa/Thran"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../timeseries_landing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Einfache Zeitreihenanalyse</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">3.1.1. Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode">3.1.2. Methode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">3.1.2.1. Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung-dahlem">3.1.2.1.1. Datenvorbereitung Dahlem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erlauterung-zur-auswahl-des-temperaturparameters">3.1.2.1.2. Erläuterung zur Auswahl des Temperaturparameters:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung-angermunde">3.1.2.1.3. Datenvorbereitung Angermünde</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisierung-der-zeitreihen">3.1.3. 2.2. Visualisierung der Zeitreihen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnung-und-visualsierung-der-monats-und-wochenmitteltemperaturen">3.1.3.1. Berechnung und Visualsierung der Monats- und Wochenmitteltemperaturen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dahlem">3.1.3.1.1. Dahlem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angermunde">3.1.3.1.2. Angermünde</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-monatsmittel-von-dahlem-und-angermunde">3.1.3.2. Vergleich der Monatsmittel von Dahlem und Angermünde</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisierung-der-diffenz-des-temperaturunterschiedes-von-dahlem-und-angermunde">3.1.3.3. Visualisierung der Diffenz des Temperaturunterschiedes von Dahlem und Angermünde</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schlussfolgerung">3.1.4. Schlussfolgerung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">3.1.5. Literatur</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Rudolph, Marie-Christin Eckert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

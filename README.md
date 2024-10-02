@@ -1,2 +1,0 @@
-# homework_reader
-Homeworks

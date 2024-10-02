@@ -1,0 +1,1330 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz &#8212; Machine Learning Online Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3. Einfache Zeitreihenanalyse" href="../../timeseries_landing.html" />
+    <link rel="prev" title="2.1. Grundwasservorhersage mittels eines Random Forests, Hessen" href="../Noura/Abschlussaufgabe_Barakat_Hildebrand.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Machine Learning Course Projects
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dt/Wagemann/Hausarbeit_Wagemann_Nguyen.html">1.2. Grundwasservorhersage mittels eines Decision Trees, Sachsen</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../rf_landing.html">2. Random Forests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tsa/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html">3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html">3.3. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tsa/Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html">3.4. Mächtigkeit der aktiven Schicht von Permafrost</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fcontents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">2.2.1. Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodik">2.2.2. Methodik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">2.2.2.1. Daten</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellbeschreibung">2.2.2.2. Modellbeschreibung</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entscheidungsbaume">2.2.2.2.1. Entscheidungsbäume</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">2.2.2.2.2. Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validierung-und-training">2.2.2.2.3. Validierung und Training</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementierung">2.2.2.2.4. Implementierung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code">2.2.3. Python-Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datengrundlage">2.2.4. Datengrundlage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grundwassermessstellen">2.2.5. Grundwassermessstellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einlesen-des-metadatensatzes">2.2.5.1. Einlesen des Metadatensatzes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellierung-random-forest">2.2.6. Modellierung - Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainieren-des-modells">2.2.7. Trainieren des Modells</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluierung-des-modells">2.2.8. Evaluierung des Modells</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">2.2.9. Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schlussfolgerung">2.2.10. Schlussfolgerung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">2.2.11. Quellen</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="grundwasservorhersage-mittels-eines-random-forests-rheinland-pfalz">
+<h1><span class="section-number">2.2. </span>Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz<a class="headerlink" href="#grundwasservorhersage-mittels-eines-random-forests-rheinland-pfalz" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>author: Lukas Nelde, Akbar Faraji</p>
+<p>area: Rheinland-Pfalz</p>
+<p>date: 26.08.2024</p>
+</div></blockquote>
+<section id="einleitung">
+<h2><span class="section-number">2.2.1. </span>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
+<p>Die Vorhersage des Grundwasserstands ist von entscheidender Bedeutung für das Wassermanagement und die Umweltüberwachung. Grundwasser dient als wichtige Ressource für Trinkwasser, Landwirtschaft und Industrie. Veränderungen im Grundwasserstand können auf klimatische Veränderungen oder Veränderungen in der Niederschlagsverteilung hindeuten, welche sich angesichts der drohenden Auswirkungen des Klimawandels verschärfen können. Durch die Vorhersage des Grundwasserstands auf Basis von Temperatur- und Niederschlagsdaten können frühzeitig Maßnahmen getroffen werden, um mögliche Probleme zu adressieren und Ressourcen effizienter zu verwalten (Bierkens and Wada, 2019).
+Inhalt dieser Arbeit ist es, ein Random Forest-Modell (RF) zur Modellierung des Grundwasserstands für eine Grundwassermessstelle in Rheinland-Pfalz zu implementieren. Die Zielsetzung besteht darin, die Effektivität des RF zur Modellierung des Grundwasserstands zu evaluieren und die Genauigkeit des Modells zu überprüfen. Das Modell wird dabei mit historischen Daten trainiert und getestet, um die Vorhersagequalität zu bewerten.
+Diese Arbeit basiert auf der Arbeit von Wunsch et. al (2022), welche eine ausführlichere Analyse der Entwicklung der Grundwasserstände in Deutschland mithilfe von Convolutional Neural Networks durchgeführt haben. Analog zu Wunsch et al. (2022) wurde ein Modell trainiert, welches die Entwicklung der Grundwasserstände bei einer Messstation simuliert.</p>
+</section>
+<section id="methodik">
+<h2><span class="section-number">2.2.2. </span>Methodik<a class="headerlink" href="#methodik" title="Link to this heading">#</a></h2>
+<section id="daten">
+<h3><span class="section-number">2.2.2.1. </span>Daten<a class="headerlink" href="#daten" title="Link to this heading">#</a></h3>
+<p>Für diese Arbeit wurden historische Daten von einer Grundwassermessstation im Bundesland Rheinland-Pfalz im Zeitraum von 1990 bis 2005 verwendet. Der Zeitraum wurde auf 16 Jahre reduziert, um die verfügbaren Rechenressourcen nicht zu überlasten. Eine längere Zeitreihe würde eventuell bessere Ergebnisse liefern. Folgende Daten werden verwendet:</p>
+<ul class="simple">
+<li><p>Temperatur: Durchschnittstemperatur in °C, gemessen an der Oberfläche. Diese Daten stammen aus dem HYRAS (Hydrometeorologische Rasterdatensätze) des Deutschen Wetterdienstes (DWD) und decken den gesamten Zeitraum der Arbeit ab (DAS-Basisdienst - Hydrometeorologische Rasterdatensätze, 2024).</p></li>
+<li><p>Niederschlag: Gesamtniederschlag in mm, erfasst in regelmäßigen Abständen. Auch diese Daten wurden aus dem HYRAS des DWD bezogen und geben einen detaillierten Überblick über die Niederschlagsmengen im Untersuchungszeitraum.</p></li>
+<li><p>Messdaten der Grundwasserhöhe einer Grundwassermessstelle im Bundesland Rheinland-Pfalz mit den zugehörigen Metadaten (Name, ID, x und y Koordinaten mit der Zuordnung zu einem Koordinatensystem, Beobachtungsbeginn, Geländehöhe, Messpunkthöhe und Filterober- und unterkante), bereitgestellt durch das Landesamt für Umwelt Rheinland-Pfalz (<a class="reference external" href="https://wasserportal.rlp-umwelt.de/auskunftssysteme/grundwasserstaende-und-beschaffenheit/karte-grundwassermessstellen">https://wasserportal.rlp-umwelt.de/auskunftssysteme/grundwasserstaende-und-beschaffenheit/karte-grundwassermessstellen</a>)</p></li>
+<li><p>Landesgrenzen des Bundeslands Rheinland-Pfalz, bereitgestellt durch das Landesamt für Vermessung und Geobasisinformation Rheinland-Pfalz (<a class="reference external" href="https://lvermgeo.rlp.de/fileadmin/lvermgeo/pdf/open-data/Download_von_Verwaltungsgrenzen.pdf">https://lvermgeo.rlp.de/fileadmin/lvermgeo/pdf/open-data/Download_von_Verwaltungsgrenzen.pdf</a>)</p></li>
+</ul>
+<p>Diese Datenbasis ermöglicht eine detaillierte Analyse der Zusammenhänge zwischen Temperatur, Niederschlag und Grundwasserstand in Rheinland-Pfalz und dient als Grundlage für die Modellierung und Vorhersage des Grundwasserstands mithilfe des RF-Modells.</p>
+</section>
+<section id="modellbeschreibung">
+<h3><span class="section-number">2.2.2.2. </span>Modellbeschreibung<a class="headerlink" href="#modellbeschreibung" title="Link to this heading">#</a></h3>
+<p>Für die Vorhersage des Grundwasserstands wurde ein RF verwendet. RF ist Modell aus dem maschinellen Lernen, das häufig für Klassifizierungen und Vorhersagen genutzt wird. Der RF wird verwendet, um Entscheidungen basierend auf bestimmten Eingaben, wie Temperatur und Niederschlag, zu treffen und dabei zu einer Vorhersage des Grundwasserstands zu gelangen. Diese Methode hat sich als besonders nützlich erwiesen, weil sie die komplizierten Zusammenhänge zwischen verschiedenen Faktoren effektiv abbilden kann. So kann RF zum Beispiel zeigen, wie sich eine Erhöhung des Niederschlags auf den Grundwasserspiegel auswirkt. Im Folgenden wird die Funktionsweise des RF und dazugehörenden Modelltraining und Validierung anhand zweier Artikel erläutert (Pham et al., 2022) (Lee and Lee, 2015).</p>
+<section id="entscheidungsbaume">
+<h4><span class="section-number">2.2.2.2.1. </span>Entscheidungsbäume<a class="headerlink" href="#entscheidungsbaume" title="Link to this heading">#</a></h4>
+<p>Ein Entscheidungsbaum arbeitet, indem er die Daten Schritt für Schritt in kleinere Gruppen unterteilt. An jedem Knoten des Baumes wird eine Frage gestellt, die sich auf ein Merkmal wie die Temperatur oder den Niederschlag bezieht. Je nachdem, wie die Frage beantwortet wird, wird der Datenpunkt zu einem der Zweige des Baumes weitergeleitet. Dieser Prozess setzt sich fort, bis am Ende eine klare Vorhersage getroffen werden kann. Die Blätter des Baumes, also die Endpunkte, enthalten dann die endgültige Vorhersage.</p>
+</section>
+<section id="random-forest">
+<h4><span class="section-number">2.2.2.2.2. </span>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h4>
+<p>RF ist eine Ensemblemethode im maschinellen Lernen. Beim Training werden möglichst unabhängige und zufällige Entscheidungsbäume erzeugt, welche jeweils mit einer anderen Stichprobe der Ausgangsdaten trainiert werden. Weiterhin wird immer nur eine zufällige Auswahl an Merkmalen für die Entscheidungsknoten eines einzelnen Baumes herangezogen.</p>
+<p>Um Entscheidungen zu treffen, werden die Ergebnisse aller Entscheidungsbäume aggregiert und die am häufigsten gewählte Klasse (im Falle der Klassifikation), oder der Mittelwert aller Bäume (im Falle der Regression) wird als finales Ergebnis ausgegeben. Häufig ist die Performance von RF besser zu bewerten als die einzelner Entscheidungsbäume.</p>
+</section>
+<section id="validierung-und-training">
+<h4><span class="section-number">2.2.2.2.3. </span>Validierung und Training<a class="headerlink" href="#validierung-und-training" title="Link to this heading">#</a></h4>
+<p>Um einen RF zu trainieren, müssen die Daten sorgfältig vorbereitet werden. Dies beinhalten das Sammeln und Bereinigen der relevanten Daten. Beim Training lernt der RF, Muster in den Daten zu erkennen und Entscheidungen zu treffen, die zu möglichst genauen Vorhersagen führen. Um sicherzustellen, dass das Modell nicht überanpasst (das heißt, es funktioniert nur für die Trainingsdaten gut, aber nicht für neue Daten), wird das Modell an separaten Testdaten überprüft.</p>
+</section>
+<section id="implementierung">
+<h4><span class="section-number">2.2.2.2.4. </span>Implementierung<a class="headerlink" href="#implementierung" title="Link to this heading">#</a></h4>
+<p>Die Implementierung des RF erfolgt in einem Jupyter Notebook. Jeder Codeabschnitt wird kommentiert, um die Vorgehensweise und die Logik hinter den einzelnen Schritten zu erläutern. Dies umfasst die Datenvorbereitung, das Training des Modells und die Evaluierung der Ergebnisse, und der Plausibilität der Zwischenergebnisse.</p>
+</section>
+</section>
+</section>
+<section id="python-code">
+<h2><span class="section-number">2.2.3. </span>Python-Code<a class="headerlink" href="#python-code" title="Link to this heading">#</a></h2>
+<p>Zunächst laden wir alle nötigen Libraries und Funktionen und benennen sie zur einfachen Handhabung mit Kürzeln.
+Das Installieren der Bibliotheken kann übersprungen werden, wenn sie bereits im Environment sind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Lade notwendige Bibliotheken herunter und installiere sie</span>
+
+<span class="c1">## import sys</span>
+<span class="c1">## !{sys.executable} -m pip install numpy matplotlib pandas seaborn matplotlib scipy datetime </span>
+
+<span class="c1">## Lade notwendige netCDF und geodaten-Bibliotheken herunter</span>
+
+<span class="c1">## import sys</span>
+<span class="c1">## !{sys.executable} -m pip install netCDF4 h5netcdf xarray wget geopandas rioxarray </span>
+
+
+<span class="c1">## Bibliotheken laden</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span><span class="o">,</span> <span class="nn">h5netcdf</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+<span class="kn">import</span> <span class="nn">wget</span> 
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">netcdf</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="c1">#Importiere Entscheidungsbaum-Klassifizierer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> <span class="c1">#Importiere Trainings-Test-Split Funktion</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span> <span class="c1">#Importiere scikit-learn Metrikenmodul, um die Modellgüte auszuwerten</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span> 
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">import</span> <span class="nn">netCDF4</span><span class="o">,</span> <span class="nn">h5netcdf</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;netCDF4&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="datengrundlage">
+<h2><span class="section-number">2.2.4. </span>Datengrundlage<a class="headerlink" href="#datengrundlage" title="Link to this heading">#</a></h2>
+<p>Sowohl die Temperaturdaten, als auch die Niederschlagsdaten wurden für das komplette Bundesland Rheinland-Pfalz heruntergeladen, zurechtgeschnitten und in jeweils einer Datei kombiniert. Für die Analyse werden allerdings nur die Zeitreihen der Datensätze an den Standort der Grundwassermessstelle benötigt.</p>
+</section>
+<section id="grundwassermessstellen">
+<h2><span class="section-number">2.2.5. </span>Grundwassermessstellen<a class="headerlink" href="#grundwassermessstellen" title="Link to this heading">#</a></h2>
+<p>Eine Übersicht über die Grundwassermessstellen kann man online (<a class="reference external" href="https://wasserportal.rlp-umwelt.de/auskunftssysteme/grundwasserstaende-und-beschaffenheit/karte-grundwassermessstellen">https://wasserportal.rlp-umwelt.de/auskunftssysteme/grundwasserstaende-und-beschaffenheit/karte-grundwassermessstellen</a>) aufrufen. Von dort wurden die Metadaten einer der im Paper von Wunsch et al. benannten Grundwassermessstellen in Rheinland-Pfalz zusammengetragen. Dies umfasst den Namen, die ID, die x und y Koordinaten mit der Zuordnung zu einem Koordinatensystem, den Beobachtungsbeginn, die Geländehöhe, die Messpunkthöhe und die Filterober- und unterkante.</p>
+<section id="einlesen-des-metadatensatzes">
+<h3><span class="section-number">2.2.5.1. </span>Einlesen des Metadatensatzes<a class="headerlink" href="#einlesen-des-metadatensatzes" title="Link to this heading">#</a></h3>
+<p>Zuerst muss der Metadatensatz, welcher als “RLP_GW_wells.csv” im Ordner data gespeichert ist, eingelesen und in einen geopandas-Dataframe umgewandelt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Zurücksetzen des Arbeitsverzeichnisses</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+
+<span class="c1">## Festlegung des Bundeslandkürzels</span>
+<span class="n">bl</span> <span class="o">=</span> <span class="s2">&quot;RP&quot;</span> <span class="c1">#(Rheinland-Pfalz)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Einlesen der .csv-Datei mit den Metadaten der Grundwassermessstellen</span>
+<span class="n">gw_wells</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;data/RLP_GW_wells.csv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span><span class="n">decimal</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+    <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">gw_wells</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gw Messstellen RP</th>
+      <th>ID</th>
+      <th>x</th>
+      <th>y</th>
+      <th>Beobachtungsbeginn</th>
+      <th>gelaendehoehe_m_NN</th>
+      <th>messpunkthoehe_m_NN</th>
+      <th>FIOK_m_unter_GOK</th>
+      <th>FIUK_m_unter_Gok</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1341 I, Woerth am Rhein</td>
+      <td>2373131200</td>
+      <td>432818</td>
+      <td>5431652</td>
+      <td>1979</td>
+      <td>137.46</td>
+      <td>137.96</td>
+      <td>8.5</td>
+      <td>12.5</td>
+      <td>EPSG:25832</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Außerdem muss das Koordinatenreferenzsystem mit dem der HYRAS-Datensätze übereinstimmen, also werden die Koordinaten transformiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Konvertierung zu einem geopandas dataframe</span>
+<span class="n">gwl_points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="n">gw_wells</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">gw_wells</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gw_wells</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:25832&quot;</span>
+<span class="p">)</span>
+<span class="n">gwl_points</span>
+
+<span class="c1">## und Transformation der Koordinaten zum einheitlichen Koordinatensystem EPSG:3034</span>
+
+<span class="n">gwl_points</span> <span class="o">=</span> <span class="n">gwl_points</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;epsg:3034&quot;</span><span class="p">)</span>
+
+<span class="n">RLP</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="s2">&quot;data/landesgrenze_rlp_3034.shp&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;epsg:3034&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E:\Programme\Anaconda\Lib\site-packages\pyogrio\raw.py:196: RuntimeWarning: driver ESRI Shapefile does not support open option CRS
+  return ogr_read(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Überprüfen der Plausibilität der Punkte</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gwl_points</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gwl_points</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    3.864442e+06
+dtype: float64
+0    2.483137e+06
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Koordinaten der Messstelle liegen im Bereich der Koordinaten der Landesgrenze, sind also plausibel. Dies kann man besser in einer Karte sehen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dieser Plot zeigt, dass der Standort der Grundwassermessstelle innerhalb der Landesgrenzen liegen </span>
+<span class="c1">## und die Transformation der Koordinaten funktioniert hat</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">RLP</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">gwl_points</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">base</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../../_images/26fed50071ac6a5b2213f528a6327cebf5e547d470ee711b28c5d8f33b7b338e.png" src="../../../_images/26fed50071ac6a5b2213f528a6327cebf5e547d470ee711b28c5d8f33b7b338e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="modellierung-random-forest">
+<h2><span class="section-number">2.2.6. </span>Modellierung - Random Forest<a class="headerlink" href="#modellierung-random-forest" title="Link to this heading">#</a></h2>
+<p>Nun, da alle Daten vorbereitet sind, können wir durch einen Random Forest Algorithmus versuchen, die Grundwasserstände anhand der Temperatur und des Niederschlags zu simulieren, beziehungsweise vorherzusagen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Arbeitsverzeichnis zurücksetzen</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+
+<span class="c1">## Laden aller .csv-Dateien. Diese enthalten nun jeweils 5 Spalten (Nummer/Index, Datum, Temperatur, Niederschlag, Grundwasser) </span>
+<span class="c1">## und haben 835 Einträge (also 835 Wochen = 16 Jahre). </span>
+<span class="c1">## Jede Datei ist die Messreihe einer Grundwassermessstelle verknüpft mit den HYRAS-Daten des DWD an diesem Ort.</span>
+<span class="c1">## In diesem Fall ist nur eine Datei vorhanden, weil nur eine Station modelliert wird.</span>
+
+<span class="n">csv_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;data/HYRAS_GWData_csv/*.csv&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Erstellen einer Liste, die alle Datensätze enthalten wird.</span>
+<span class="n">processed_samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">csv_files</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1">## Kombination aller Messreihen in einem data frame</span>
+    <span class="n">processed_samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">processed_samples</span><span class="p">,</span><span class="n">df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">processed_samples</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>pr</th>
+      <th>tas</th>
+      <th>GWL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-01-01</td>
+      <td>0.400000</td>
+      <td>-0.500000</td>
+      <td>135.347500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990-01-08</td>
+      <td>0.200000</td>
+      <td>0.585714</td>
+      <td>135.385000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990-01-15</td>
+      <td>4.900000</td>
+      <td>4.328571</td>
+      <td>135.422500</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990-01-22</td>
+      <td>34.000000</td>
+      <td>6.028572</td>
+      <td>135.460000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990-01-29</td>
+      <td>6.200000</td>
+      <td>6.357143</td>
+      <td>135.540000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>830</th>
+      <td>2005-11-28</td>
+      <td>23.199999</td>
+      <td>2.500000</td>
+      <td>134.936667</td>
+    </tr>
+    <tr>
+      <th>831</th>
+      <td>2005-12-05</td>
+      <td>7.300000</td>
+      <td>3.257143</td>
+      <td>134.963333</td>
+    </tr>
+    <tr>
+      <th>832</th>
+      <td>2005-12-12</td>
+      <td>21.300000</td>
+      <td>3.100000</td>
+      <td>134.990000</td>
+    </tr>
+    <tr>
+      <th>833</th>
+      <td>2005-12-19</td>
+      <td>4.600000</td>
+      <td>2.557143</td>
+      <td>135.020000</td>
+    </tr>
+    <tr>
+      <th>834</th>
+      <td>2005-12-26</td>
+      <td>20.500000</td>
+      <td>-1.566667</td>
+      <td>135.050000</td>
+    </tr>
+  </tbody>
+</table>
+<p>835 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Prüfung auf leere Werte</span>
+<span class="n">processed_samples</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date    0
+pr      0
+tas     0
+GWL     0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hier werden die Daten in Trainings- und Testdatensätze aufgeteilt. 20% der Daten werden als Testdaten benutzt, an den anderen 80% wird das Modell trainiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Das Datum soll als Index fungieren.</span>
+<span class="n">processed_samples</span> <span class="o">=</span> <span class="n">processed_samples</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">processed_samples</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]))</span>
+<span class="k">del</span> <span class="n">processed_samples</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span>
+<span class="n">processed_samples</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pr</th>
+      <th>tas</th>
+      <th>GWL</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990-01-01</th>
+      <td>0.400000</td>
+      <td>-0.500000</td>
+      <td>135.347500</td>
+    </tr>
+    <tr>
+      <th>1990-01-08</th>
+      <td>0.200000</td>
+      <td>0.585714</td>
+      <td>135.385000</td>
+    </tr>
+    <tr>
+      <th>1990-01-15</th>
+      <td>4.900000</td>
+      <td>4.328571</td>
+      <td>135.422500</td>
+    </tr>
+    <tr>
+      <th>1990-01-22</th>
+      <td>34.000000</td>
+      <td>6.028572</td>
+      <td>135.460000</td>
+    </tr>
+    <tr>
+      <th>1990-01-29</th>
+      <td>6.200000</td>
+      <td>6.357143</td>
+      <td>135.540000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2005-11-28</th>
+      <td>23.199999</td>
+      <td>2.500000</td>
+      <td>134.936667</td>
+    </tr>
+    <tr>
+      <th>2005-12-05</th>
+      <td>7.300000</td>
+      <td>3.257143</td>
+      <td>134.963333</td>
+    </tr>
+    <tr>
+      <th>2005-12-12</th>
+      <td>21.300000</td>
+      <td>3.100000</td>
+      <td>134.990000</td>
+    </tr>
+    <tr>
+      <th>2005-12-19</th>
+      <td>4.600000</td>
+      <td>2.557143</td>
+      <td>135.020000</td>
+    </tr>
+    <tr>
+      <th>2005-12-26</th>
+      <td>20.500000</td>
+      <td>-1.566667</td>
+      <td>135.050000</td>
+    </tr>
+  </tbody>
+</table>
+<p>835 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Die erklärenden Variablen (features) und erklärte Variable werden benannt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## features und Zielvariable werden getrennt</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">processed_samples</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GWL&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">processed_samples</span><span class="p">[</span><span class="s1">&#39;GWL&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Aufteilen in Trainings- und Testdaten</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="trainieren-des-modells">
+<h2><span class="section-number">2.2.7. </span>Trainieren des Modells<a class="headerlink" href="#trainieren-des-modells" title="Link to this heading">#</a></h2>
+<p>Eine Hyperparameter-Optimierung ermöglicht es, die besten Parameter für das Modell zu ermitteln. Es wird jede mögliche Kombination aus den gegebenen Parameter-Bereichen getestet, um das beste Ergebnis zu erzielen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Hyperparameter-Optimierung</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">700</span><span class="p">],</span>
+    <span class="c1">#&#39;max_features&#39;: [&#39;sqrt&#39;, &#39;log2&#39;],</span>
+    <span class="s1">&#39;max_depth&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+<span class="c1">#    &#39;criterion&#39; :[&#39;gini&#39;, &#39;entropy&#39;]</span>
+<span class="p">}</span>
+
+<span class="n">CV_rfc</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rfc</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">CV_rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_params_</span>
+
+<span class="n">best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;max_depth&#39;: 4, &#39;n_estimators&#39;: 700}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die optimalen Parameter sind also eine Anzahl von 700 Entscheidungsbäumen mit einer Tiefe von maximal 4 Knoten pro Entscheidungsbaum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Initialwert und Anzahl der Bäume für den Random Forest festlegen</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">196</span>
+
+<span class="c1"># RandomForest erstellen, X und y definieren und Modell trainieren mit ermittelten besten Parametern</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">best_params</span><span class="p">[</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">],</span> 
+                              <span class="n">random_state</span> <span class="o">=</span> <span class="n">seed</span><span class="p">,</span> 
+                              <span class="n">max_features</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+                              <span class="n">min_samples_split</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
+                              <span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+                              <span class="n">max_depth</span> <span class="o">=</span> <span class="n">best_params</span><span class="p">[</span><span class="s2">&quot;max_depth&quot;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestRegressor(max_depth=4, n_estimators=700, random_state=196)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor(max_depth=4, n_estimators=700, random_state=196)</pre></div></div></div></div></div></div></div>
+</div>
+</section>
+<section id="evaluierung-des-modells">
+<h2><span class="section-number">2.2.8. </span>Evaluierung des Modells<a class="headerlink" href="#evaluierung-des-modells" title="Link to this heading">#</a></h2>
+<p>Hier werden Perfomance-Metriken ausgegeben, zunächst um die Leistungsfähigkeit des Modells in Hinsicht auf die Vorhersage der Grundwasserstände mit den Trainingsdaten zu prüfen, dann die gleichen Metriken für die Leistungsfähigkeit des Modells anhand der Testdaten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Mittelwert der quadrierten Residuen und erklärte Varianz ausgeben lassen</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean of squared residuals: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% Var explained: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of squared residuals: 0.19545733855817826
+% Var explained: 19.545733855817826
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für den Trainingsdatensatz beträgt der Mittelwert der quadrierten Residuen also 0,195. Dies ist kein besonders gutes Ergebnis, ermöglicht aber eine bessere Vorhersage als zufälliges Raten (oder einfach die Annahme des Mittelwertes)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Mittelwert der quadrierten Residuen und erklärte Varianz ausgeben lassen</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean of squared residuals: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% Var explained: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of squared residuals: -0.02049377548650555
+% Var explained: -2.049377548650555
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für den Testdatensatz beträgt der Mittelwert der quadrierten Residuen -0,02. Dies ist ein schlechtes Ergebnis und ist keine Verbesserung gegenüber der Annahme des Mittelwerts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="o">-</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="o">-</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.15382847 0.12457724 0.17206299 0.17783363 0.12464693 0.16002206
+ 0.13483773 0.15261859 0.17722317 0.13739399]
+0.15150448018266865 0.01944173126089822
+[0.14378217 0.19720647 0.14331656 0.26592559 0.17017654 0.19613762
+ 0.16782807 0.08170431 0.14147065 0.20740086]
+0.17149488464626544 0.04692093883100013
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Kreuzvalidierung zeigt eine relativ gute Stabilität des Modells gegenüber zufälliger Auswahl der Daten. Die Standardabweichung ist im Testdatensatz deutlich höher, was durch die kleinere Menge an Daten gut erklärbar ist (nur 20% des gesamten Datensatzes werden verwendet)</p>
+<p>Zum Schluss sollen visuell die vorhergesagten und die realen Messwerte verglichen werden, einmal für den Trainingsdatensatz und einmal für den Testdatensatz, um zu überprüfen, ob das Modell gut generalisiert und damit man neben den Bewertungsmetriken auch einen visuellen Vergleich hat.</p>
+<p>Für diesen Codechunk kam ChatGPT zum Einsatz, um eine Lösung für die Erstellung eines kombinierten DataFrames zu finden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Modellvorhersagen werden getroffen und in Objekten gespeichert</span>
+<span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+
+<span class="c1">## Erstelle zunächst einen Dataframe, der die realen Werte und die Modellvorhersagen enthält, </span>
+<span class="c1">## und das Datum weiterhin als Index benutzt.</span>
+<span class="c1">## Vorher müssen die Vorhersageergebnisse als pandas-Serie gespeichert werden.</span>
+
+<span class="n">y_pred_train_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_train</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">y_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y_val&#39;</span><span class="p">)</span>
+<span class="n">y_train_compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="s1">&#39;y_pred_train&#39;</span><span class="p">:</span> <span class="n">y_pred_train_series</span>
+<span class="p">})</span>
+
+
+<span class="n">y_pred_test_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_test</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y_val&#39;</span><span class="p">)</span>
+<span class="n">y_test_compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">,</span>
+    <span class="s1">&#39;y_pred_test&#39;</span><span class="p">:</span> <span class="n">y_pred_test_series</span>
+<span class="p">})</span>
+
+<span class="c1"># Optional: Ausgabe zur Überprüfung</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train_compare</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            y_train  y_pred_train
+Date                             
+1999-03-01   136.06    135.579947
+1996-08-19   135.17    135.312681
+1998-11-09   135.33    135.557193
+2003-03-31   135.88    135.599848
+1995-10-16   135.54    135.405672
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_train_compare</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/4fa2dcb0c809a2e3183cc0eb91c6301d14376125cad6ee3b0d899a022eed9507.png" src="../../../_images/4fa2dcb0c809a2e3183cc0eb91c6301d14376125cad6ee3b0d899a022eed9507.png" />
+</div>
+</div>
+<p>Abbildung 1:</p>
+<p>In dem hier erstellten Plot sind die realen Messwerte des Trainingsdatensatzes in blau dargestellt, in orange sind die durch das Modell vorhergesagten Grundwasserstände sichtbar. Man kann erkennen, dass das Modell nicht gut darin ist, die Stärke der Peaks vorherzusehen, aber die periodische Schwankung des Grundwasserstands lässt sich trotzdem gut nachvollziehen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test_compare</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/68809cec40d2604a26bfd1997e0e9e69310bee4f4391442033eaad3edddd80ac.png" src="../../../_images/68809cec40d2604a26bfd1997e0e9e69310bee4f4391442033eaad3edddd80ac.png" />
+</div>
+</div>
+<p>Abbildung 2:</p>
+<p>In dem hier erstellten Plot sind die realen Messwerte des Testdatensatzes in blau dargestellt, in orange sind die durch das Modell vorhergesagten Grundwasserstände sichtbar. Man kann erkennen, dass das Modell häufig falsche Vorhersagen trifft, auch wenn die peaks meistens an einer ähnlichen Stelle sind.</p>
+</section>
+<section id="ergebnisse">
+<h2><span class="section-number">2.2.9. </span>Ergebnisse<a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
+<p>Die Hyperparameter-Optimierung des Random Forest Regressors ergab, dass die besten Modelleinstellungen eine maximale Tiefe der Bäume (max_depth) von 4 und 700 Bäume (n_estimators) umfassen. Mit diesen Parametern wurde das Modell trainiert, und die Leistung auf den Trainingsdaten zeigte eine erklärte Varianz von 19,55% sowie einen Mittelwert der quadrierten Residuen von 0,195. Diese Werte deuten darauf hin, dass das Modell auf den Trainingsdaten eine begrenzte Fähigkeit zur Vorhersage besitzt.
+Die Bewertung des Modells mit den Testdaten zeigte jedoch eine negative erklärte Varianz von -2,05% und einen negativen Mittelwert der quadrierten Residuen von -0,0205. Diese Ergebnisse deuten auf eine Überanpassung des Modells an die Trainingsdaten hin und zeigen, dass das Modell auf den Testdaten schlechter abschneidet als ein einfaches Durchschnittsmodell.
+Zur weiteren Überprüfung der Modellrobustheit wurde eine 10-fache Kreuzvalidierung durchgeführt. Die Ergebnisse auf den Trainingsdaten zeigten einen Mittelwert des negativen mittleren quadratischen Fehlers (MSE) von 0,1515 bei einer Standardabweichung von 0,0194. Im Vergleich dazu lag der Mittelwert des negativen MSE auf den Testdaten bei 0,1715 mit einer Standardabweichung von 0,0469. Diese Ergebnisse verdeutlichen eine höhere Variabilität und eine eingeschränkte Generalisierbarkeit des Modells auf neue Daten.
+Zusammenfassend zeigt das Random Forest Modell auf den Trainingsdaten akzeptable Ergebnisse, weist jedoch auf den Testdaten erhebliche Schwächen auf, was auf eine Überanpassung oder unzureichende Modellanpassung an die Testdaten hindeutet. Dies lässt sich auch sehr gut in den Abbildungen 1 und 2 erkennen. In diesen Abbildungen zeigt sich außerdem, dass das Modell besonders ungeeignet ist, um die Maximal- und Minimalwerte des Grundwasserspiegels zu erfassen.</p>
+</section>
+<section id="schlussfolgerung">
+<h2><span class="section-number">2.2.10. </span>Schlussfolgerung<a class="headerlink" href="#schlussfolgerung" title="Link to this heading">#</a></h2>
+<p>In dieser Arbeit wurde ein Random Forest Regressionsmodell zur Vorhersage des Grundwasserstands an einer Messstation in Rheinland-Pfalz entwickelt und optimiert.
+Die Ergebnisse sind nur wenig zufriedenstellend. Die Leistungsfähigkeit des Modells könnte möglicherweise verbessert werden, indem weitere Variablen hinzugezogen werden oder die verwendeten Variablen optimiert werden. Zum Beispiel könnten Regenereignisse nicht nur zeitlich lokal betrachtet werden, sondern es wäre denkbar, dass ein gleitender Durchschnitt der Temperatur und des Niederschlags verwendet wird, um anhaltende Regen- und Trockenperioden zu erfassen. Weiterhin wäre eine Analyse über einen längeren Zeitraum sinnvoll, um zu untersuchen, ob das Modell in der Lage ist, lang- und mittelfristige Trends vorherzusagen.
+Zusammenfassend lässt sich sagen, dass, obwohl das Random Forest Modell in unserer Arbeit wertvolle Einsichten liefert, es in seiner Vorhersagekraft und Generalisierbarkeit mangelt. Zukünftige Arbeiten sollten daher in Betracht ziehen, zusätzliche relevante Variablen einzubeziehen und alternative Modellierungsansätze zu erforschen, um die Vorhersagegenauigkeit und Robustheit weiter zu verbessern.</p>
+</section>
+<section id="quellen">
+<h2><span class="section-number">2.2.11. </span>Quellen<a class="headerlink" href="#quellen" title="Link to this heading">#</a></h2>
+<p>Bierkens, M. and Wada, Y. (2019) ‘Non-renewable groundwater use and groundwater depletion: A review’, Environmental Research Letters, 14. Available at: <a class="reference external" href="https://doi.org/10.1088/1748-9326/ab1a5f">https://doi.org/10.1088/1748-9326/ab1a5f</a>.</p>
+<p>DAS-Basisdienst - Hydrometeorologische Rasterdatensätze (2024). Available at: <a class="reference external" href="https://www.das-basisdienst.de/DAS-Basisdienst/DE/produkte/liste/hyras_node.html">https://www.das-basisdienst.de/DAS-Basisdienst/DE/produkte/liste/hyras_node.html</a> (Accessed: 26 August 2024).</p>
+<p>Lee, S. and Lee, C.-W. (2015) ‘Application of Decision-Tree Model to Groundwater Productivity-Potential Mapping’, Sustainability, 7(10), pp. 13416–13432. Available at: <a class="reference external" href="https://doi.org/10.3390/su71013416">https://doi.org/10.3390/su71013416</a>.</p>
+<p>OpenAI. (2024). ChatGPT [Large language model].</p>
+<p>Pham, Q.B. et al. (2022) ‘Groundwater level prediction using machine learning algorithms in a drought-prone area’, Neural Computing and Applications, 34(13), pp. 10751–10773. Available at: <a class="reference external" href="https://doi.org/10.1007/s00521-022-07009-7">https://doi.org/10.1007/s00521-022-07009-7</a>.</p>
+<p>Wunsch, A., Liesch, T. and Broda, S. (2022) ‘Deep learning shows declining groundwater levels in Germany until 2100 due to climate change’, Nature Communications, 13(1), p. 1221. Available at: <a class="reference external" href="https://doi.org/10.1038/s41467-022-28770-2">https://doi.org/10.1038/s41467-022-28770-2</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contents/rf/Nelde"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Noura/Abschlussaufgabe_Barakat_Hildebrand.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Grundwasservorhersage mittels eines Random Forests, Hessen</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../timeseries_landing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Einfache Zeitreihenanalyse</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">2.2.1. Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodik">2.2.2. Methodik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">2.2.2.1. Daten</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellbeschreibung">2.2.2.2. Modellbeschreibung</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entscheidungsbaume">2.2.2.2.1. Entscheidungsbäume</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">2.2.2.2.2. Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validierung-und-training">2.2.2.2.3. Validierung und Training</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementierung">2.2.2.2.4. Implementierung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code">2.2.3. Python-Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datengrundlage">2.2.4. Datengrundlage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grundwassermessstellen">2.2.5. Grundwassermessstellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einlesen-des-metadatensatzes">2.2.5.1. Einlesen des Metadatensatzes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellierung-random-forest">2.2.6. Modellierung - Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainieren-des-modells">2.2.7. Trainieren des Modells</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluierung-des-modells">2.2.8. Evaluierung des Modells</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">2.2.9. Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schlussfolgerung">2.2.10. Schlussfolgerung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">2.2.11. Quellen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Rudolph, Marie-Christin Eckert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

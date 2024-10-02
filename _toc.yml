@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts: 
+- caption: Hausarbeiten Sommersemester 2024
+  numbered: true
+  chapters:
+  - file: contents/dt_landing
+    sections:
+     - file: contents/dt/Schwind/Hausarbeit_Anne Schwind_456737
+     - file: contents/dt/Wagemann/Hausarbeit_Wagemann_Nguyen
+  - file: contents/rf_landing
+    sections:
+     - file: contents/rf/Noura/Abschlussaufgabe_Barakat_Hildebrand
+     - file: contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji
+  - file: contents/timeseries_landing
+    sections:
+     - file: contents/tsa/Thran/Hausarbeit_Thran
+     - file: contents/tsa/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko
+     - file: contents/tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia
+     - file: contents/tsa/Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova
+  - file: contents/deep-learning
+    sections:
+     - file: contents/deep_learning/Sommer/Hausarbeit_workflow
+
+     
+

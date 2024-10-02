@@ -1,0 +1,78 @@
+
+Created: Thu Jan 02 2014 11:30:32 GMT+0000 (GMT)
+Last Update: Mon Nov 09 2015 14:50:58 GMT+0000 (GMT)
+Id: 25
+Name: Ayach-Yakha
+Country: Russia
+Timezone: +04:00
+Url: http://gtnpdatabase.org/activelayers/view/25
+Active: yes
+Permafrost_Zone: Continuous
+Longitude: 64.183
+Latitude: 67.583
+Elevation: 150.877518
+Slope: 1 °
+Aspect: 172 °
+Type: Grid
+Ancillary Code : R2
+Have_Data: yes
+Metadata Completeness: 87 %
+Description: SITE DESCRIPTION
+	The Ayach-Yakha CALM site (67 35.40N; 64 09.90E) is located near the town of Vorkuta, 400 km to the east of Bolvansky grid. MAAT at the Vorkuta weather station is 5.9 C and precipitation is 550 mm (1948–2002).  The Ayach-Yakha grid is located 13 km northeast of the town of Vorkuta on an undulating plain covered with silty loam of glacial-marine origin. The grid occupies a gentle (3 deg.) southwest-facing slope with a creek flowing within 20 m of its lower border. The range of elevations within the site is 5 m. Schist bedrock is exposed in the creek valley. At the two lowest tiers of the grid the loamy deposit is about 120–150 cm thick over the bedrock. Dwarf shrub/feather moss tundra with numerous frost boils occupies the site. Some dwarf birch and willow thickets are up to 50 cm high. Soil organic layer thickness ranges from 0 to 25 cm, with a site average of 12 cm. Soils are gleyed and thixotropic, with cryoturbation best developed under and around frost boils. The soils are classified as Turbi-Histic (Gleyic) and Gleyi-Turbic Cryosols (Mazhitova et al., 2004).
+	SAMPLING DESIGN AND METHOD: 
+	1-ha grid consists of a square array of surveyed permanent stakes separated by 10 m, yielding an 11 × 11 array of sampling nodes on each grid. Thaw depth sampling was conducted four times by manual probing at each stake. The four values for each sampling point are averaged, yielding a maximum of 121 data points per grid per probing date. Snow depths are measured at each grid node annually in April. Volumetric water content in the surface soil horizon is determined for each grid node annually at the end of the warm season. Water content is determined several times during the season by portable Vitel Hydra® probe. Air temperatures at a height of 2 m, as well as soil and upper-permafrost temperatures are recorded with the use of miniature Onset data loggers. Ground subsidence and/or heave are determined at Ayach-Yakha for each grid node annually at the beginning and at the end of the warm season with the use of a 2H-10KL leveling instrument (Russia) providing for 4 mm accuracy.
+	 
+Data Author: Dmitry Kaverin
+Observation: 
+	Landform: Shallow, glacial marine deposit over bedrock, dissected by streams
+	Lithology: Turbi-Histic (Gleyic), Gleyi-Turbic Cryosols (loamy)
+	Vegetation: Mesic dwarf shrub-moss tundra with frost boils
+	Vegetation_Name: Shrub Tundra
+	Description: General description of soil moisture: Moist
+Accessibility: 
+Disturbance: 
+Citations: 
+	0: 
+		Title: CALM Russia Institute of Biology Komi Center RAS
+		Keywords: Active layer, permafrost
+		Version: 1
+		Language: English
+		Created: Mon Jan 27 2014 12:34:48 GMT+0000 (GMT)
+		Modified: Wed Jan 29 2014 08:46:46 GMT+0000 (GMT)
+		Organizations: 
+			0: 
+				Name: Institute of Biology, Komi Scientific Centre, Ural Branch, RAS
+				Address: 
+					Country: Russia
+					Url: http://ib.komisc.ru:8089/en/
+		Principal Investigators: 
+			0: 
+				First_Name: Dmitry
+				Last_Name: Kaverin
+				Contact: no
+				Address: 
+					Country: Russia
+					Email: dkav@mail.ru
+				Organization: 
+					Name: Institute of Biology, Komi Scientific Centre, Ural Branch, RAS
+					Address: 
+						Country: Russia
+						Url: http://ib.komisc.ru:8089/en/
+Datasets: 
+	0: 
+		Created: Fri Feb 14 2014 10:58:08 GMT+0000 (GMT)
+		Last Update: Tue Feb 13 2018 08:30:28 GMT+0000 (GMT)
+		Policy: Open
+		Variable: Active Layer Thickness (grid/transect)
+		Frequency: Annually
+		Datatype: Sporadic
+		Method: Mechanical Probing
+		Medium: Soil
+		Resolution: Irrelevant
+		Number of values: 3465
+		Number of null values: 56
+		Minimum value: 0
+		Maximum value: 135
+		Avarage value: 79.522470338969
+		Data: 
+			Csv File: Activelayer_25-Ayach-Yakha-Dataset_240-Sporadic-Annually-Active_Layer_Thickness_grid_transect-Mechanical_Probing.timeserie.csv
