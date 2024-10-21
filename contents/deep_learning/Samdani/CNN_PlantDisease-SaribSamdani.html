@@ -1,0 +1,1412 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern &#8212; Machine Learning Online Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/deep_learning/Samdani/CNN_PlantDisease-SaribSamdani';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Machine Learning Course Projects
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fcontents/deep_learning/Samdani/CNN_PlantDisease-SaribSamdani.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/contents/deep_learning/Samdani/CNN_PlantDisease-SaribSamdani.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">Abschließende Worte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">Quellenverzeichnis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="gesundheitsstatus-von-pflanzen-erkennen-einsatz-von-convolutional-neural-networks-zur-klassifizierung-von-pflanzen-bildern">
+<h1>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern<a class="headerlink" href="#gesundheitsstatus-von-pflanzen-erkennen-einsatz-von-convolutional-neural-networks-zur-klassifizierung-von-pflanzen-bildern" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>author: Sarib Samdani</p>
+<p>date: 11.08.2024</p>
+</div></blockquote>
+<p>In dieser Arbeit wird ein Modell entwickelt, welches ein Bild von einer Pflanze als Input bekommt und daraufhin die Art der Pflanze, den Gesundheitsstand,  und die Wahrscheinlichkeit (Konfidenz) der Klassifizierung als Output zurückgibt. Landwirtschaftler können solche Technologien nutzen, um frühzeitig Krankheiten in ihrer Farm zu erkennen und wirtschaftlichen Schaden verhindern, sowie den Anteil an gewonnener Ernte erhöhen. Für das Trainieren und Testen wird das <a class="reference external" href="https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset">“Plant Village Dataset”</a> verwendet, welches eine umfassende Sammlung von Bildern gesunder und kranker Pflanzen enthält. Diese Open-Source Verfügbarkeit erspart somit das Kaufen, eigenständige Sammeln oder das Schreiben von Web-Scraping-Skripten der Daten.</p>
+<p>Die folgenden Fragen sollen beantwortet werden: Welches Modell eignet sich hierfür am besten und wie kann dieses optimiert werden? <br>
+Zudem ist das Dataset in drei Versionen verfügbar: farbig, Grautönen und segmentiert. Macht es einen Unterschied für die Accuracy, ob die Bilder farbig sind oder einen einheitlichen Hintergrund haben?</p>
+<p><img alt="Bild_Einleitung.png" src="contents/deep_learning/Samdani/attachment:cf4f4e78-b4c4-49fd-8512-41ad99757376.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inhaltsverzeichnis">
+<h1>Inhaltsverzeichnis<a class="headerlink" href="#inhaltsverzeichnis" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="#chapter1"><span class="xref myst">1. Datenaufbereitung</span></a> <br>
+<a class="reference internal" href="#chapter2"><span class="xref myst">2. Train-Test-Split</span></a><br>
+<a class="reference internal" href="#chapter3"><span class="xref myst">3. Modellwahl - CNN</span></a><br>
+<a class="reference internal" href="#chapter4"><span class="xref myst">4. Ergebnisse</span></a><br>
+<a class="reference internal" href="#chapter5"><span class="xref myst">5. Modell mit Grayscale Data</span></a><br>
+<a class="reference internal" href="#chapter6"><span class="xref myst">6. Modell mit Segmented Data</span></a><br>
+<a class="reference internal" href="#chapter7"><span class="xref myst">7. Auswertung und Diskussion</span></a><br></p>
+<section id="dartenaufbereitung">
+<h2>1. Dartenaufbereitung <a class="anchor" id="chapter1"></a><a class="headerlink" href="#dartenaufbereitung" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># mathematische Operationen</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># Bib für Datenmanipulation</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># Dateipfade durchgehen (für Daten Laden) </span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># Bib für Grafiken und Diagramme</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># Visualisierung von Python Daten</span>
+
+<span class="c1"># Für das CNN und Datenaufbereitung</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span> 
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span> 
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span> 
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">Adamax</span> 
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># Visualisierung von Python Daten</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Für das CNN und Datenaufbereitung</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;tensorflow&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Für die Ausführung in der Google Colab Umgebung, muss data erstezt werden durch folgenden Code: </span>
+<span class="c1">#from google.colab import drive</span>
+<span class="c1">#drive.mount(&#39;/content/drive&#39;)</span>
+<span class="c1">#data = &#39;/content/drive/MyDrive/Colab Notebooks/plant_color&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;plant_color&#39;</span>
+
+<span class="k">def</span> <span class="nf">create_dataframe</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">filepaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">folds</span><span class="p">:</span>
+        <span class="n">f_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">fold</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">):</span>
+            <span class="n">imgs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+                <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f_path</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">img_path</span><span class="p">):</span>
+                    <span class="n">filepaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                    <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span>
+
+    <span class="n">fseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">filepaths</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">)</span>
+    <span class="n">lseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fseries</span><span class="p">,</span> <span class="n">lseries</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der ursprüngliche PlantVillage-Ordner umfasst die drei Hauptordner “color”, “grey” und “segmented” mit jeweils 38 Ordnern, welche die verschiedenen Pflanzenarten und Gesundheitszustände repräsentieren. Die Dauer des Trainings einer einzigen Epoche und lediglich eines der Hauptordner auf meinem MacBook Air mit M1-Chip beträgt zweieinhalb Stunden. Da ich jedoch viel mehr vorhabe, behalte ich pro Hauptordner nur die drei Ordner <em>Potato_Early_blight, Potato_Late_blight und Potato_healthy</em>. Die Auswahl dieser drei Ordner basiert auf der Anzahl der enthaltenen Bilder, denn zwei enthalten jeweils 1000 Bilder und einer nur 152. Damit kann untersucht werden, ob eine ungleiche Verteilung sich negativ auf die Vorhersagen auswirkt. Das folgende Diagramm zeigt die ursprüngliche Struktur mit 54303 Bildern pro Hauptordner:</p>
+<p><img alt="Alle Ordner von Plant Vilalge.png" src="contents/deep_learning/Samdani/attachment:2f3a0326-a46c-44c1-98dd-8530ca2a9259.png" /></p>
+<p>Hier sind nun die drei Ordner abgebildet, die im Weiteren Verlauf genutzt werden (102 MB an Bildern), als Diagramm und dazu einige Beispielbilder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts_sorted</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">counts_sorted</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">counts_sorted</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;cividis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Plant Types&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Total Number of Images&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Plant Species&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">counts_sorted</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">value</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c9102ee7cf96036bc2ae0605f1d6fa2eab89f5ffce121f5e64e9c4900271d5e5.png" src="../../../_images/c9102ee7cf96036bc2ae0605f1d6fa2eab89f5ffce121f5e64e9c4900271d5e5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mehr dazu https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image_dataset_from_directory</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image_dataset_from_directory</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">image_size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span> 
+<span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">class_names</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">image_batch</span><span class="p">,</span> <span class="n">labels_batch</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">num_images</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_batch</span><span class="p">),</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">))</span>
+        <span class="n">title_text</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">labels_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()]</span>
+        <span class="n">split_index</span> <span class="o">=</span> <span class="n">title_text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;___&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">split_index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">title_text</span> <span class="o">=</span> <span class="n">title_text</span><span class="p">[:</span><span class="n">split_index</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">title_text</span><span class="p">[</span><span class="n">split_index</span> <span class="o">+</span> <span class="mi">3</span><span class="p">:]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title_text</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 2152 files belonging to 3 classes.
+</pre></div>
+</div>
+<img alt="../../../_images/ffd300db19d3b90d54ec7402fba2f377772f7ee864e8871b112dd601d67563b3.png" src="../../../_images/ffd300db19d3b90d54ec7402fba2f377772f7ee864e8871b112dd601d67563b3.png" />
+</div>
+</div>
+<p>Es bestehen drei große Herausforderungen mit diesem Dataset:</p>
+<ol class="arabic simple">
+<li><p>Es gibt Bilder die falsch gelabeled wurden (siehe die nächsten beiden Bilder)</p></li>
+<li><p>Die Differenzierung zwischen Early_blight und Late_blight ist manchmal nicht eindeutig</p></li>
+<li><p>Es gibt unterschiedliche Hintergrundfarben und in manchen Bildern gibt es (starken) Schatten, in manchen gar keinen</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#nicht gehardcoded, es wird selbständig herausgefunden was das Label ist</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;1b8ae46e-1202-4715-8ad1-fd18046c42d3___RS_LB 3880.JPG&quot;</span><span class="p">)]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;201fed44-8dde-4ece-9e76-3706b8afdf46___RS_Early.B 8259.JPG&quot;</span><span class="p">)]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/6fc9abe066c145c91cf4fe4e870b4b1218c6786e58795fe1e2fc1a9fe5908f0e.png" src="../../../_images/6fc9abe066c145c91cf4fe4e870b4b1218c6786e58795fe1e2fc1a9fe5908f0e.png" />
+</div>
+</div>
+</section>
+<section id="train-test-split">
+<h2>2. Train-Test-Split <a class="anchor" id="chapter2"></a><a class="headerlink" href="#train-test-split" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">temp_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>                                     
+<span class="c1">#Training = 80%</span>
+<span class="c1">#valid = 10% (50% von den restlichen 0,2)</span>
+<span class="c1">#test = 10% (50% von den restlichen 0,2)                             </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Um die Generalisierungsfähigkeit zu erhöhen und Overfitting zu vermeiden, kann man Augmentationstechniken verwenden. Dabei werden die Bilder mit leichten Veränderungen (z.B. gedreht/rotiert, skaliert, gespiegelt) kopiert und in den Trainingsdatensatz miteingefügt.
+Mehr zum Thema hier: <a class="reference external" href="https://medium.com/ymedialabs-innovation/data-augmentation-techniques-in-cnn-using-tensorflow-371ae43d5be9">“Data Augmentation Techniques in CNN using Tensorflow”</a>. Außerdem kann die Effektivität des Modells erhöht werden, indem die ursprünglichen Pixelwerte zwischen 0 und 255 reskaliert werden zu 0 bis 1 <span class="math notranslate nohighlight">\(^{1}\)</span>.</p>
+<p>Kurze Begriffserklärung: Epochen ist die Anzahl der Durchläufe mit dem gesamten Trainingsdatensatz (forward und backward propagation), wobei jedes Mal die Gewichte mit dem Gradient descent angepasst werden (hier wird ‘Adamax’ mit einer learning_rate=0.001 verwendet). Es wird von Underfitting zu Optimum zu Overfitting gewechselt - die Anzahl muss also mit Bedacht gewählt werden. Batch Size ist die Gesamtanzahl an Trainingsbeispielen in einem Batch (die Daten werden in mehrere Batches aufgeteilt, da nicht die gesamten Daten in ein neuronales Netz passen). Iterationen ist die Anzahl der Batches, die benötigt werden, um eine Epoche durchzuführen (die Anzahl der Batches entspricht der Anzahl der Iterationen für eine Epoche). Beispiel: Wir können den Datensatz von 2000 Beispielen in Batches von 500 aufteilen, dann werden 4 Iterationen benötigt, um 1 Epoche abzuschließen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator</span>
+<span class="k">def</span> <span class="nf">create_image_data_generators</span><span class="p">():</span>
+    <span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+        <span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">rotation_range</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">fill_mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span>
+    <span class="p">)</span>
+    <span class="n">valid_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span>
+
+
+<span class="k">def</span> <span class="nf">create_generators</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span><span class="p">):</span>
+    <span class="n">target_size_parameter</span> <span class="o">=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>  <span class="c1"># Bildgröße</span>
+    <span class="n">batch_size_parameter</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Batchgröße</span>
+
+    <span class="n">train_generator</span> <span class="o">=</span> <span class="n">train_datagen</span><span class="o">.</span><span class="n">flow_from_dataframe</span><span class="p">(</span>
+        <span class="n">dataframe</span><span class="o">=</span><span class="n">train_df</span><span class="p">,</span>
+        <span class="n">x_col</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">,</span>
+        <span class="n">y_col</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">target_size_parameter</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_parameter</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+
+    <span class="n">valid_generator</span> <span class="o">=</span> <span class="n">valid_datagen</span><span class="o">.</span><span class="n">flow_from_dataframe</span><span class="p">(</span>
+        <span class="n">dataframe</span><span class="o">=</span><span class="n">val_df</span><span class="p">,</span>
+        <span class="n">x_col</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">,</span>
+        <span class="n">y_col</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">target_size_parameter</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_parameter</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+
+    <span class="n">test_generator</span> <span class="o">=</span> <span class="n">test_datagen</span><span class="o">.</span><span class="n">flow_from_dataframe</span><span class="p">(</span>
+        <span class="n">dataframe</span><span class="o">=</span><span class="n">test_df</span><span class="p">,</span>
+        <span class="n">x_col</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">,</span>
+        <span class="n">y_col</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">target_size_parameter</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_parameter</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">,</span> <span class="n">test_generator</span>
+
+    
+<span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span> <span class="o">=</span> <span class="n">create_image_data_generators</span><span class="p">()</span>
+<span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">,</span> <span class="n">test_generator</span> <span class="o">=</span> <span class="n">create_generators</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
+    <span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 1721 validated image filenames belonging to 3 classes.
+Found 215 validated image filenames belonging to 3 classes.
+Found 216 validated image filenames belonging to 3 classes.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modellwahl-cnn">
+<h2>3. Modellwahl - CNN <a class="anchor" id="chapter3"></a><a class="headerlink" href="#modellwahl-cnn" title="Link to this heading">#</a></h2>
+<p>Unter den vielen ML/DL-Modellen die es heute gibt, ist die Entscheidung für dennoch CNN eindeutig, da es sich als leistungsstarker Standard für Bildklassifikation etabliert hat. Die Funktionsweise dieses neuronalen Netzes entspricht der Arbeitsweise unseres Gehirns bei visuellen Wahrnehmungen. Erst erkennt es durch Partitionierung einzelne Bestandteile des Ganzen (Bildes) und aggregiert diese dann wieder zusammen, um dann zu entscheiden was es sieht. Hierzu ein High-Level Beispiel: Dem Gehirn ist die Wahrnehmung eines Pandas möglich, indem zunächst die Farbe, die Ohren, die Augen, die Nase, der Mund sowie die Größe des Kopfes als charakteristische Merkmale eines Pandas identifiziert werden. Im Anschluss werden die Arme, Hände, Beine und der Bauch als weitere pandatypische Körpermerkmale erkannt und schließlich zu einem Gesamtbild eines Pandas aggregiert<span class="math notranslate nohighlight">\(^{2}\)</span>. In den meisten Fällen erfolgt die Wahrnehmung dieser Prozesse so schnell, dass sie nicht bewusst wahrgenommen werden. Erst bei der Betrachtung neuer Objekte wird man sich diesem bewusst.</p>
+<p>Was ist aber, wenn der Panda nicht im Zentrum des Bildes ist, sondern links, rechts oder in der Ecke? Genau dieses Problem haben einfache neuronale Netze. Artificial Neural Network war der Vorgänger,  der es größtenteils schaffte,  auch Bilder mit Varianz in Position der Subjekte korrekt zu klassifizieren. Aufgrund der enormen Rechenkapazität, die ANNs aber benötigten<span class="math notranslate nohighlight">\(^{3}\)</span>, wurden diese von CNNs mit Augmentationstechniken abgelöst. Die Convolutional Layers verwenden Filter (Kernels), die über das gesamte Bild gleiten und lokale Merkmale wie Kanten, Texturen und kleine Strukturen erkennen. Sie sind also in der Lage, dieselben Merkmale überall im Bild zu identifizieren, unabhängig von der Position. Für die Mathematik hinter CNNs empfehle ich <a class="reference external" href="https://www.youtube.com/watch?v=Lakz2MoHy6o">dieses Video</a>.</p>
+<p>Unter den convolutional neural network gibt es wieder eine große Auswahl an Architekturen, welche je nach Anwendungsgebiet unterschiedlich effizient sind.
+<a class="reference external" href="https://www.youtube.com/watch?v=FwFduRA_L6Q">LeNet 1</a> stellt mit 9760 Parametern eines der ersten CNN x Computer-Vision-Modelle überhaupt dar, welches im Jahr 1989 entwickelt wurde und die Grundlage für die heutigen Modelle legte.<br />
+Im Jahr 2012 erreichte einer der Mitbegründer von OpenAI (Ilya Sutskever) einen weiteren sehr bedeutenden Meilenstein mit dem <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">ImageNet</a>, das über 60 Millionen Parameter verfügt. <a class="reference external" href="https://www.youtube.com/watch?v=UZDiGooFs54">The moment we stopped understanding AI</a> ist eine exzellente Erklärung zu diesem Paper als YouTube-Video.  Das ImageNet stellt keine CNN-Architektur dar, sondern eine umfangreiche Bilddatenbank, auf deren Basis CNN-Architekturen wie AlexNet, VGGNet, GoogLeNet und ResNet trainiert wurden. Zwei weitere namenhafte Bilddatenbanken sind COCO und ISIC. Welche Architektur man letztendlich wählt, hängt von zu vielen Faktoren ab, sodass eine übersichtliche Darstellung an dieser Stelle nicht (für mich) möglich ist. Ein typischer Ansatz für Anfänger ist es, zwischen den meistverwendeten Architekturen (ResNet, VGGNet, GoogLeNet) auszuwählen, die Parameter anzupassen und diejenige mit den besten Ergebnissen zu wählen.</p>
+<p>In einer im Jahr 2023 veröffentlichten <a class="reference external" href="https://www.researchgate.net/publication/376415019_Detecting_Plant_Disease_Using_CNN_and_KNN">Paper</a> wurden verschiedene Deep-Learning-Architekturen, darunter AlexNet, GoogLeNet, ResNet50, InceptionV2 und DenseNet161, anhand desselben Datensatzes evaluiert. Überraschenderweise hatte das GoogleNet (1. Platz), welches nur über 5 Millionen Parameter verfügt, eine Accuracy von 99.34%, während das AlexNet mit 60 Millionen Parameter nur 85.53% (3. Platz) erreichte. Da diese Ergebnisse erst nach 30 Epochen erzielt wurden, suchte ich nach effizienteren Architekturen. Nach ausgiebiger Recherche und Trial-and-Error wählte ich Xception (23 Millionen Parameter, auch trainiert mit ImageNet) und verwendete die “Tanh”-Aktivierungsfunktion. (<a class="reference external" href="https://www.analyticsvidhya.com/blog/2020/01/fundamentals-deep-learning-activation-functions-when-to-use-them/?utm_source=blog&amp;amp;utm_medium=mathematics-convolutional-neural-network#h-overview-of-activation-function-in-neural-networks">Hier</a> eine Übersicht und Erklärungen anderer Aktivierungsfunktionen). Dieses erzielt eine Accuracy von 99% mit nur drei Epochen und sechs Minuten Durchlaufzeit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_and_train_model</span><span class="p">(</span><span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">):</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">Xception</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span> <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">&#39;avg&#39;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">base_model</span><span class="p">,</span>
+        <span class="n">BatchNormalization</span><span class="p">(),</span>  <span class="c1"># Normaliiserung der Eingaben einer Schicht</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">),</span>  <span class="c1"># Anzahl Neuronen und Aktivierungsfunktion der Eingabeschicht</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>  <span class="c1"># Regulariserungstechnik um Overfitting zu vermeiden</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>  <span class="c1"># Anzahl Neuronen und Aktivierungsfunktion der Ausgabeschicht, Anzahl Ordner!</span>
+    <span class="p">])</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">Adamax</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">train_generator</span><span class="p">,</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="n">valid_generator</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> 
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">history</span>
+
+<span class="n">model</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">create_and_train_model</span><span class="p">(</span><span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.11/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">116s</span> 1s/step - accuracy: 0.7798 - loss: 0.6457 - val_accuracy: 0.8884 - val_loss: 0.2934
+Epoch 2/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">118s</span> 1s/step - accuracy: 0.9324 - loss: 0.1954 - val_accuracy: 0.9814 - val_loss: 0.0619
+Epoch 3/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">123s</span> 1s/step - accuracy: 0.9711 - loss: 0.0799 - val_accuracy: 0.9907 - val_loss: 0.0237
+Epoch 4/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">130s</span> 1s/step - accuracy: 0.9838 - loss: 0.0476 - val_accuracy: 0.9907 - val_loss: 0.0258
+Epoch 5/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">136s</span> 1s/step - accuracy: 0.9867 - loss: 0.0357 - val_accuracy: 0.9814 - val_loss: 0.0544
+Epoch 6/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">142s</span> 1s/step - accuracy: 0.9744 - loss: 0.0872 - val_accuracy: 0.9767 - val_loss: 0.0557
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es kann vorkommen, dass trotz höherer Werte eine Metrik schlechter ausfällt als mit weniger. Die Bildgröße ist ein Beispiel, dass mehr nicht immer zwangsweise besser sein muss, und die Gründe dafür sind äußerst interessant. Die Änderung der Bildgröße von 128 auf 256 Pixel kann dazu führen, dass mehr Details im Bild erkannt werden. Das Modell könnte übermäßig viele Details lernen, die nicht immer nützlich sind und sich negativ auf die Validierungsgenauigkeit auswirken. <br>
+Ich habe viele verschiedene Architekturen, Aktivierungsfunktionen und Größen ausprobiert, um das Modell zu optimieren.
+Hier sind vier Beispiele mit unterschiedlichen Parameterwerten:</p>
+<p>4 Epochen mit der ReLu Aktivierungsfunktion <br>
+Batch Size 16: 81/81 ━━━━━━━━━━━━━━━━━━━━ 107s 1s/step - accuracy: 0.9135 - loss: 0.2059 - val_accuracy: 0.9163 - val_loss: 0.5124</p>
+<p>Batch Size 32: 41/41 ━━━━━━━━━━━━━━━━━━━━ 108s 3s/step - accuracy: 0.9777 - loss: 0.0635 - val_accuracy: 0.9558 - val_loss: 0.2285</p>
+<p>6 Epochen mit der Tanh Aktivierungsfunktion <br>
+Batch Size 16: 81/81 ━━━━━━━━━━━━━━━━━━━━ 14s 167ms/step - accuracy: 0.9541 - loss: 0.1920 - val_accuracy: 0.9674 - val_loss: 0.0780</p>
+<p>Batch Size 32: 41/41 ━━━━━━━━━━━━━━━━━━━━ 130s 3s/step - accuracy: 0.9895 - loss: 0.0393 - val_accuracy: 0.9962 - val_loss: 0.0051</p>
+</section>
+<section id="ergebnisse">
+<h2>4. Ergebnisse <a class="anchor" id="chapter4"></a><a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_and_print</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_generator</span><span class="p">):</span>
+    <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy: </span><span class="si">{</span><span class="n">test_accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">evaluate_and_print</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.11/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 184ms/step - accuracy: 0.9939 - loss: 0.0292
+Test Loss: 0.0358
+Test Accuracy: 0.9907
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_training_history</span><span class="p">(</span><span class="n">history</span><span class="p">):</span>
+    <span class="n">tr_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+    <span class="n">tr_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+    <span class="n">val_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
+    <span class="n">val_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span>
+
+    <span class="n">epochs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tr_acc</span><span class="p">))]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">tr_loss</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train Loss&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Valid Loss&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">tr_acc</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train Accuracy&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_acc</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Valid Accuracy&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plot_training_history</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/dacec2925bc0e6028ee65e2d79f6cb466d4922163309f72f637b7dbad04a8a49.png" src="../../../_images/dacec2925bc0e6028ee65e2d79f6cb466d4922163309f72f637b7dbad04a8a49.png" />
+</div>
+</div>
+<p>Diese Diagramme zeigen die Ergebnisse der einzelnen Epochen für meinen aktuellen Durchlauf. Die Werte ändern sich mit jedem Durchlauf des Notebooks. In diesem Fall liefert die dritte bis vierte Epoche die besten Ergebnisse. Warum das so sein könnte, wurde bereits bei der Definition der Epochen erklärt. Es muss ein Mittelweg gefunden werden, um sowohl eine Unter- als auch eine Überanpassung zu vermeiden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> 
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+    <span class="n">predicted_class</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> 
+    <span class="n">confidence</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">predicted_class</span><span class="p">,</span> <span class="n">confidence</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">train_generator</span><span class="o">.</span><span class="n">class_indices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>  
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy: </span><span class="si">{</span><span class="n">test_accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">))):</span> 
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
+        <span class="n">predicted_class</span><span class="p">,</span> <span class="n">confidence</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
+        <span class="n">actual_class</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> 
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actual: </span><span class="si">{</span><span class="n">actual_class</span><span class="si">}</span><span class="s2">,</span><span class="se">\n</span><span class="s2"> Predicted: </span><span class="si">{</span><span class="n">predicted_class</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2"> Confidence: </span><span class="si">{</span><span class="n">confidence</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plot_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 185ms/step - accuracy: 0.9939 - loss: 0.0292
+Test Loss: 0.0358
+Test Accuracy: 0.9907
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 365ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 32ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 32ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 32ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 35ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 35ms/step
+</pre></div>
+</div>
+<img alt="../../../_images/e60c420b4d4c24f97335fefcc35bfee676c5ad0a41e059f7daee5a348423ba56.png" src="../../../_images/e60c420b4d4c24f97335fefcc35bfee676c5ad0a41e059f7daee5a348423ba56.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Überprüfen der Verteilung der Klassen im Testdatensatz</span>
+<span class="n">class_distribution</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">class_distribution</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels
+Potato___Early_blight    97
+Potato___Late_blight     95
+Potato___healthy         24
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="c1"># Generiere Vorhersagen für den Testdatensatz</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
+<span class="n">y_pred_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Index der höchsten Wahrscheinlichkeit für jede Vorhersage</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">test_generator</span><span class="o">.</span><span class="n">classes</span>  <span class="c1"># tatsächliche Klassen aus dem Testgenerator</span>
+
+<span class="c1"># Sicherstellen, dass alle Klassen im Output vorhanden sind</span>
+<span class="n">class_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">train_generator</span><span class="o">.</span><span class="n">class_indices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># Erstellen der Konfusionsmatrix unter Berücksichtigung aller Klassen</span>
+<span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_classes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_labels</span><span class="p">)))</span>
+
+<span class="c1">#plt.figure(figsize=(7, 4))</span>
+<span class="c1">#sns.heatmap(conf_mat, annot=True, fmt=&#39;d&#39;, cmap=&#39;Blues&#39;, xticklabels=class_labels, yticklabels=class_labels)</span>
+<span class="c1">#plt.xlabel(&#39;Predicted Label&#39;)</span>
+<span class="c1">#plt.ylabel(&#39;True Label&#39;)</span>
+<span class="c1">#plt.title(&#39;Confusion Matrix&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 193ms/step
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da das Jupyter Notebook die Confusion-Matrix öfters nicht korrekt anzeigt, habe ich im Anhang ein Screenshot beigefügt, welches ich aus meiner Google Colab Ausführung habe. Da jeder Durchlauf variert, sind die Zahlen hierzusehen nicht identisch mit tatsächlichen zu diesem. <img alt="CNN_Plant_ConfusionMatrix.png" src="contents/deep_learning/Samdani/attachment:bb1cd6cb-bf96-449e-a1d7-629072559740.png" /></p>
+<p>Die Confusion Matrix zeigt die tatsächlichen Labels (True Labels) auf der y-Achse und die vorhergesagten Labels (Predicted Labels) auf der x-Achse. Auf der hervorgehobenen Diagonalen befinden sich die korrekt klassifizierten Beispiele und außerhalb sind die falsch klassifizierten. Ich werde zum Schluss auf die Ergebnisse der Confusion Matrix eingegangen, um die Frage der ungleichmäßig verteilten Daten zu beantworten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_classes</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">class_labels</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                       precision    recall  f1-score   support
+
+Potato___Early_blight       0.99      1.00      0.99        97
+ Potato___Late_blight       1.00      0.98      0.99        95
+     Potato___healthy       0.96      1.00      0.98        24
+
+             accuracy                           0.99       216
+            macro avg       0.98      0.99      0.99       216
+         weighted avg       0.99      0.99      0.99       216
+</pre></div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<p style="text-align: center; font-size: 24px; font-weight: bold;">Zweiter Teil</p>
+Nach einer ausführlichen Beschreibung der Farbbilder wird die Darstellung der Graubilder und der Segmentbilder minimalistisch gehalten, da der Ablauf identisch ist. Aus diesem Grund wurden Teile des Codes in Funktionen geschrieben, um sie im Folgenden wiederverwenden zu können. Nachdem alle drei Varianten des Datensatzes mit dem gleichen (aber seperaten) Modell trainiert wurden, erfolgt in Abschnitt sieben der Vergleich und die Auswertung, um den zweiten Teil der Arbeit zu beantworten. </section>
+<section id="modell-mit-grayscale-data">
+<h2>5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a><a class="headerlink" href="#modell-mit-grayscale-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data = &#39;/content/drive/MyDrive/Colab Notebooks/plant_grayscale&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;plant_grayscale&#39;</span>
+
+<span class="k">def</span> <span class="nf">create_dataframe</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">filepaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">folds</span><span class="p">:</span>
+        <span class="n">f_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">fold</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">):</span>
+            <span class="n">imgs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+                <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f_path</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">img_path</span><span class="p">):</span>
+                    <span class="n">filepaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                    <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span>
+
+    <span class="n">fseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">filepaths</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">)</span>
+    <span class="n">lseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fseries</span><span class="p">,</span> <span class="n">lseries</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image_dataset_from_directory</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">image_size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span>
+<span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">class_names</span>
+
+<span class="n">train_df</span><span class="p">,</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">temp_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>      
+
+<span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span> <span class="o">=</span> <span class="n">create_image_data_generators</span><span class="p">()</span>
+<span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">,</span> <span class="n">test_generator</span> <span class="o">=</span> <span class="n">create_generators</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
+    <span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span>
+<span class="p">)</span>
+    
+<span class="n">model</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">create_and_train_model</span><span class="p">(</span><span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 2152 files belonging to 3 classes.
+Found 1721 validated image filenames belonging to 3 classes.
+Found 215 validated image filenames belonging to 3 classes.
+Found 216 validated image filenames belonging to 3 classes.
+Epoch 1/6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.11/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">197s</span> 2s/step - accuracy: 0.6738 - loss: 1.0267 - val_accuracy: 0.8605 - val_loss: 0.4032
+Epoch 2/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">178s</span> 2s/step - accuracy: 0.8661 - loss: 0.4527 - val_accuracy: 0.8140 - val_loss: 0.5615
+Epoch 3/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">168s</span> 2s/step - accuracy: 0.8882 - loss: 0.3141 - val_accuracy: 0.7442 - val_loss: 0.7796
+Epoch 4/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">165s</span> 2s/step - accuracy: 0.9077 - loss: 0.2411 - val_accuracy: 0.8744 - val_loss: 0.3587
+Epoch 5/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">149s</span> 1s/step - accuracy: 0.9312 - loss: 0.2111 - val_accuracy: 0.9023 - val_loss: 0.3408
+Epoch 6/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">121s</span> 1s/step - accuracy: 0.9297 - loss: 0.2170 - val_accuracy: 0.9395 - val_loss: 0.2267
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluate_and_print</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 234ms/step - accuracy: 0.9162 - loss: 0.3791
+Test Loss: 0.2628
+Test Accuracy: 0.9352
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+    <span class="n">predicted_class</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>  
+    <span class="n">confidence</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">predicted_class</span><span class="p">,</span> <span class="n">confidence</span>
+
+<span class="n">class_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">train_generator</span><span class="o">.</span><span class="n">class_indices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy: </span><span class="si">{</span><span class="n">test_accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
+<span class="n">plot_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 226ms/step - accuracy: 0.9162 - loss: 0.3791
+Test Loss: 0.2628
+Test Accuracy: 0.9352
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 373ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 31ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 31ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 31ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30ms/step
+</pre></div>
+</div>
+<img alt="../../../_images/51c064e501164a5ed628ed1898e2b0d2b1d061c7ba80fb665f1927a33e3ebd3a.png" src="../../../_images/51c064e501164a5ed628ed1898e2b0d2b1d061c7ba80fb665f1927a33e3ebd3a.png" />
+</div>
+</div>
+</section>
+<section id="modell-mit-segmented-data">
+<h2>6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a><a class="headerlink" href="#modell-mit-segmented-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data = &#39;/content/drive/MyDrive/Colab Notebooks/plant_segmented&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;plant_segmented&#39;</span>
+
+<span class="k">def</span> <span class="nf">create_dataframe</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">filepaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">folds</span><span class="p">:</span>
+        <span class="n">f_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">fold</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">):</span>
+            <span class="n">imgs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">f_path</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+                <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f_path</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">img_path</span><span class="p">):</span>
+                    <span class="n">filepaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                    <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span>
+
+    <span class="n">fseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">filepaths</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filepaths&#39;</span><span class="p">)</span>
+    <span class="n">lseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Labels&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fseries</span><span class="p">,</span> <span class="n">lseries</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image_dataset_from_directory</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">image_size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span>
+<span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">class_names</span>
+
+<span class="n">train_df</span><span class="p">,</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">temp_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>      
+
+<span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span> <span class="o">=</span> <span class="n">create_image_data_generators</span><span class="p">()</span>
+<span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">,</span> <span class="n">test_generator</span> <span class="o">=</span> <span class="n">create_generators</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> 
+    <span class="n">train_datagen</span><span class="p">,</span> <span class="n">valid_datagen</span><span class="p">,</span> <span class="n">test_datagen</span>
+<span class="p">)</span>
+    
+<span class="n">model</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">create_and_train_model</span><span class="p">(</span><span class="n">train_generator</span><span class="p">,</span> <span class="n">valid_generator</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 2152 files belonging to 3 classes.
+Found 1721 validated image filenames belonging to 3 classes.
+Found 215 validated image filenames belonging to 3 classes.
+Found 216 validated image filenames belonging to 3 classes.
+Epoch 1/6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.11/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">127s</span> 1s/step - accuracy: 0.7333 - loss: 0.7993 - val_accuracy: 0.8000 - val_loss: 0.5382
+Epoch 2/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">121s</span> 1s/step - accuracy: 0.9330 - loss: 0.2346 - val_accuracy: 0.9442 - val_loss: 0.1189
+Epoch 3/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">125s</span> 1s/step - accuracy: 0.9583 - loss: 0.1196 - val_accuracy: 0.9860 - val_loss: 0.0342
+Epoch 4/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">123s</span> 1s/step - accuracy: 0.9780 - loss: 0.0787 - val_accuracy: 0.9907 - val_loss: 0.0314
+Epoch 5/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">146s</span> 1s/step - accuracy: 0.9901 - loss: 0.0318 - val_accuracy: 0.9953 - val_loss: 0.0129
+Epoch 6/6
+<span class=" -Color -Color-Bold">108/108</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">153s</span> 1s/step - accuracy: 0.9789 - loss: 0.0706 - val_accuracy: 1.0000 - val_loss: 0.0264
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluate_and_print</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 274ms/step - accuracy: 0.9956 - loss: 0.0174
+Test Loss: 0.0224
+Test Accuracy: 0.9954
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+    <span class="n">predicted_class</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>  
+    <span class="n">confidence</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">predicted_class</span><span class="p">,</span> <span class="n">confidence</span>
+
+<span class="n">class_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">train_generator</span><span class="o">.</span><span class="n">class_indices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy: </span><span class="si">{</span><span class="n">test_accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
+<span class="n">plot_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">14/14</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 289ms/step - accuracy: 0.9956 - loss: 0.0174
+Test Loss: 0.0224
+Test Accuracy: 0.9954
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 482ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 33ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 35ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 33ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 34ms/step
+<span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 35ms/step
+</pre></div>
+</div>
+<img alt="../../../_images/6ec726852dd8efa2c2ecb9ec125310aafd1c6fd5a8bcd69f2315cad9d48af78d.png" src="../../../_images/6ec726852dd8efa2c2ecb9ec125310aafd1c6fd5a8bcd69f2315cad9d48af78d.png" />
+</div>
+</div>
+</section>
+<section id="auswertung-und-diskussion">
+<h2>7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a><a class="headerlink" href="#auswertung-und-diskussion" title="Link to this heading">#</a></h2>
+<p>Da die Resultate bei jedem Durchlauf in geringfügig variierender Form vorliegen (mal color, mal segmented als optimale Lösung), wurden folgende Funktionen implementiert, um die Hervorhebung automatisch zu bewerkstelligen. Der kleinste Wert beim loss und der größte Wert bei Accuracy wird grün ausgegeben.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Grayscale&#39;</span><span class="p">,</span> <span class="s1">&#39;Segmented&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Test Loss&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0872</span><span class="p">,</span> <span class="mf">0.2628</span><span class="p">,</span> <span class="mf">0.0224</span><span class="p">],</span>
+    <span class="s1">&#39;Test Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.9722</span><span class="p">,</span> <span class="mf">0.9352</span><span class="p">,</span> <span class="mf">0.9954</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Test Loss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Test Loss&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="k">def</span> <span class="nf">color_min_text</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span> <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="k">def</span> <span class="nf">color_max_text</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span> <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span>
+    <span class="s1">&#39;Test Loss&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">%&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Test Accuracy&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">%&#39;</span>
+<span class="p">})</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="n">color_min_text</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;Test Loss&#39;</span><span class="p">)),</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test Loss&#39;</span><span class="p">])</span> \
+  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="n">color_max_text</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;Test Accuracy&#39;</span><span class="p">)),</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_62a4a_row0_col1, #T_62a4a_row0_col2, #T_62a4a_row1_col1, #T_62a4a_row1_col2 {
+  color: black;
+}
+#T_62a4a_row2_col1, #T_62a4a_row2_col2 {
+  color: green;
+}
+</style>
+<table id="T_62a4a">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_62a4a_level0_col0" class="col_heading level0 col0" >Data</th>
+      <th id="T_62a4a_level0_col1" class="col_heading level0 col1" >Test Loss</th>
+      <th id="T_62a4a_level0_col2" class="col_heading level0 col2" >Test Accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_62a4a_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_62a4a_row0_col0" class="data row0 col0" >Color</td>
+      <td id="T_62a4a_row0_col1" class="data row0 col1" >8.72%</td>
+      <td id="T_62a4a_row0_col2" class="data row0 col2" >97.22%</td>
+    </tr>
+    <tr>
+      <th id="T_62a4a_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_62a4a_row1_col0" class="data row1 col0" >Grayscale</td>
+      <td id="T_62a4a_row1_col1" class="data row1 col1" >26.28%</td>
+      <td id="T_62a4a_row1_col2" class="data row1 col2" >93.52%</td>
+    </tr>
+    <tr>
+      <th id="T_62a4a_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_62a4a_row2_col0" class="data row2 col0" >Segmented</td>
+      <td id="T_62a4a_row2_col1" class="data row2 col1" >2.24%</td>
+      <td id="T_62a4a_row2_col2" class="data row2 col2" >99.54%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Die besten Resultate wurden mit den Color und Segmented  Bilddaten erzielt. Dies ist darauf zurückzuführen, dass bei der Objekterkennung primär die Pflanze von Interesse ist, während der Hintergrund als irrelevantes Rauschen betrachtet wird und keine signifikanten Informationen zur Klassifizierung liefert. Farbige Bilder lieferten gute Ergebnisse aufgrund der zusätzlichen Farbinformationen, die dem Modell halfen, bedeutende Merkmale, wie die dunkele Verfärbung bei Krankheiten, besser zu erkennen. In Szenarien, in denen die Hauptaufgabe die Erkennung von Mustern und Texturen ist und Farbinformationen irrelevant sind, kann die Verwendung von Graustufenbildern jedoch vorteilhaft sein, da sie den Speicherplatzbedarf und Rechenleistung reduzieren, die für die Verarbeitung und Analyse der Bilder erforderlich ist <span class="math notranslate nohighlight">\(^{5,  6}\)</span>.</p>
+<p>Die Wahl zwischen segmentierten und nicht-segmentierten (originalen) Bilddaten hängt vom spezifischen Anwendungsfall ab. In der vorliegenden Untersuchung stellt der Hintergrund lediglich störendes Rauschen dar. Für die Erkennung von Pflanzenkrankheiten ist es nicht notwendig, den Hintergrund zu berücksichtigen, da dieser keine relevanten Informationen liefert. Auch der Mensch ist in der Lage, ohne Hintergrundinformationen eine schnelle Einschätzung darüber abzugeben, ob eine Pflanze erkrankt ist. Ein Anwendungsbereich, in dem das Segmentieren von Bildern zu suboptimalen Resultaten führt, ist die Entscheidungsfindung in autonomen Fahrsystemen. Der Hintergrund enthält Kontextinformationen, die für eine korrekte Interpretation der Situation und das Treffen sicherer Fahrentscheidungen erforderlich sind. Dazu zählen beispielsweise Informationen zu Straßenverhältnissen, Verkehrsfluss, Hindernissen und der allgemeinen Umgebung. Ein Vorfahrtstraßen-Schild neben der Ampel ist nur zu berücksichtigen, wenn die Ampel ausfällt. Würde das Modell sich nur auf das Schild konzentrieren, weil der Hintergrund segmentiert wurde, so wäre eine korrekte Entscheidung nicht möglich, da der wichtige Kontext der Ampel und der gesamten Verkehrssituation verloren geht.</p>
+<p>Wie eingangs erwähnt, sollte auch untersucht werden, wie sich die predictions verhalten, wenn zwei Ordner 1000 (<em>Potato_Early_blight, Potato_Late_blight</em>) Bilder enthalten und eines (<em>potato_healthy</em>) nur 152. Es konnte festgestellt werden, dass bei einer Anzahl von 152 falschen Vorhersagen die betroffenen Objekte nahezu ausschließlich die Klasse <em>potato_healthy</em> betrafen. Dies deutet darauf hin, dass das Modell durch das Ungleichgewicht der Klassen dazu verleitet wurde, die häufigeren Klassen besser zu erkennen, während es die selteneren Klassen weniger präzise identifizierte.</p>
+<section id="abschlieszende-worte">
+<h3>Abschließende Worte<a class="headerlink" href="#abschlieszende-worte" title="Link to this heading">#</a></h3>
+<p>Als Al-Engineer muss man kontinuierlich wichtige Entscheidungen darüber treffen, welche Inhalte priorisiert werden sollten. So antwortete Mark Zuckerberg, im Interview <a class="reference external" href="https://www.youtube.com/watch?v=YuIc4mq7zMU&amp;amp;t=684s">“Inside Mark Zuckerberg’s Al Era | The Circuit” (24.07.24)</a> auf die Frage wie er AGI definiert, mit einem spezifischen Schwerpunkt, da “es keine einheitliche Definition für AGI gibt und multivariate ist”. Für Meta ist es laut ihm das Lesen von Gesichtern und Emotionen, also eine Betonung auf die soziale Komponente. Andere Unternehmen wie Microsoft und OpenAI entschieden sich für die “[..] Behandlung globaler Probleme” <span class="math notranslate nohighlight">\(^{7}\)</span>. <br>
+Wie zu Beginn erläutert, war meine Entscheidung für diese Arbeit, angesichts sehr begrenzter Rechenkapazität, mit einem Teil der Daten zu arbeiten und dafür alle drei Hauptordner für die Vergleiche zu nutzen, sowie mehr grafische Darstellungen abzubilden für Analysen. Dieses Notebook wurde nahezu fünfzig auf meinem Rechner oder auf Google Colab ausgeführt. Mehr Daten hinzuzufügen würde nicht nur erheblich mehr Zeitaufwand bedeuten, sondern auch den Durchblick beeinträchtigen. Aus diesem Grund habe ich auf die Durchführung eines letzten Durchlaufs mit einer größeren Datenmenge verzichtet, um eine Überforderung der Leserschaft zu vermeiden und eine schnelle Verständlichkeit zu gewährleisten. Der große Vorteil des gewählten Architekturstils besteht darin, dass das Hinzufügen von Daten im Nachhinein nur mit minimalen Änderungen im Code verbunden ist. Mithilfe der Funktionen konnte ich für das Wiederverwenden des Codes für das segmentierte und Graustufen Modell mit minimaler Anzahl an Zeilen erstellen. Sofern also das Interesse besteht, das gesamte Dataset zu nutzen, kann dies auf einfache und schnelle Weise erfolgen.
+Die durchgeführte Arbeit ermöglichte mir, in kürzester Zeit umfangreiche Einblicke in die Funktionsweise von CNNs zu gewinnen und diese praktisch zu vertiefen. Daher freue ich mich auf die nächsten, noch anspruchsvolleren Projekte und möchte jeden dazu ermutigen, selber Notebooks zu verfassen, da ich dies als die beste Lernmethode empfinde.</p>
+</section>
+<section id="quellenverzeichnis">
+<h3>Quellenverzeichnis<a class="headerlink" href="#quellenverzeichnis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^{1}\)</span> James M. (2020) Convolutional Neural Networks - Image Classification w. Keras, available at:  <br> <a class="reference external" href="https://www.learndatasci.com/tutorials/convolutional-neural-networks-image-classification/">https://www.learndatasci.com/tutorials/convolutional-neural-networks-image-classification/</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{2}\)</span> Codebasics (2020) Simple explanation of convolutional neural network | deep learning tutorial 23 (Tensorflow &amp; Python), YouTube. Available at: <a class="reference external" href="https://www.youtube.com/watch?v=zfiSAzpy9NM">https://www.youtube.com/watch?v=zfiSAzpy9NM</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{3}\)</span> Grossi, E. (2008) introduction to artificial neural networks, page 6, Available at: <a class="reference external" href="https://www.researchgate.net/publication/5847739_Introduction_to_artificial_neural_networks">https://www.researchgate.net/publication/5847739_Introduction_to_artificial_neural_networks</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{4}\)</span> Kavish Mojhoa (2023) Detecting Plant Disease Using CNN and KNN, page 2, Available at: <a class="reference external" href="https://www.researchgate.net/publication/376415019_Detecting_Plant_Disease_Using_CNN_and_KNN">https://www.researchgate.net/publication/376415019_Detecting_Plant_Disease_Using_CNN_and_KNN</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{5}\)</span> Chrisopther K. (2012) Color-to-Grayscale: Does the Method Matter in Image Recognition?, available at: <br> <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3254613/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3254613/</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{6}\)</span> Venkata G. (2024) Efficient Image Data Compression Techniques: A Comprehensive Review and Comparative Study, page 6, Available at: <a class="reference external" href="https://www.researchgate.net/publication/379664012_Efficient_Image_Data_Compression_Techniques_A_Comprehensive_Review_and_Comparative_Study">https://www.researchgate.net/publication/379664012_Efficient_Image_Data_Compression_Techniques_A_Comprehensive_Review_and_Comparative_Study</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(^{7}\)</span> Microsoft (2024) What is artificial general intelligence (AGI)?, Available at:
+<a class="reference external" href="https://www.microsoft.com/en-us/bing/do-more-with-ai/artificial-general-intelligence?form=MA13KP">https://www.microsoft.com/en-us/bing/do-more-with-ai/artificial-general-intelligence?form=MA13KP</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contents/deep_learning/Samdani"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">Abschließende Worte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">Quellenverzeichnis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Rudolph, Marie-Christin Eckert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
