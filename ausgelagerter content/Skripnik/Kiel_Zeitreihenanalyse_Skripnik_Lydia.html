@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../../" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel &#8212; Machine Learning Online Reader</title>
+    <title>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel &#8212; Machine Learning Online Reader</title>
   
   
   
@@ -18,50 +18,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia';</script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="3.4. Mächtigkeit der aktiven Schicht von Permafrost" href="../Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html" />
-    <link rel="prev" title="3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg" href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -93,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -142,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="../../../intro.html">
+<a class="navbar-brand logo" href="../../intro.html">
   
   
   
@@ -153,8 +153,8 @@
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
   
   
 </a></div>
@@ -174,32 +174,28 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
+                <a class="reference internal" href="../../intro.html">
                     Machine Learning Course Projects
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dt/Wagemann/Hausarbeit_Wagemann_Nguyen.html">1.2. Grundwasservorhersage mittels eines Decision Trees, Sachsen</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html">3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html">3.4. Mächtigkeit der aktiven Schicht von Permafrost</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
 </ul>
 </details></li>
 </ul>
@@ -273,7 +269,7 @@
       
       
       
-      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fcontents/tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,7 +299,7 @@
       
       
       
-      <li><a href="../../../_sources/contents/tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.ipynb" target="_blank"
+      <li><a href="../../_sources/ausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -397,24 +393,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">3.3.1. Einleitung</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">3.3.2. Datenvorbereitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">3.3.2.1. Anlegen einer Spalte mit dem Datum</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">3.3.2.2. Aufteilen der Daten in einen Jahresverlauf</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">3.3.2.3. Umgang mit Fehlwerten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">Anlegen einer Spalte mit dem Datum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">Aufteilen der Daten in einen Jahresverlauf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">Umgang mit Fehlwerten</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">3.3.3. Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">3.3.3.1. Überblick über die Daten zur Temperatur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">3.3.3.2. Vergleich der Daten zur Temperatur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">3.3.3.3. Fazit zur 1. Hypothese</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">3.3.3.4. Überblick über die Daten zur Windgeschwindigkeit</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">3.3.3.5. Vergleich des Maximum der Windgeschwindigkeit</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">3.3.3.6. Vergleich der Windstärke der Stationen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">3.3.3.7. Fazit zur 2. Hypothese</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">Überblick über die Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">Vergleich der Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">Fazit zur 1. Hypothese</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">Überblick über die Daten zur Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">Vergleich des Maximum der Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">Vergleich der Windstärke der Stationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">Fazit zur 2. Hypothese</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">3.3.4. Quellen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
 </ul>
             </nav>
         </div>
@@ -427,14 +423,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-kiel">
-<h1><span class="section-number">3.3. </span>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel<a class="headerlink" href="#urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-kiel" title="Link to this heading">#</a></h1>
+<h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel<a class="headerlink" href="#urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-kiel" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p>author: Lydia Skripnik</p>
 <p>area: Kiel</p>
 <p>date: 26.08.2024</p>
 </div></blockquote>
 <section id="einleitung">
-<h2><span class="section-number">3.3.1. </span>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
+<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
 <p>In diesem Skript werden in einer Zeitreihenanalyse die Datensätze von zwei Messstationen miteinander verglichen. Die Bearbeitung erfolgte größtenteils mithilfe der “Statistics and Geodata Analysis using Python (SOGA-Py)”-Skripte der Freien Universität Berlin¹. Die Klimadaten wurden von der Seite des Deutschen Wetterdienstes (DWD) heruntergeladen². Dort gibt es zudem Datensätze vieler weiterer Messstationen. Für die Analyse wurde zum Einen die Station Kiel-Holtenau ausgesucht, welche im Norden Kiels an der Kieler Förde verortet ist. Die andere Station ist Leuchtturm Kiel, welche ca. 7 Kilometer von der Küste entfernt in der Nordsee liegt. Die Standorte sowie weitere Informationen kann man in den Metadaten in der heruntergeladenen Zip-Datei vom DWD nachschauen.</p>
 <p>In der Analyse werden die folgenden Hypothesen untersucht:</p>
 <ol class="arabic simple">
@@ -443,7 +439,7 @@ document.write(`
 </ol>
 </section>
 <section id="datenvorbereitung">
-<h2><span class="section-number">3.3.2. </span>Datenvorbereitung<a class="headerlink" href="#datenvorbereitung" title="Link to this heading">#</a></h2>
+<h2>Datenvorbereitung<a class="headerlink" href="#datenvorbereitung" title="Link to this heading">#</a></h2>
 <p>Verschaffen wir uns zunächst einen Überblick über den Datensatz. Damit der Import der Daten funktioniert, müssen sie im gleichen Verzeichnis wie das Notebook liegen. Das aktuelle Verzeichnis des Notebooks können wir mithilfe der “os.getcwd()”-Methode überprüfen. Die “pd.read_csv()”-Funktion zum Einlesen der Daten funktioniert auch mit txt-Dateien. Zusätzlich definieren wir innerhalb der Funktion das Semikolon als Trennungszeichen, da dies der Separator in der Datei ist. Außerdem sollte man darauf achten, dass die Schrägstriche in die korrekte Richtung zeigen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -461,7 +457,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/marie-christineckert/Nextcloud/TU/Lehre/SoSe_2024/Jupyter-reader-hausarbeiten_2024/contents/tsa/Skripnik&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/marie-christineckert/Nextcloud/TU/Lehre/SoSe_2024/Jupyter-reader-hausarbeiten_2024/ausgelagerter content/Skripnik&#39;
 </pre></div>
 </div>
 </div>
@@ -1720,7 +1716,7 @@ bis TIII 23:51 Vortag - 23:50 UTC <br>
 </div></div></div>
 </div>
 <section id="anlegen-einer-spalte-mit-dem-datum">
-<h3><span class="section-number">3.3.2.1. </span>Anlegen einer Spalte mit dem Datum<a class="headerlink" href="#anlegen-einer-spalte-mit-dem-datum" title="Link to this heading">#</a></h3>
+<h3>Anlegen einer Spalte mit dem Datum<a class="headerlink" href="#anlegen-einer-spalte-mit-dem-datum" title="Link to this heading">#</a></h3>
 <p>Bei der Ausgabe der Spalte “Date” sieht man, dass der Datentyp (“dtype”) dieser Spalte aktuell Integers (“int”) ist. Wir werden diese Spalte nun benutzen, um eine neue Spalte im korrektem Datumsformat anzulegen. In der “pd.to_datetime()”-Funktion geben wir das vorliegende Format der Spalte “Date” mit ‘%Y%m%d’ an. Die neue Spalte “Datum” wird im englischen Format (Jahr-Monat-Tag) entstehen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2261,7 +2257,7 @@ Name: Datum, Length: 550, dtype: datetime64[ns]
 </div>
 </section>
 <section id="aufteilen-der-daten-in-einen-jahresverlauf">
-<h3><span class="section-number">3.3.2.2. </span>Aufteilen der Daten in einen Jahresverlauf<a class="headerlink" href="#aufteilen-der-daten-in-einen-jahresverlauf" title="Link to this heading">#</a></h3>
+<h3>Aufteilen der Daten in einen Jahresverlauf<a class="headerlink" href="#aufteilen-der-daten-in-einen-jahresverlauf" title="Link to this heading">#</a></h3>
 <p>Im nächsten Schritt benutzen wir den Index, um die vorhandene Zeitreihe in einen neuen DataFrame mit einem Zeitraum von einem Jahr aufzuteilen. Die Daten gehen vom 13.01.2023 bis zum 15.07.2024, also suchen wir uns den Zeitraum vom 01.02.2023 bis zum 31.01.2024 aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2745,7 +2741,7 @@ Name: Datum, Length: 550, dtype: datetime64[ns]
 </div>
 </section>
 <section id="umgang-mit-fehlwerten">
-<h3><span class="section-number">3.3.2.3. </span>Umgang mit Fehlwerten<a class="headerlink" href="#umgang-mit-fehlwerten" title="Link to this heading">#</a></h3>
+<h3>Umgang mit Fehlwerten<a class="headerlink" href="#umgang-mit-fehlwerten" title="Link to this heading">#</a></h3>
 <p>In der Ausgabe der “describe()”-Funktion haben wir soeben die “-999” als niedrigsten Wert gesehen. Da diese Zahl als Messergebnis unrealistisch ist, kann man davon ausgehen, dass der DWD die “-999” als Kennzeichnung von Fehlwerten eingesetzt hat. Im nächsten Schritt möchten wir herausfinden, wo sich die Fehlwerte im ausgewählten Zeitraum befinden. In der Antwort auf diese Frage:
 “Ich habe einen Datensatz der so aussieht: [einen kleinen DataFrame mit mindestens einer Position mit “-999” als Beispiel einfügen]. Wie kann ich mithilfe von der np.where()-Funktion alle Stellen mit -999 anzeigen lassen?” liefert ChatGPT einen Code, der anschließend für unseren Zweck angepasst wurde. Zunächst findet man mit der “np-where”-Funktion die zusammengehörenden Zeilen- und Spaltenpositionen der “-999” im Datensatz heraus. Die Ausgabe des Ergebnisses funktioniert als Schleife, die jedes Paar von Zeilen- und Spaltenindizes in den Daten durchgeht und nach der “-999” absucht. Anschließend werden der Index und der Spaltenname der gefundenen Positionen ausgegeben. Die Zeitangabe “00:00:00” kommt von dem Datentyp “datetime” des Index, die standardmäßig eine Zeitkomponente enthält. Die richtige Uhrzeit kennen wir nicht.</p>
 <div class="cell docutils container">
@@ -3278,7 +3274,7 @@ dtype: int64
 </section>
 </section>
 <section id="analyse-und-visualisierung-der-daten">
-<h2><span class="section-number">3.3.3. </span>Analyse und Visualisierung der Daten<a class="headerlink" href="#analyse-und-visualisierung-der-daten" title="Link to this heading">#</a></h2>
+<h2>Analyse und Visualisierung der Daten<a class="headerlink" href="#analyse-und-visualisierung-der-daten" title="Link to this heading">#</a></h2>
 <p>In der Analyse bearbeiten wir die zwei aufgestellten Hypothesen:</p>
 <ol class="arabic simple">
 <li><p>In der Stadt ist die Lufttemperatur durchschnittlich höher als auf dem Meer.</p></li>
@@ -3286,7 +3282,7 @@ dtype: int64
 </ol>
 <p>Für die Analyse der Daten müssen die beiden Datensätze der unterschiedlichen Stationen miteinander verglichen werden. Am besten stellt man dafür die erhobenen Werte eines Parameters an beiden Stationen in einem Plot dar und schaut sich daraufhin Auffälligkeiten in den Daten an.</p>
 <section id="uberblick-uber-die-daten-zur-temperatur">
-<h3><span class="section-number">3.3.3.1. </span>Überblick über die Daten zur Temperatur<a class="headerlink" href="#uberblick-uber-die-daten-zur-temperatur" title="Link to this heading">#</a></h3>
+<h3>Überblick über die Daten zur Temperatur<a class="headerlink" href="#uberblick-uber-die-daten-zur-temperatur" title="Link to this heading">#</a></h3>
 <p>Zunächst plotten wir zum Überblick die vorhandenen Daten zur Temperatur pro Station. In den ersten beiden Plots sieht man, dass bei den Stationen die maximale Temperatur über und die minimale Temperatur unter der mittleren Lufttemperatur liegen. Die Temperaturdaten erscheinen dementsprechend logisch. Die beiden Plots zeigen Unterschiede, die in den nächsten Schritten genauer analysiert werden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3308,7 +3304,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" src="../../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" />
+<img alt="../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" src="../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3323,12 +3319,12 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" src="../../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" />
+<img alt="../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" src="../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" />
 </div>
 </div>
 </section>
 <section id="vergleich-der-daten-zur-temperatur">
-<h3><span class="section-number">3.3.3.2. </span>Vergleich der Daten zur Temperatur<a class="headerlink" href="#vergleich-der-daten-zur-temperatur" title="Link to this heading">#</a></h3>
+<h3>Vergleich der Daten zur Temperatur<a class="headerlink" href="#vergleich-der-daten-zur-temperatur" title="Link to this heading">#</a></h3>
 <p>Für den Vergleich der beiden Datensätze plotten wir als erstes die mittlere Lufttemperatur.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3344,7 +3340,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" src="../../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" />
+<img alt="../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" src="../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" />
 </div>
 </div>
 <p>Die gemessenen Werte an den Stationen scheinen über den Jahresverlauf häufig nah bei einander zu liegen. Diese Beobachtung wollen wir nun rechnerisch mit der Differenz zwischen den Werten der Stationen überprüfen. Dafür haben wir ChatGPT zwei DataFrames als Beispiele vorgegeben und gefragt: “Wie kann ich die Differenz der beiden Datensätze vergleichen?”. In der Berechnung ziehen wir die Werte von der Station Leuchtturm Kiel von den Werten der Station Kiel-Holtenau ab.</p>
@@ -3412,7 +3408,7 @@ Datum
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" src="../../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" />
+<img alt="../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" src="../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" />
 </div>
 </div>
 <p>Auf den ersten Blick scheinen deutlichere Unterschiede als bei der mittleren Lufttemperatur vorzuliegen. Wir überprüfen diese Beobachtung wieder mit der Berechnung.</p>
@@ -3478,7 +3474,7 @@ Datum
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" src="../../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" />
+<img alt="../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" src="../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" />
 </div>
 </div>
 <p>Hier scheinen noch deutlichere Unterschiede als bei der maximalen Lufttemperatur vorzuliegen. Wir überprüfen diese Beobachtung wieder mit der Berechnung.</p>
@@ -3532,11 +3528,11 @@ Datum
 <p>Das Ergebnis zeigt den Durchschnitt der berechneten Differenz. Die minimale Lufttemperatur in Leuchtturm Kiel war über den betrachteten Zeitraum durchschnittlich um etwa 1,5°C höher als bei der Messstation Kiel-Holtenau. Dies spricht wiederum für eine Falsifizierung der 1. Hypothese.</p>
 </section>
 <section id="fazit-zur-1-hypothese">
-<h3><span class="section-number">3.3.3.3. </span>Fazit zur 1. Hypothese<a class="headerlink" href="#fazit-zur-1-hypothese" title="Link to this heading">#</a></h3>
+<h3>Fazit zur 1. Hypothese<a class="headerlink" href="#fazit-zur-1-hypothese" title="Link to this heading">#</a></h3>
 <p>Abschließend kann man aus den Berechnungen schließen, dass die mittlere Lufttemperatur die Unterschiede, wie sie sich in den Berechnungen mit den Maxima und Minima der Temperatur zeigen, nicht darstellt. Die Ergebnisse unterscheiden sich je nachdem, welchen Parameter man sich anschaut. Der größte Unterschied zeigt sich bei dem Minimum der Lufttemperatur im Durchschnitt mit knapp 1,5°C höheren Temperaturen in Leuchtturm Kiel. Der Unterschied in den mittleren Lufttemperaturen liegt mit 0,08°C fast bei 0. In der Stadt ist das Maximum der Lufttemperatur durchschnittlich höher und das Minimum der Lufttemperatur durchschnittlich niedriger als auf dem Meer. Die Temperaturunterschiede sind in Kiel-Holtenau also größer als in Leuchtturm Kiel. Aufgrund der Ergebnisse lässt sich die Hypothese weder eindeutig verifizieren noch falsifizieren.</p>
 </section>
 <section id="uberblick-uber-die-daten-zur-windgeschwindigkeit">
-<h3><span class="section-number">3.3.3.4. </span>Überblick über die Daten zur Windgeschwindigkeit<a class="headerlink" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit" title="Link to this heading">#</a></h3>
+<h3>Überblick über die Daten zur Windgeschwindigkeit<a class="headerlink" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit" title="Link to this heading">#</a></h3>
 <p>Im zweiten Teil der Analyse schauen wir uns die Daten zur Windgeschwindigkeit an. Als Überblick plotten wir die vorhandenen Daten zur Windgeschwindigkeit pro Station. Die beiden Plots zeigen logischerweise, dass das Maximum der Windgeschwindigkeit über dem Mittel der Windstärke liegt. Die Unterschiede zwischen den beiden Stationen werden in den nächsten Schritten genauer analysiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3550,7 +3546,7 @@ Datum
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" src="../../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" />
+<img alt="../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" src="../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3565,12 +3561,12 @@ Datum
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" src="../../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" />
+<img alt="../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" src="../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" />
 </div>
 </div>
 </section>
 <section id="vergleich-des-maximum-der-windgeschwindigkeit">
-<h3><span class="section-number">3.3.3.5. </span>Vergleich des Maximum der Windgeschwindigkeit<a class="headerlink" href="#vergleich-des-maximum-der-windgeschwindigkeit" title="Link to this heading">#</a></h3>
+<h3>Vergleich des Maximum der Windgeschwindigkeit<a class="headerlink" href="#vergleich-des-maximum-der-windgeschwindigkeit" title="Link to this heading">#</a></h3>
 <p>Zunächst plotten wir das Maximum der Windgeschwindigkeiten beider Stationen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3586,7 +3582,7 @@ Datum
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" src="../../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" />
+<img alt="../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" src="../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" />
 </div>
 </div>
 <p>Auf den ersten Blick scheint das Maximum der Windgeschwindigkeit in Leuchtturm Kiel häufig über den gemessenen Werten in Kiel-Holtenau zu liegen. Folgend werden wir auch hier die Differenz der beiden Stationen berechnen. Dafür ziehen wir die Werte der Station Kiel-Holtenau von den Werten der Station Leuchtturm Kiel ab. In dem Plot sieht man, dass an der Station Leuchtturm Kiel viele Male deutlich höhere Windgeschwindigkeiten als in Kiel-Holtenau erreicht wurden.</p>
@@ -3969,7 +3965,7 @@ dtype: float64
 <p>Durch die Abfrage der Monatswerte im Oktober konnte die höchste Windgeschwindigkeit mit 36,5 m/sec der Station Leuchtturm Kiel dem 20. Oktober 2023 zugeordnet werden. Dies könnte auch die Fehlwerte in den darauffolgenden Tagen bei “FM” und “FX” an diesem Standort erklären. Laut dem DWD bezeichnet man Windgeschwindigkeiten ab 32,7 als Orkan⁴. Womöglich wurde das Messgerät bei dem Orkan beschädigt. Bei der Station Kiel-Holtenau wurde im Vergleich dazu nur ein Peak von 28,7 m/s erreicht.</p>
 </section>
 <section id="vergleich-der-windstarke-der-stationen">
-<h3><span class="section-number">3.3.3.6. </span>Vergleich der Windstärke der Stationen<a class="headerlink" href="#vergleich-der-windstarke-der-stationen" title="Link to this heading">#</a></h3>
+<h3>Vergleich der Windstärke der Stationen<a class="headerlink" href="#vergleich-der-windstarke-der-stationen" title="Link to this heading">#</a></h3>
 <p>Zuletzt vergleichen wir noch das Mittel der Windstärke, also die mittlere Windgeschwindigkeit, der beiden Stationen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3985,7 +3981,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" src="../../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" />
+<img alt="../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" src="../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" />
 </div>
 </div>
 <p>Im Plot erkennen wir bereits, dass die Werte, wie auch bei dem Maximum der Windgeschwindikeit, deutlich auseinander liegen. Zur Bestätigung der Beobachtung berechnen wir auch hier die Differenz zwischen den Werten der beiden Stationen.</p>
@@ -4038,12 +4034,12 @@ Datum
 <p>Das rechnerische Ergebnis sagt aus, dass die mittlere Windgeschwindigkeit an der Station Leuchtturm Kiel ca. 4,7 m/s höher ist als an der Station in Kiel-Holtenau. Somit bestätigt sich die 2. Hypothese.</p>
 </section>
 <section id="fazit-zur-2-hypothese">
-<h3><span class="section-number">3.3.3.7. </span>Fazit zur 2. Hypothese<a class="headerlink" href="#fazit-zur-2-hypothese" title="Link to this heading">#</a></h3>
+<h3>Fazit zur 2. Hypothese<a class="headerlink" href="#fazit-zur-2-hypothese" title="Link to this heading">#</a></h3>
 <p>Sowohl die durchschnittliche Differenz im Maximum der Windgeschwindigkeit als auch die durchschnittliche Differenz der mittleren Windgeschwindigkeit zeigen, dass die Windgeschwindigkeiten in Leuchtturm Kiel über denen in Kiel-Holtenau liegen. Somit lässt sich die 2. Hypothese bestätigen: Die durchschnittliche Windgeschwindigkeit ist auf dem Meer höher als in der Stadt.</p>
 </section>
 </section>
 <section id="quellen">
-<h2><span class="section-number">3.3.4. </span>Quellen<a class="headerlink" href="#quellen" title="Link to this heading">#</a></h2>
+<h2>Quellen<a class="headerlink" href="#quellen" title="Link to this heading">#</a></h2>
 <p>¹ Rudolph, A., Krois, J., Hartmann, K. (2023): Statistics and Geodata Analysis using Python (SOGA-Py). Department of Earth Sciences, Freie Universitaet Berlin.</p>
 <p>² Deutscher Wetterdienst. <em>Klimadaten Deutschland - Monats- und Tageswerte (Archiv)</em>. Abgerunfen unter: <a class="reference external" href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/klarchivtagmonat.html">https://www.dwd.de/DE/leistungen/klimadatendeutschland/klarchivtagmonat.html</a> [16.07.2024]</p>
 <p>³ Deutscher Wetterdienst. <em>Informationen zu den Tages- und Monatswerten</em>. Abgerufen unter: <a class="reference external" href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/beschreibung_tagesmonatswerte.html;jsessionid=A4B768F1F0C84C3C90E869302AE2E49F.live11054?nn=16102&amp;amp;lsbId=526270">https://www.dwd.de/DE/leistungen/klimadatendeutschland/beschreibung_tagesmonatswerte.html;jsessionid=A4B768F1F0C84C3C90E869302AE2E49F.live11054?nn=16102&amp;lsbId=526270</a> [21.07.2024]</p>
@@ -4065,7 +4061,7 @@ Datum
         },
         kernelOptions: {
             name: "python3",
-            path: "./contents/tsa/Skripnik"
+            path: "./ausgelagerter content/Skripnik"
         },
         predefinedOutput: true
     }
@@ -4082,24 +4078,6 @@ Datum
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.4. </span>Mächtigkeit der aktiven Schicht von Permafrost</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -4116,24 +4094,24 @@ Datum
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">3.3.1. Einleitung</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">3.3.2. Datenvorbereitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">3.3.2.1. Anlegen einer Spalte mit dem Datum</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">3.3.2.2. Aufteilen der Daten in einen Jahresverlauf</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">3.3.2.3. Umgang mit Fehlwerten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">Anlegen einer Spalte mit dem Datum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">Aufteilen der Daten in einen Jahresverlauf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">Umgang mit Fehlwerten</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">3.3.3. Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">3.3.3.1. Überblick über die Daten zur Temperatur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">3.3.3.2. Vergleich der Daten zur Temperatur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">3.3.3.3. Fazit zur 1. Hypothese</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">3.3.3.4. Überblick über die Daten zur Windgeschwindigkeit</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">3.3.3.5. Vergleich des Maximum der Windgeschwindigkeit</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">3.3.3.6. Vergleich der Windstärke der Stationen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">3.3.3.7. Fazit zur 2. Hypothese</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">Überblick über die Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">Vergleich der Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">Fazit zur 1. Hypothese</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">Überblick über die Daten zur Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">Vergleich des Maximum der Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">Vergleich der Windstärke der Stationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">Fazit zur 2. Hypothese</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">3.3.4. Quellen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
 </ul>
   </nav></div>
 
@@ -4182,8 +4160,8 @@ By Annette Rudolph, Marie-Christin Eckert
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

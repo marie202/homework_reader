@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../../" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.2. Grundwasservorhersage mittels eines Decision Trees, Sachsen &#8212; Machine Learning Online Reader</title>
+    <title>Grundwasservorhersage mittels eines Decision Trees, Sachsen &#8212; Machine Learning Online Reader</title>
   
   
   
@@ -18,50 +18,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/dt/Wagemann/Hausarbeit_Wagemann_Nguyen';</script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="2. Random Forests" href="../../rf_landing.html" />
-    <link rel="prev" title="1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg" href="../Schwind/Hausarbeit_Anne%20Schwind_456737.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ausgelagerter content/Wagemann/Hausarbeit_Wagemann_Nguyen';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -93,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -142,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="../../../intro.html">
+<a class="navbar-brand logo" href="../../intro.html">
   
   
   
@@ -153,8 +153,8 @@
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
   
   
 </a></div>
@@ -174,32 +174,28 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
+                <a class="reference internal" href="../../intro.html">
                     Machine Learning Course Projects
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Grundwasservorhersage mittels eines Decision Trees, Sachsen</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tsa/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html">3.2. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tsa/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html">3.3. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tsa/Maksimova/KI_Hausaufgabe_Viktoriia_Maksimova.html">3.4. Mächtigkeit der aktiven Schicht von Permafrost</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
 </ul>
 </details></li>
 </ul>
@@ -273,7 +269,7 @@
       
       
       
-      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fcontents/dt/Wagemann/Hausarbeit_Wagemann_Nguyen.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fausgelagerter content/Wagemann/Hausarbeit_Wagemann_Nguyen.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,7 +299,7 @@
       
       
       
-      <li><a href="../../../_sources/contents/dt/Wagemann/Hausarbeit_Wagemann_Nguyen.ipynb" target="_blank"
+      <li><a href="../../_sources/ausgelagerter content/Wagemann/Hausarbeit_Wagemann_Nguyen.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -397,16 +393,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ziel">1.2.1. Ziel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">1.2.2. Daten</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-ein-entscheidungsbaum">1.2.3. Was ist ein Entscheidungsbaum?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">1.2.4. Ergebnisse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">1.2.5. Hyperparameter Tuning:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe">1.2.5.1. Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ziel">Ziel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">Daten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-ein-entscheidungsbaum">Was ist ein Entscheidungsbaum?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">Hyperparameter Tuning:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe">Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskussion-der-ergebnisse">1.2.6. Diskussion der Ergebnisse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">1.2.7. Literatur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskussion-der-ergebnisse">Diskussion der Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">Literatur</a></li>
 </ul>
             </nav>
         </div>
@@ -419,7 +415,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="grundwasservorhersage-mittels-eines-decision-trees-sachsen">
-<h1><span class="section-number">1.2. </span>Grundwasservorhersage mittels eines Decision Trees, Sachsen<a class="headerlink" href="#grundwasservorhersage-mittels-eines-decision-trees-sachsen" title="Link to this heading">#</a></h1>
+<h1>Grundwasservorhersage mittels eines Decision Trees, Sachsen<a class="headerlink" href="#grundwasservorhersage-mittels-eines-decision-trees-sachsen" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p>author: Karl Wagemann und Adnessa Nguyen</p>
 <p>area: Sachsen</p>
@@ -477,23 +473,23 @@ document.write(`
 </div>
 </div>
 <section id="ziel">
-<h2><span class="section-number">1.2.1. </span>Ziel<a class="headerlink" href="#ziel" title="Link to this heading">#</a></h2>
+<h2>Ziel<a class="headerlink" href="#ziel" title="Link to this heading">#</a></h2>
 <p>Das Ziel dieser Hausarbeit ist es, zu untersuchen, ob und wie gut sogenannte Entscheidungsbäume zur Vorhersage des Grundwasserspiegels in Sachsen verwendet werden können. Der Grundwasserspiegel, also die Tiefe, in der sich unter der Erdoberfläche Wasser befindet, ist für viele Bereiche, wie die Landwirtschaft und Wasserversorgung, von großer Bedeutung. In dieser Arbeit soll geprüft werden, ob die wöchentlichen Messungen von Temperatur (tas) und Niederschlag (pr) in Sachsen ausreichen, um mit Hilfe von Entscheidungsbäumen den Grundwasserspiegel (GWL) für acht verschiedene Messstationen in Sachsen vorherzusagen. Dabei wird auch untersucht, wie genau diese Vorhersagen sind und ob das Modell zuverlässig arbeitet, indem es auf verschiedenen Daten getestet wird.</p>
 <p>Als Grundlage unserer Forschungsarbeit diente uns das Paper von Wunsch et al. (2022). Ziel seiner Studie war es, den Klimawandel anhand des Grundwasserspiegels vorherzusagen und zunehmende Trends von Trocknheit in Deutschland zu belegen.</p>
 </section>
 <section id="daten">
-<h2><span class="section-number">1.2.2. </span>Daten<a class="headerlink" href="#daten" title="Link to this heading">#</a></h2>
+<h2>Daten<a class="headerlink" href="#daten" title="Link to this heading">#</a></h2>
 <p>Für die Vorhersage des Grundwasserspiegels verwendeten wir Daten von acht verschiedenen Messstellen in Sachsen. Diese Daten umfassten Rasterdaten der wöchentlichen Durchschnittswerte der Tagestemperaturen und des Niederschlags (5x5km). Diese Daten sind frei zugänglich und stammen vom Climate Data Center des Deutschen Wetterdienstes (DWD), einer offiziellen Stelle, die solche Informationen sammelt und zur Verfügung stellt (Link: <a class="reference external" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/">https://opendata.dwd.de/climate_environment/CDC/grids_germany/</a>).</p>
 <p>Um unsere Klimadaten auf unser Untersuchungsgebiet anwenden zu können, verwendeten wir einen ESRI-Shapefile aus Sachsen, den wir in das räumlich benötigte Koordinatensystem einspeisten (EPSG 25833).
 Anschließend extrahierten wir die Zeitreihen aus den netCDF-Datein und stapelten sie übereinander, sodass wir für jede der acht Messstellen eine eigene .csv-Datei mit den benötigten Daten für Niederschlag, Temperatur und Grundwasserspiegel erhielten.
 Der Zeitraum, der in dieser Untersuchung betrachtet wird, erstreckt sich von Januar 1990 bis Dezember 2005, also über 16 Jahre. Insgesamt gibt es für jede .csv-Datei 835 Messwerte, die als Grundlage für die Vorhersage des Grundwasserspiegels dienen.</p>
 </section>
 <section id="was-ist-ein-entscheidungsbaum">
-<h2><span class="section-number">1.2.3. </span>Was ist ein Entscheidungsbaum?<a class="headerlink" href="#was-ist-ein-entscheidungsbaum" title="Link to this heading">#</a></h2>
+<h2>Was ist ein Entscheidungsbaum?<a class="headerlink" href="#was-ist-ein-entscheidungsbaum" title="Link to this heading">#</a></h2>
 <p>Der Random Forest ist eine Machine-Learning-Methode, die mehrere Entscheidungsbäume kombiniert, um eine konsolidierte Vorhersage zu treffen. Jeder Baum im Wald wird auf einer zufällig ausgewählten Teilmenge der Trainingsdaten sowie einer zufälligen Auswahl von Merkmalen trainiert. Dieser Ansatz sorgt für Diversität unter den Bäumen, was die Genauigkeit und Robustheit der Vorhersagen erhöht. Bei Klassifikationsaufgaben erfolgt die finale Entscheidung durch Mehrheitsvotum der Bäume, während bei Regressionsaufgaben die Durchschnittswerte aller Bäume gebildet werden. In unserem Random Forest Model bilden wir die Durchschnittswerte aller Bäume, um letztendlich einen größmöglichen Prädiktor für unseren Grundwasserspiegel zu erhalten.</p>
 </section>
 <section id="ergebnisse">
-<h2><span class="section-number">1.2.4. </span>Ergebnisse<a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
+<h2>Ergebnisse<a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
 <p>Bevor wir mit den Ergebnissen anfangen, möchten müssen wir zuerst notwendige Pakete runterladen, die wir für unser Model und den Code notwendig sind. Anschließend werden wir mit folgender Struktur forfahren.</p>
 <ol class="arabic simple">
 <li><p>Jede CSV-Datei einzeln reinladen und die Daten zu einem einzigen DataFrame für das Modelltraining zusammenführen.</p></li>
@@ -766,9 +762,9 @@ dtype: int64
 </div>
 </section>
 <section id="hyperparameter-tuning">
-<h2><span class="section-number">1.2.5. </span>Hyperparameter Tuning:<a class="headerlink" href="#hyperparameter-tuning" title="Link to this heading">#</a></h2>
+<h2>Hyperparameter Tuning:<a class="headerlink" href="#hyperparameter-tuning" title="Link to this heading">#</a></h2>
 <section id="beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe">
-<h3><span class="section-number">1.2.5.1. </span>Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.<a class="headerlink" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe" title="Link to this heading">#</a></h3>
+<h3>Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.<a class="headerlink" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
@@ -936,7 +932,7 @@ MSE auf Testdaten mit dem besten Modell: 0.3036
 </section>
 </section>
 <section id="diskussion-der-ergebnisse">
-<h2><span class="section-number">1.2.6. </span>Diskussion der Ergebnisse<a class="headerlink" href="#diskussion-der-ergebnisse" title="Link to this heading">#</a></h2>
+<h2>Diskussion der Ergebnisse<a class="headerlink" href="#diskussion-der-ergebnisse" title="Link to this heading">#</a></h2>
 <p>In dieser Untersuchung wurde der Random Forest Regressor eingesetzt, um den Grundwasserspiegel (GWL) auf Basis der Einflussfaktoren Niederschlag (pr) und Durchschnittstemperatur (tas) vorherzusagen.
 Zu Beginn wurde ein Random Forest Modell ohne Einschränkung der Baumtiefe trainiert. Das Modell erreichte eine erklärte Varianz von etwa 83.84% auf den Trainingsdaten, was darauf hinweist, dass es die Beziehungen zwischen den Prädiktoren und dem GWL sehr gut erfassen konnte. Diese hohe erklärte Varianz deutet auf eine starke Anpassung an die Trainingsdaten hin. Die Kreuzvalidierung ergab eine durchschnittliche MSE von 0.312 mit einer Standardabweichung von 0.057. Diese Werte bestätigen, dass das Modell auf den Trainingsdaten zuverlässig ist, jedoch zeigt die Varianz in den MSE-Werten, dass es nicht immer konsistent auf verschiedenen Test-Splits abschneidet, was auf mögliche Unsicherheiten hindeutet.</p>
 <p>Um die Modellkomplexität besser zu kontrollieren, wurde ein Random Forest Modell mit einer festgelegten Baumtiefe von 7 getestet. Die Ergebnisse zeigten eine reduzierte erklärte Varianz von 42.24% und eine erhöhte MSE von 0.422 auf den Trainingsdaten. Diese Verschlechterung weist auf eine Unteranpassung hin, die auftritt, wenn die Modellkomplexität zu niedrig ist, um die zugrunde liegenden Muster in den Daten angemessen zu erfassen. Hier zeigt sich, dass eine Baumtiefe von 7 das Modell zu sehr einschränkt und wichtige Informationen im Datensatz möglicherweise nicht berücksichtigt werden.</p>
@@ -945,7 +941,7 @@ Zu Beginn wurde ein Random Forest Modell ohne Einschränkung der Baumtiefe train
 <p>Zusammenfassend lässt sich sagen, dass der Random Forest Regressor eine leistungsfähige Methode zur Modellierung des GWL darstellt, indem er die Robustheit und Genauigkeit durch die Aggregation mehrerer Entscheidungsbäume verbessert. Die Untersuchung zeigt jedoch, dass sowohl Überanpassung als auch Unteranpassung potenzielle Herausforderungen darstellen können. Während das Modell ohne Einschränkung der Baumtiefe eine hohe erklärte Varianz aufwies, führte die Begrenzung der Baumtiefe zu Unteranpassung, und das Hyperparameter-Tuning zeigte, dass Overfitting ein Problem darstellt. Insgesamt lässt sich festhalten, dass die Variablen Temperatur sowie Niederschlag den Grundwasserspiegel der Messstellen in Sachsen gut vorhersagen können.</p>
 </section>
 <section id="literatur">
-<h2><span class="section-number">1.2.7. </span>Literatur<a class="headerlink" href="#literatur" title="Link to this heading">#</a></h2>
+<h2>Literatur<a class="headerlink" href="#literatur" title="Link to this heading">#</a></h2>
 <p>Wunsch, A., et al. (2022). Deep learning shows declining groundwater levels in Germany until 2100 due to climate change. Nature Communications. 13:1221. doi: <a class="reference external" href="https://doi.org/10.1038/s41467-022-28770-2">https://doi.org/10.1038/s41467-022-28770-2</a></p>
 </section>
 </section>
@@ -963,7 +959,7 @@ Zu Beginn wurde ein Random Forest Modell ohne Einschränkung der Baumtiefe train
         },
         kernelOptions: {
             name: "python3",
-            path: "./contents/dt/Wagemann"
+            path: "./ausgelagerter content/Wagemann"
         },
         predefinedOutput: true
     }
@@ -980,24 +976,6 @@ Zu Beginn wurde ein Random Forest Modell ohne Einschränkung der Baumtiefe train
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../Schwind/Hausarbeit_Anne%20Schwind_456737.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.1. </span>Grundwasservorhersage mittels eines Decision Trees, Brandenburg</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../../rf_landing.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Random Forests</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1014,16 +992,16 @@ Zu Beginn wurde ein Random Forest Modell ohne Einschränkung der Baumtiefe train
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ziel">1.2.1. Ziel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">1.2.2. Daten</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-ein-entscheidungsbaum">1.2.3. Was ist ein Entscheidungsbaum?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">1.2.4. Ergebnisse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">1.2.5. Hyperparameter Tuning:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe">1.2.5.1. Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ziel">Ziel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten">Daten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-ein-entscheidungsbaum">Was ist ein Entscheidungsbaum?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">Hyperparameter Tuning:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beim-hyperparameter-tuning-schauen-wir-uns-an-welche-parameter-unser-model-am-besten-vorhersagt-dabei-variieren-wir-zum-einen-in-der-anzahl-der-entscheidungsbaume-n-estimators-sowie-in-der-anzahl-der-tiefe">Beim Hyperparameter Tuning schauen wir uns an, welche Parameter unser Model am Besten vorhersagt. Dabei variieren wir zum einen in der Anzahl der Entscheidungsbäume (n_estimators) sowie in der Anzahl der Tiefe.</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskussion-der-ergebnisse">1.2.6. Diskussion der Ergebnisse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">1.2.7. Literatur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskussion-der-ergebnisse">Diskussion der Ergebnisse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatur">Literatur</a></li>
 </ul>
   </nav></div>
 
@@ -1072,8 +1050,8 @@ By Annette Rudolph, Marie-Christin Eckert
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
