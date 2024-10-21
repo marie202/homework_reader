@@ -1,0 +1,4169 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel &#8212; Machine Learning Online Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Machine Learning Course Projects
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ausgelagerter content/Skripnik/Kiel_Zeitreihenanalyse_Skripnik_Lydia.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">Anlegen einer Spalte mit dem Datum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">Aufteilen der Daten in einen Jahresverlauf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">Umgang mit Fehlwerten</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">Überblick über die Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">Vergleich der Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">Fazit zur 1. Hypothese</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">Überblick über die Daten zur Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">Vergleich des Maximum der Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">Vergleich der Windstärke der Stationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">Fazit zur 2. Hypothese</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-kiel">
+<h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Kiel<a class="headerlink" href="#urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-kiel" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>author: Lydia Skripnik</p>
+<p>area: Kiel</p>
+<p>date: 26.08.2024</p>
+</div></blockquote>
+<section id="einleitung">
+<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
+<p>In diesem Skript werden in einer Zeitreihenanalyse die Datensätze von zwei Messstationen miteinander verglichen. Die Bearbeitung erfolgte größtenteils mithilfe der “Statistics and Geodata Analysis using Python (SOGA-Py)”-Skripte der Freien Universität Berlin¹. Die Klimadaten wurden von der Seite des Deutschen Wetterdienstes (DWD) heruntergeladen². Dort gibt es zudem Datensätze vieler weiterer Messstationen. Für die Analyse wurde zum Einen die Station Kiel-Holtenau ausgesucht, welche im Norden Kiels an der Kieler Förde verortet ist. Die andere Station ist Leuchtturm Kiel, welche ca. 7 Kilometer von der Küste entfernt in der Nordsee liegt. Die Standorte sowie weitere Informationen kann man in den Metadaten in der heruntergeladenen Zip-Datei vom DWD nachschauen.</p>
+<p>In der Analyse werden die folgenden Hypothesen untersucht:</p>
+<ol class="arabic simple">
+<li><p>In der Stadt ist die Lufttemperatur durchschnittlich höher als auf dem Meer.</p></li>
+<li><p>Die durchschnittliche Windgeschwindigkeit ist auf dem Meer höher als in der Stadt.</p></li>
+</ol>
+</section>
+<section id="datenvorbereitung">
+<h2>Datenvorbereitung<a class="headerlink" href="#datenvorbereitung" title="Link to this heading">#</a></h2>
+<p>Verschaffen wir uns zunächst einen Überblick über den Datensatz. Damit der Import der Daten funktioniert, müssen sie im gleichen Verzeichnis wie das Notebook liegen. Das aktuelle Verzeichnis des Notebooks können wir mithilfe der “os.getcwd()”-Methode überprüfen. Die “pd.read_csv()”-Funktion zum Einlesen der Daten funktioniert auch mit txt-Dateien. Zusätzlich definieren wir innerhalb der Funktion das Semikolon als Trennungszeichen, da dies der Separator in der Datei ist. Außerdem sollte man darauf achten, dass die Schrägstriche in die korrekte Richtung zeigen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einladen der nötigen Module</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/marie-christineckert/Nextcloud/TU/Lehre/SoSe_2024/Jupyter-reader-hausarbeiten_2024/ausgelagerter content/Skripnik&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/Lyskri/Documents/KI Hausarbeit/Klimadaten_Leuchtturm.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="n">Kiel_Leuchtturm</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Kiel_Leuchtturm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/Lyskri/Documents/KI Hausarbeit/Klimadaten_Leuchtturm.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">Kiel_Leuchtturm</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:/Users/Lyskri/Documents/KI Hausarbeit/Klimadaten_Leuchtturm.txt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Man sieht, dass der Datensatz aus 550 Zeilen (Tagen) und 19 Spalten besteht. Standardmäßig werden bei großen Datensätzen nur die ersten und letzten fünf Zeilen ausgegeben. Außerdem ist der Datensatz nach dem Datum aufsteigend geordnet. Als nächstes benennen wir die Spalten mit eindeutigen Namen und löschen dann jene Spalten, die wir für unsere Analyse nicht brauchen. Am Ende bleiben die folgenden Daten übrig³:</p>
+<p><strong>TN</strong> - Minimum der Temperatur in 2 m über dem Erdboden Grad C TIII des Vortages
+bis TIII 23:51 Vortag - 23:50 UTC <br>
+<strong>TM</strong> - Mittel der Temperatur in 2 m über dem Erdboden Grad C (TI+TII+2*TIII) / 4
+Mittel aus 24 Terminwerten <br>
+<strong>TX</strong> - Maximum der Temperatur in 2 m über dem Erdboden Grad C TIII des Vortages
+bis TIII 23:51 Vortag - 23:50 UTC <br>
+<strong>FM</strong> - Mittel der Windstärke m/sec (TI+TII+TIII)/3 Mittel aus 24 Terminwerten <br>
+<strong>FX</strong> - Maximum der Windgeschwindigkeit (Spitzenböe) m/sec 00 – 23:59 UTC 23:51 Vortag - 23:50 UTC <br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;STAT&#39;</span><span class="p">,</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;QN_3&#39;</span><span class="p">,</span> <span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="s1">&#39;FM&#39;</span><span class="p">,</span> <span class="s1">&#39;QN_4&#39;</span><span class="p">,</span> <span class="s1">&#39;RSK&#39;</span><span class="p">,</span> <span class="s1">&#39;RSKF&#39;</span><span class="p">,</span> <span class="s1">&#39;SDK&#39;</span><span class="p">,</span> <span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span> <span class="s1">&#39;NM&#39;</span><span class="p">,</span> <span class="s1">&#39;VPM&#39;</span><span class="p">,</span> <span class="s1">&#39;PM&#39;</span><span class="p">,</span> <span class="s1">&#39;TM&#39;</span><span class="p">,</span> <span class="s1">&#39;UPM&#39;</span><span class="p">,</span> <span class="s1">&#39;TX&#39;</span><span class="p">,</span> <span class="s1">&#39;TN&#39;</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">,</span> <span class="s1">&#39;eor&#39;</span><span class="p">]</span>
+
+<span class="n">Kiel_Leuchtturm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STAT</th>
+      <th>Date</th>
+      <th>QN_3</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>QN_4</th>
+      <th>RSK</th>
+      <th>RSKF</th>
+      <th>SDK</th>
+      <th>SHK_TAG</th>
+      <th>NM</th>
+      <th>VPM</th>
+      <th>PM</th>
+      <th>TM</th>
+      <th>UPM</th>
+      <th>TX</th>
+      <th>TN</th>
+      <th>TG</th>
+      <th>eor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2961</td>
+      <td>20230113</td>
+      <td>10</td>
+      <td>26.4</td>
+      <td>16.0</td>
+      <td>3</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>0.000</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>8.4</td>
+      <td>993.80</td>
+      <td>7.8</td>
+      <td>79.00</td>
+      <td>10.7</td>
+      <td>6.6</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2961</td>
+      <td>20230114</td>
+      <td>10</td>
+      <td>22.5</td>
+      <td>13.9</td>
+      <td>3</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>0.000</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>8.6</td>
+      <td>996.70</td>
+      <td>6.9</td>
+      <td>86.00</td>
+      <td>8.9</td>
+      <td>5.7</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2961</td>
+      <td>20230115</td>
+      <td>10</td>
+      <td>32.6</td>
+      <td>18.5</td>
+      <td>3</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>1.100</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>7.1</td>
+      <td>986.40</td>
+      <td>5.9</td>
+      <td>76.00</td>
+      <td>6.6</td>
+      <td>3.7</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2961</td>
+      <td>20230116</td>
+      <td>10</td>
+      <td>16.9</td>
+      <td>10.9</td>
+      <td>3</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>2.200</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>6.8</td>
+      <td>983.80</td>
+      <td>4.9</td>
+      <td>79.00</td>
+      <td>5.4</td>
+      <td>4.2</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2961</td>
+      <td>20230117</td>
+      <td>10</td>
+      <td>22.3</td>
+      <td>11.7</td>
+      <td>3</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>2.100</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>6.2</td>
+      <td>977.10</td>
+      <td>2.8</td>
+      <td>83.00</td>
+      <td>5.2</td>
+      <td>0.9</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>2961</td>
+      <td>20240711</td>
+      <td>1</td>
+      <td>10.0</td>
+      <td>5.4</td>
+      <td>1</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>11.333</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>15.9</td>
+      <td>1012.60</td>
+      <td>18.8</td>
+      <td>73.46</td>
+      <td>23.0</td>
+      <td>16.3</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>2961</td>
+      <td>20240712</td>
+      <td>1</td>
+      <td>19.7</td>
+      <td>7.5</td>
+      <td>1</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>7.467</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>16.9</td>
+      <td>1008.98</td>
+      <td>17.9</td>
+      <td>82.42</td>
+      <td>21.0</td>
+      <td>15.4</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>2961</td>
+      <td>20240713</td>
+      <td>1</td>
+      <td>15.1</td>
+      <td>9.7</td>
+      <td>1</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>1.167</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>15.3</td>
+      <td>1005.19</td>
+      <td>16.2</td>
+      <td>83.25</td>
+      <td>18.6</td>
+      <td>14.1</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>2961</td>
+      <td>20240714</td>
+      <td>1</td>
+      <td>22.6</td>
+      <td>9.3</td>
+      <td>1</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>8.633</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>14.0</td>
+      <td>1007.94</td>
+      <td>16.5</td>
+      <td>75.46</td>
+      <td>20.9</td>
+      <td>13.9</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>549</th>
+      <td>2961</td>
+      <td>20240715</td>
+      <td>1</td>
+      <td>15.7</td>
+      <td>8.4</td>
+      <td>1</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>10.400</td>
+      <td>-999</td>
+      <td>-999</td>
+      <td>15.1</td>
+      <td>1008.79</td>
+      <td>18.2</td>
+      <td>72.42</td>
+      <td>21.2</td>
+      <td>15.6</td>
+      <td>-999</td>
+      <td>eor</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 19 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span> <span class="o">=</span> <span class="n">Kiel_Leuchtturm</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;STAT&#39;</span><span class="p">,</span><span class="s1">&#39;QN_3&#39;</span><span class="p">,</span><span class="s1">&#39;QN_4&#39;</span><span class="p">,</span><span class="s1">&#39;RSK&#39;</span><span class="p">,</span><span class="s1">&#39;RSKF&#39;</span><span class="p">,</span><span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span><span class="s1">&#39;NM&#39;</span><span class="p">,</span><span class="s1">&#39;eor&#39;</span><span class="p">,</span><span class="s1">&#39;TG&#39;</span><span class="p">,</span> <span class="s1">&#39;PM&#39;</span><span class="p">,</span> <span class="s1">&#39;SDK&#39;</span><span class="p">,</span> <span class="s1">&#39;VPM&#39;</span><span class="p">,</span> <span class="s1">&#39;UPM&#39;</span><span class="p">])</span>
+
+<span class="n">Kiel_Leuchtturm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20230113</td>
+      <td>26.4</td>
+      <td>16.0</td>
+      <td>7.8</td>
+      <td>10.7</td>
+      <td>6.6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20230114</td>
+      <td>22.5</td>
+      <td>13.9</td>
+      <td>6.9</td>
+      <td>8.9</td>
+      <td>5.7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20230115</td>
+      <td>32.6</td>
+      <td>18.5</td>
+      <td>5.9</td>
+      <td>6.6</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20230116</td>
+      <td>16.9</td>
+      <td>10.9</td>
+      <td>4.9</td>
+      <td>5.4</td>
+      <td>4.2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20230117</td>
+      <td>22.3</td>
+      <td>11.7</td>
+      <td>2.8</td>
+      <td>5.2</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>20240711</td>
+      <td>10.0</td>
+      <td>5.4</td>
+      <td>18.8</td>
+      <td>23.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>20240712</td>
+      <td>19.7</td>
+      <td>7.5</td>
+      <td>17.9</td>
+      <td>21.0</td>
+      <td>15.4</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>20240713</td>
+      <td>15.1</td>
+      <td>9.7</td>
+      <td>16.2</td>
+      <td>18.6</td>
+      <td>14.1</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>20240714</td>
+      <td>22.6</td>
+      <td>9.3</td>
+      <td>16.5</td>
+      <td>20.9</td>
+      <td>13.9</td>
+    </tr>
+    <tr>
+      <th>549</th>
+      <td>20240715</td>
+      <td>15.7</td>
+      <td>8.4</td>
+      <td>18.2</td>
+      <td>21.2</td>
+      <td>15.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Bei dem zweiten Datensatz gehen wir die vorherigen Schritte erneut durch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/Lyskri/Documents/KI Hausarbeit/Klimadaten_Holtenau.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="n">Kiel_Holtenau</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATIONS_ID</th>
+      <th>MESS_DATUM</th>
+      <th>QN_3</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>QN_4</th>
+      <th>RSK</th>
+      <th>RSKF</th>
+      <th>SDK</th>
+      <th>SHK_TAG</th>
+      <th>NM</th>
+      <th>VPM</th>
+      <th>PM</th>
+      <th>TMK</th>
+      <th>UPM</th>
+      <th>TXK</th>
+      <th>TNK</th>
+      <th>TGK</th>
+      <th>eor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2564</td>
+      <td>20230113</td>
+      <td>10</td>
+      <td>17.4</td>
+      <td>7.8</td>
+      <td>9</td>
+      <td>3.6</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.3</td>
+      <td>8.9</td>
+      <td>994.10</td>
+      <td>8.0</td>
+      <td>83.00</td>
+      <td>11.0</td>
+      <td>7.3</td>
+      <td>5.2</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2564</td>
+      <td>20230114</td>
+      <td>10</td>
+      <td>16.5</td>
+      <td>6.5</td>
+      <td>9</td>
+      <td>8.0</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.0</td>
+      <td>9.1</td>
+      <td>996.80</td>
+      <td>7.5</td>
+      <td>87.00</td>
+      <td>10.2</td>
+      <td>6.4</td>
+      <td>4.7</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2564</td>
+      <td>20230115</td>
+      <td>10</td>
+      <td>24.8</td>
+      <td>8.4</td>
+      <td>9</td>
+      <td>2.9</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.5</td>
+      <td>7.5</td>
+      <td>987.00</td>
+      <td>6.3</td>
+      <td>78.00</td>
+      <td>8.0</td>
+      <td>4.8</td>
+      <td>2.8</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2564</td>
+      <td>20230116</td>
+      <td>10</td>
+      <td>12.5</td>
+      <td>4.8</td>
+      <td>9</td>
+      <td>2.7</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.3</td>
+      <td>7.2</td>
+      <td>983.30</td>
+      <td>5.3</td>
+      <td>81.00</td>
+      <td>6.3</td>
+      <td>4.1</td>
+      <td>2.5</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2564</td>
+      <td>20230117</td>
+      <td>10</td>
+      <td>16.1</td>
+      <td>5.3</td>
+      <td>9</td>
+      <td>1.5</td>
+      <td>8</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.5</td>
+      <td>6.5</td>
+      <td>977.30</td>
+      <td>2.8</td>
+      <td>87.00</td>
+      <td>5.7</td>
+      <td>0.7</td>
+      <td>-1.1</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>2564</td>
+      <td>20240711</td>
+      <td>1</td>
+      <td>8.6</td>
+      <td>3.3</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.8</td>
+      <td>16.1</td>
+      <td>1012.16</td>
+      <td>19.1</td>
+      <td>73.67</td>
+      <td>23.5</td>
+      <td>14.8</td>
+      <td>12.8</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>2564</td>
+      <td>20240712</td>
+      <td>1</td>
+      <td>11.7</td>
+      <td>4.1</td>
+      <td>1</td>
+      <td>0.6</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.9</td>
+      <td>17.3</td>
+      <td>1008.42</td>
+      <td>17.6</td>
+      <td>86.13</td>
+      <td>20.6</td>
+      <td>12.8</td>
+      <td>8.9</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>2564</td>
+      <td>20240713</td>
+      <td>1</td>
+      <td>10.9</td>
+      <td>4.3</td>
+      <td>1</td>
+      <td>1.4</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.3</td>
+      <td>15.6</td>
+      <td>1004.86</td>
+      <td>16.3</td>
+      <td>84.25</td>
+      <td>20.2</td>
+      <td>13.8</td>
+      <td>12.6</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>2564</td>
+      <td>20240714</td>
+      <td>1</td>
+      <td>15.6</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>2.5</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.1</td>
+      <td>14.4</td>
+      <td>1007.60</td>
+      <td>16.7</td>
+      <td>77.38</td>
+      <td>22.3</td>
+      <td>13.0</td>
+      <td>12.0</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>549</th>
+      <td>2564</td>
+      <td>20240715</td>
+      <td>1</td>
+      <td>11.2</td>
+      <td>4.1</td>
+      <td>1</td>
+      <td>1.4</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.8</td>
+      <td>15.1</td>
+      <td>1008.42</td>
+      <td>18.4</td>
+      <td>72.29</td>
+      <td>22.8</td>
+      <td>15.0</td>
+      <td>13.5</td>
+      <td>eor</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 19 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;STAT&#39;</span><span class="p">,</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;QN_3&#39;</span><span class="p">,</span> <span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="s1">&#39;FM&#39;</span><span class="p">,</span> <span class="s1">&#39;QN_4&#39;</span><span class="p">,</span> <span class="s1">&#39;RSK&#39;</span><span class="p">,</span> <span class="s1">&#39;RSKF&#39;</span><span class="p">,</span> <span class="s1">&#39;SDK&#39;</span><span class="p">,</span> <span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span> <span class="s1">&#39;NM&#39;</span><span class="p">,</span> <span class="s1">&#39;VPM&#39;</span><span class="p">,</span> <span class="s1">&#39;PM&#39;</span><span class="p">,</span> <span class="s1">&#39;TM&#39;</span><span class="p">,</span> <span class="s1">&#39;UPM&#39;</span><span class="p">,</span> <span class="s1">&#39;TX&#39;</span><span class="p">,</span> <span class="s1">&#39;TN&#39;</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">,</span> <span class="s1">&#39;eor&#39;</span><span class="p">]</span>
+
+<span class="n">Kiel_Holtenau</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STAT</th>
+      <th>Date</th>
+      <th>QN_3</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>QN_4</th>
+      <th>RSK</th>
+      <th>RSKF</th>
+      <th>SDK</th>
+      <th>SHK_TAG</th>
+      <th>NM</th>
+      <th>VPM</th>
+      <th>PM</th>
+      <th>TM</th>
+      <th>UPM</th>
+      <th>TX</th>
+      <th>TN</th>
+      <th>TG</th>
+      <th>eor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2564</td>
+      <td>20230113</td>
+      <td>10</td>
+      <td>17.4</td>
+      <td>7.8</td>
+      <td>9</td>
+      <td>3.6</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.3</td>
+      <td>8.9</td>
+      <td>994.10</td>
+      <td>8.0</td>
+      <td>83.00</td>
+      <td>11.0</td>
+      <td>7.3</td>
+      <td>5.2</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2564</td>
+      <td>20230114</td>
+      <td>10</td>
+      <td>16.5</td>
+      <td>6.5</td>
+      <td>9</td>
+      <td>8.0</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.0</td>
+      <td>9.1</td>
+      <td>996.80</td>
+      <td>7.5</td>
+      <td>87.00</td>
+      <td>10.2</td>
+      <td>6.4</td>
+      <td>4.7</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2564</td>
+      <td>20230115</td>
+      <td>10</td>
+      <td>24.8</td>
+      <td>8.4</td>
+      <td>9</td>
+      <td>2.9</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.5</td>
+      <td>7.5</td>
+      <td>987.00</td>
+      <td>6.3</td>
+      <td>78.00</td>
+      <td>8.0</td>
+      <td>4.8</td>
+      <td>2.8</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2564</td>
+      <td>20230116</td>
+      <td>10</td>
+      <td>12.5</td>
+      <td>4.8</td>
+      <td>9</td>
+      <td>2.7</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.3</td>
+      <td>7.2</td>
+      <td>983.30</td>
+      <td>5.3</td>
+      <td>81.00</td>
+      <td>6.3</td>
+      <td>4.1</td>
+      <td>2.5</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2564</td>
+      <td>20230117</td>
+      <td>10</td>
+      <td>16.1</td>
+      <td>5.3</td>
+      <td>9</td>
+      <td>1.5</td>
+      <td>8</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.5</td>
+      <td>6.5</td>
+      <td>977.30</td>
+      <td>2.8</td>
+      <td>87.00</td>
+      <td>5.7</td>
+      <td>0.7</td>
+      <td>-1.1</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>2564</td>
+      <td>20240711</td>
+      <td>1</td>
+      <td>8.6</td>
+      <td>3.3</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.8</td>
+      <td>16.1</td>
+      <td>1012.16</td>
+      <td>19.1</td>
+      <td>73.67</td>
+      <td>23.5</td>
+      <td>14.8</td>
+      <td>12.8</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>2564</td>
+      <td>20240712</td>
+      <td>1</td>
+      <td>11.7</td>
+      <td>4.1</td>
+      <td>1</td>
+      <td>0.6</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.9</td>
+      <td>17.3</td>
+      <td>1008.42</td>
+      <td>17.6</td>
+      <td>86.13</td>
+      <td>20.6</td>
+      <td>12.8</td>
+      <td>8.9</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>2564</td>
+      <td>20240713</td>
+      <td>1</td>
+      <td>10.9</td>
+      <td>4.3</td>
+      <td>1</td>
+      <td>1.4</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>7.3</td>
+      <td>15.6</td>
+      <td>1004.86</td>
+      <td>16.3</td>
+      <td>84.25</td>
+      <td>20.2</td>
+      <td>13.8</td>
+      <td>12.6</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>2564</td>
+      <td>20240714</td>
+      <td>1</td>
+      <td>15.6</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>2.5</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>6.1</td>
+      <td>14.4</td>
+      <td>1007.60</td>
+      <td>16.7</td>
+      <td>77.38</td>
+      <td>22.3</td>
+      <td>13.0</td>
+      <td>12.0</td>
+      <td>eor</td>
+    </tr>
+    <tr>
+      <th>549</th>
+      <td>2564</td>
+      <td>20240715</td>
+      <td>1</td>
+      <td>11.2</td>
+      <td>4.1</td>
+      <td>1</td>
+      <td>1.4</td>
+      <td>6</td>
+      <td>-999</td>
+      <td>0</td>
+      <td>5.8</td>
+      <td>15.1</td>
+      <td>1008.42</td>
+      <td>18.4</td>
+      <td>72.29</td>
+      <td>22.8</td>
+      <td>15.0</td>
+      <td>13.5</td>
+      <td>eor</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 19 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span> <span class="o">=</span> <span class="n">Kiel_Holtenau</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;STAT&#39;</span><span class="p">,</span><span class="s1">&#39;QN_3&#39;</span><span class="p">,</span><span class="s1">&#39;QN_4&#39;</span><span class="p">,</span><span class="s1">&#39;RSK&#39;</span><span class="p">,</span><span class="s1">&#39;RSKF&#39;</span><span class="p">,</span><span class="s1">&#39;SHK_TAG&#39;</span><span class="p">,</span><span class="s1">&#39;NM&#39;</span><span class="p">,</span><span class="s1">&#39;eor&#39;</span><span class="p">,</span><span class="s1">&#39;TG&#39;</span><span class="p">,</span> <span class="s1">&#39;PM&#39;</span><span class="p">,</span><span class="s1">&#39;SDK&#39;</span><span class="p">,</span> <span class="s1">&#39;VPM&#39;</span><span class="p">,</span> <span class="s1">&#39;UPM&#39;</span><span class="p">])</span>
+
+<span class="n">Kiel_Holtenau</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20230113</td>
+      <td>17.4</td>
+      <td>7.8</td>
+      <td>8.0</td>
+      <td>11.0</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20230114</td>
+      <td>16.5</td>
+      <td>6.5</td>
+      <td>7.5</td>
+      <td>10.2</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20230115</td>
+      <td>24.8</td>
+      <td>8.4</td>
+      <td>6.3</td>
+      <td>8.0</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20230116</td>
+      <td>12.5</td>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>6.3</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20230117</td>
+      <td>16.1</td>
+      <td>5.3</td>
+      <td>2.8</td>
+      <td>5.7</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>20240711</td>
+      <td>8.6</td>
+      <td>3.3</td>
+      <td>19.1</td>
+      <td>23.5</td>
+      <td>14.8</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>20240712</td>
+      <td>11.7</td>
+      <td>4.1</td>
+      <td>17.6</td>
+      <td>20.6</td>
+      <td>12.8</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>20240713</td>
+      <td>10.9</td>
+      <td>4.3</td>
+      <td>16.3</td>
+      <td>20.2</td>
+      <td>13.8</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>20240714</td>
+      <td>15.6</td>
+      <td>4.0</td>
+      <td>16.7</td>
+      <td>22.3</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>549</th>
+      <td>20240715</td>
+      <td>11.2</td>
+      <td>4.1</td>
+      <td>18.4</td>
+      <td>22.8</td>
+      <td>15.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 6 columns</p>
+</div></div></div>
+</div>
+<section id="anlegen-einer-spalte-mit-dem-datum">
+<h3>Anlegen einer Spalte mit dem Datum<a class="headerlink" href="#anlegen-einer-spalte-mit-dem-datum" title="Link to this heading">#</a></h3>
+<p>Bei der Ausgabe der Spalte “Date” sieht man, dass der Datentyp (“dtype”) dieser Spalte aktuell Integers (“int”) ist. Wir werden diese Spalte nun benutzen, um eine neue Spalte im korrektem Datumsformat anzulegen. In der “pd.to_datetime()”-Funktion geben wir das vorliegende Format der Spalte “Date” mit ‘%Y%m%d’ an. Die neue Spalte “Datum” wird im englischen Format (Jahr-Monat-Tag) entstehen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      20230113
+1      20230114
+2      20230115
+3      20230116
+4      20230117
+         ...   
+545    20240711
+546    20240712
+547    20240713
+548    20240714
+549    20240715
+Name: Date, Length: 550, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Kiel_Leuchtturm</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Kiel_Leuchtturm</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20230113</td>
+      <td>26.4</td>
+      <td>16.0</td>
+      <td>7.8</td>
+      <td>10.7</td>
+      <td>6.6</td>
+      <td>2023-01-13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20230114</td>
+      <td>22.5</td>
+      <td>13.9</td>
+      <td>6.9</td>
+      <td>8.9</td>
+      <td>5.7</td>
+      <td>2023-01-14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20230115</td>
+      <td>32.6</td>
+      <td>18.5</td>
+      <td>5.9</td>
+      <td>6.6</td>
+      <td>3.7</td>
+      <td>2023-01-15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20230116</td>
+      <td>16.9</td>
+      <td>10.9</td>
+      <td>4.9</td>
+      <td>5.4</td>
+      <td>4.2</td>
+      <td>2023-01-16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20230117</td>
+      <td>22.3</td>
+      <td>11.7</td>
+      <td>2.8</td>
+      <td>5.2</td>
+      <td>0.9</td>
+      <td>2023-01-17</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     2023-01-13
+1     2023-01-14
+2     2023-01-15
+3     2023-01-16
+4     2023-01-17
+         ...    
+545   2024-07-11
+546   2024-07-12
+547   2024-07-13
+548   2024-07-14
+549   2024-07-15
+Name: Datum, Length: 550, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Überprüfung der neu angelegten Spalte “Datum” zeigt, dass der Datentyp jetzt als Datum (“datetime”) festgelegt ist. Die Zahlen aus der Spalte “Date” wurden erfolgreich in ein Datumsformat transformiert. Das gleiche machen wir auch bei dem zweiten Datensatz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Kiel_Holtenau</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Kiel_Holtenau</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20230113</td>
+      <td>17.4</td>
+      <td>7.8</td>
+      <td>8.0</td>
+      <td>11.0</td>
+      <td>7.3</td>
+      <td>2023-01-13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20230114</td>
+      <td>16.5</td>
+      <td>6.5</td>
+      <td>7.5</td>
+      <td>10.2</td>
+      <td>6.4</td>
+      <td>2023-01-14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20230115</td>
+      <td>24.8</td>
+      <td>8.4</td>
+      <td>6.3</td>
+      <td>8.0</td>
+      <td>4.8</td>
+      <td>2023-01-15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20230116</td>
+      <td>12.5</td>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>6.3</td>
+      <td>4.1</td>
+      <td>2023-01-16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20230117</td>
+      <td>16.1</td>
+      <td>5.3</td>
+      <td>2.8</td>
+      <td>5.7</td>
+      <td>0.7</td>
+      <td>2023-01-17</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     2023-01-13
+1     2023-01-14
+2     2023-01-15
+3     2023-01-16
+4     2023-01-17
+         ...    
+545   2024-07-11
+546   2024-07-12
+547   2024-07-13
+548   2024-07-14
+549   2024-07-15
+Name: Datum, Length: 550, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Spalte “Date” benötigen wir nicht mehr und löschen sie daher. Als letztes legen wir die Spalte “Datum” als Index der DataFrames fest. So kann man sich bestimmte Zeiträume oder Tage genauer angucken, da man diese einfach über das Datum aufrufen kann.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span> <span class="o">=</span> <span class="n">Kiel_Leuchtturm</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+
+<span class="n">Kiel_Leuchtturm</span> <span class="o">=</span> <span class="n">Kiel_Leuchtturm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span> <span class="o">=</span> <span class="n">Kiel_Holtenau</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+
+<span class="n">Kiel_Holtenau</span> <span class="o">=</span> <span class="n">Kiel_Holtenau</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Leuchtturm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-13</th>
+      <td>26.4</td>
+      <td>16.0</td>
+      <td>7.8</td>
+      <td>10.7</td>
+      <td>6.6</td>
+    </tr>
+    <tr>
+      <th>2023-01-14</th>
+      <td>22.5</td>
+      <td>13.9</td>
+      <td>6.9</td>
+      <td>8.9</td>
+      <td>5.7</td>
+    </tr>
+    <tr>
+      <th>2023-01-15</th>
+      <td>32.6</td>
+      <td>18.5</td>
+      <td>5.9</td>
+      <td>6.6</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <th>2023-01-16</th>
+      <td>16.9</td>
+      <td>10.9</td>
+      <td>4.9</td>
+      <td>5.4</td>
+      <td>4.2</td>
+    </tr>
+    <tr>
+      <th>2023-01-17</th>
+      <td>22.3</td>
+      <td>11.7</td>
+      <td>2.8</td>
+      <td>5.2</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-07-11</th>
+      <td>10.0</td>
+      <td>5.4</td>
+      <td>18.8</td>
+      <td>23.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>2024-07-12</th>
+      <td>19.7</td>
+      <td>7.5</td>
+      <td>17.9</td>
+      <td>21.0</td>
+      <td>15.4</td>
+    </tr>
+    <tr>
+      <th>2024-07-13</th>
+      <td>15.1</td>
+      <td>9.7</td>
+      <td>16.2</td>
+      <td>18.6</td>
+      <td>14.1</td>
+    </tr>
+    <tr>
+      <th>2024-07-14</th>
+      <td>22.6</td>
+      <td>9.3</td>
+      <td>16.5</td>
+      <td>20.9</td>
+      <td>13.9</td>
+    </tr>
+    <tr>
+      <th>2024-07-15</th>
+      <td>15.7</td>
+      <td>8.4</td>
+      <td>18.2</td>
+      <td>21.2</td>
+      <td>15.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kiel_Holtenau</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-13</th>
+      <td>17.4</td>
+      <td>7.8</td>
+      <td>8.0</td>
+      <td>11.0</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>2023-01-14</th>
+      <td>16.5</td>
+      <td>6.5</td>
+      <td>7.5</td>
+      <td>10.2</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <th>2023-01-15</th>
+      <td>24.8</td>
+      <td>8.4</td>
+      <td>6.3</td>
+      <td>8.0</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>2023-01-16</th>
+      <td>12.5</td>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>6.3</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>2023-01-17</th>
+      <td>16.1</td>
+      <td>5.3</td>
+      <td>2.8</td>
+      <td>5.7</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-07-11</th>
+      <td>8.6</td>
+      <td>3.3</td>
+      <td>19.1</td>
+      <td>23.5</td>
+      <td>14.8</td>
+    </tr>
+    <tr>
+      <th>2024-07-12</th>
+      <td>11.7</td>
+      <td>4.1</td>
+      <td>17.6</td>
+      <td>20.6</td>
+      <td>12.8</td>
+    </tr>
+    <tr>
+      <th>2024-07-13</th>
+      <td>10.9</td>
+      <td>4.3</td>
+      <td>16.3</td>
+      <td>20.2</td>
+      <td>13.8</td>
+    </tr>
+    <tr>
+      <th>2024-07-14</th>
+      <td>15.6</td>
+      <td>4.0</td>
+      <td>16.7</td>
+      <td>22.3</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>2024-07-15</th>
+      <td>11.2</td>
+      <td>4.1</td>
+      <td>18.4</td>
+      <td>22.8</td>
+      <td>15.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>550 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="aufteilen-der-daten-in-einen-jahresverlauf">
+<h3>Aufteilen der Daten in einen Jahresverlauf<a class="headerlink" href="#aufteilen-der-daten-in-einen-jahresverlauf" title="Link to this heading">#</a></h3>
+<p>Im nächsten Schritt benutzen wir den Index, um die vorhandene Zeitreihe in einen neuen DataFrame mit einem Zeitraum von einem Jahr aufzuteilen. Die Daten gehen vom 13.01.2023 bis zum 15.07.2024, also suchen wir uns den Zeitraum vom 01.02.2023 bis zum 31.01.2024 aus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span> <span class="o">=</span> <span class="n">Kiel_Leuchtturm</span><span class="p">[</span><span class="s1">&#39;2023-02-01&#39;</span><span class="p">:</span><span class="s1">&#39;2024-01-31&#39;</span><span class="p">]</span>
+
+<span class="n">KH_jahr</span> <span class="o">=</span> <span class="n">Kiel_Holtenau</span><span class="p">[</span><span class="s1">&#39;2023-02-01&#39;</span><span class="p">:</span><span class="s1">&#39;2024-01-31&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-02-01</th>
+      <td>26.2</td>
+      <td>15.4</td>
+      <td>5.4</td>
+      <td>6.6</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>2023-02-02</th>
+      <td>16.4</td>
+      <td>7.6</td>
+      <td>5.1</td>
+      <td>10.1</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>2023-02-03</th>
+      <td>27.9</td>
+      <td>16.2</td>
+      <td>6.2</td>
+      <td>8.3</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>2023-02-04</th>
+      <td>11.3</td>
+      <td>6.1</td>
+      <td>2.2</td>
+      <td>3.6</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2023-02-05</th>
+      <td>12.2</td>
+      <td>6.9</td>
+      <td>1.1</td>
+      <td>4.7</td>
+      <td>-0.9</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-01-27</th>
+      <td>16.1</td>
+      <td>10.4</td>
+      <td>5.4</td>
+      <td>7.0</td>
+      <td>3.9</td>
+    </tr>
+    <tr>
+      <th>2024-01-28</th>
+      <td>13.1</td>
+      <td>7.9</td>
+      <td>4.3</td>
+      <td>6.7</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>2024-01-29</th>
+      <td>12.6</td>
+      <td>7.2</td>
+      <td>6.1</td>
+      <td>7.9</td>
+      <td>4.3</td>
+    </tr>
+    <tr>
+      <th>2024-01-30</th>
+      <td>18.7</td>
+      <td>8.7</td>
+      <td>7.1</td>
+      <td>9.1</td>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <th>2024-01-31</th>
+      <td>28.0</td>
+      <td>14.3</td>
+      <td>5.2</td>
+      <td>6.3</td>
+      <td>4.5</td>
+    </tr>
+  </tbody>
+</table>
+<p>365 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-02-01</th>
+      <td>20.6</td>
+      <td>8.9</td>
+      <td>6.1</td>
+      <td>7.3</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>2023-02-02</th>
+      <td>11.9</td>
+      <td>4.3</td>
+      <td>5.5</td>
+      <td>7.2</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>2023-02-03</th>
+      <td>22.0</td>
+      <td>9.3</td>
+      <td>6.8</td>
+      <td>8.5</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>2023-02-04</th>
+      <td>8.8</td>
+      <td>2.8</td>
+      <td>2.3</td>
+      <td>4.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2023-02-05</th>
+      <td>9.0</td>
+      <td>3.1</td>
+      <td>0.8</td>
+      <td>2.2</td>
+      <td>-0.7</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-01-27</th>
+      <td>13.0</td>
+      <td>5.5</td>
+      <td>5.3</td>
+      <td>7.1</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <th>2024-01-28</th>
+      <td>8.7</td>
+      <td>3.6</td>
+      <td>4.0</td>
+      <td>7.4</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <th>2024-01-29</th>
+      <td>7.8</td>
+      <td>3.4</td>
+      <td>6.3</td>
+      <td>9.1</td>
+      <td>3.9</td>
+    </tr>
+    <tr>
+      <th>2024-01-30</th>
+      <td>14.7</td>
+      <td>3.8</td>
+      <td>7.5</td>
+      <td>9.6</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2024-01-31</th>
+      <td>18.7</td>
+      <td>7.5</td>
+      <td>5.5</td>
+      <td>6.6</td>
+      <td>4.3</td>
+    </tr>
+  </tbody>
+</table>
+<p>365 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>Mit der “describe()”-Funktion kann man sich statistische Werte des ausgewählten Zeitraumes anzeigen lassen. Wir haben die Daten von 365 Tagen (“count”) und den Mittelwert (“mean”), höchsten Wert (“max”) und niedrigsten Wert (“min”) für jeden Parameter. Dazu werden noch die 25%, 50% (gleichzusetzen mit dem Median) und 75% Perzentile angezeigt, die Aufschluss über die Verteilung der Datenmengen geben. Bei aufsteigend geordneten Werten würden zum Beispiel 25% der gemessenen Werte von “FX” unter 11.6 m/sec, 50% unter 15.3 m/sec und 75% unter 19.5 m/sec liegen. Außerdem wird die Standardabweichung (“std”) angegeben. Die Standardabweichung ist auffallend hoch bei “FX” und “FM” im Vergleich zu den anderen Werten. Dies liegt daran, dass der niedrigste Wert dort bei “-999” liegt, was wir uns im nächsten Schritt genauer ansehen werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.420000</td>
+      <td>-7.574521</td>
+      <td>10.418356</td>
+      <td>12.889315</td>
+      <td>8.176986</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>118.331061</td>
+      <td>128.400637</td>
+      <td>6.097623</td>
+      <td>6.716984</td>
+      <td>5.794680</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-999.000000</td>
+      <td>-999.000000</td>
+      <td>-1.700000</td>
+      <td>0.000000</td>
+      <td>-5.100000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>11.600000</td>
+      <td>6.100000</td>
+      <td>5.700000</td>
+      <td>7.300000</td>
+      <td>3.700000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>15.300000</td>
+      <td>8.500000</td>
+      <td>9.600000</td>
+      <td>11.600000</td>
+      <td>7.800000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>19.500000</td>
+      <td>11.300000</td>
+      <td>16.100000</td>
+      <td>18.500000</td>
+      <td>13.600000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>36.500000</td>
+      <td>24.800000</td>
+      <td>23.500000</td>
+      <td>28.500000</td>
+      <td>18.800000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>8.862192</td>
+      <td>4.406027</td>
+      <td>10.338904</td>
+      <td>13.825205</td>
+      <td>6.685479</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>53.091877</td>
+      <td>1.894879</td>
+      <td>6.350315</td>
+      <td>7.466498</td>
+      <td>5.831624</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-999.000000</td>
+      <td>1.400000</td>
+      <td>-6.900000</td>
+      <td>-3.600000</td>
+      <td>-10.700000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>8.300000</td>
+      <td>3.000000</td>
+      <td>5.700000</td>
+      <td>8.100000</td>
+      <td>2.600000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>10.800000</td>
+      <td>3.900000</td>
+      <td>9.700000</td>
+      <td>12.600000</td>
+      <td>6.800000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>14.000000</td>
+      <td>5.300000</td>
+      <td>15.900000</td>
+      <td>20.100000</td>
+      <td>11.800000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>28.700000</td>
+      <td>12.800000</td>
+      <td>24.000000</td>
+      <td>30.000000</td>
+      <td>17.700000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="umgang-mit-fehlwerten">
+<h3>Umgang mit Fehlwerten<a class="headerlink" href="#umgang-mit-fehlwerten" title="Link to this heading">#</a></h3>
+<p>In der Ausgabe der “describe()”-Funktion haben wir soeben die “-999” als niedrigsten Wert gesehen. Da diese Zahl als Messergebnis unrealistisch ist, kann man davon ausgehen, dass der DWD die “-999” als Kennzeichnung von Fehlwerten eingesetzt hat. Im nächsten Schritt möchten wir herausfinden, wo sich die Fehlwerte im ausgewählten Zeitraum befinden. In der Antwort auf diese Frage:
+“Ich habe einen Datensatz der so aussieht: [einen kleinen DataFrame mit mindestens einer Position mit “-999” als Beispiel einfügen]. Wie kann ich mithilfe von der np.where()-Funktion alle Stellen mit -999 anzeigen lassen?” liefert ChatGPT einen Code, der anschließend für unseren Zweck angepasst wurde. Zunächst findet man mit der “np-where”-Funktion die zusammengehörenden Zeilen- und Spaltenpositionen der “-999” im Datensatz heraus. Die Ausgabe des Ergebnisses funktioniert als Schleife, die jedes Paar von Zeilen- und Spaltenindizes in den Daten durchgeht und nach der “-999” absucht. Anschließend werden der Index und der Spaltenname der gefundenen Positionen ausgegeben. Die Zeitangabe “00:00:00” kommt von dem Datentyp “datetime” des Index, die standardmäßig eine Zeitkomponente enthält. Die richtige Uhrzeit kennen wir nicht.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einladen des nötigen Moduls</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Positionen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">KL_jahr</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positionen mit dem Wert -999:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Positionen</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Positionen</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Positionen mit dem Wert -999:
+2023-08-07 00:00:00, FX
+2023-10-21 00:00:00, FX
+2023-10-21 00:00:00, FM
+2023-10-22 00:00:00, FX
+2023-10-22 00:00:00, FM
+2023-10-23 00:00:00, FX
+2023-10-23 00:00:00, FM
+2023-10-24 00:00:00, FX
+2023-10-24 00:00:00, FM
+2023-10-25 00:00:00, FM
+2023-11-15 00:00:00, FM
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Positionen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">KH_jahr</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positionen mit dem Wert -999:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Positionen</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Positionen</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Positionen mit dem Wert -999:
+2023-09-25 00:00:00, FX
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dank der obigen Ausgaben wissen wir nun genau, wo sich die Fehlwerte in den Datensätzen befinden und können später kontrollieren, ob die folgenden Schritte erfolgreich waren. Die Positionen der “-999” werden nun mit “NaN” (“Not a Number”) ersetzt, sodass die Fehlwerte für weitere Funktionen als solche erkannt werden. Für diesen Schritt haben wir von ChatGPT den Code als Antwort auf diese Folgefrage erhalten: “Wie können wir die -999 durch NaN ersetzen?”. Die “replace()”-Funktion ersetzt normalerweise die NaN’s in einer Kopie des originalen DataFrames. Dem haben wir mit dem “inplace=True” entgegengewirkt, sodass der originale DataFrame benutzt wird. Die rote Meldung können wir also ignorieren. Mit der “isnull().sum()”-Funktion überprüfen wir, ob das Ersetzen funktioniert hat und die Anzahl der Fehlwerte mit den vorherigen Ausgaben übereinstimmt. Probeweise können wir außerdem in beiden Datensätzen eine oder mehrere Position(-en) aufrufen, wo zuvor “-999” stand und schauen, ob die Zahl ersetzt wurde.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">KH_jahr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Lyskri\AppData\Local\Temp\ipykernel_16704\1939941203.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  KL_jahr.replace(-999, np.nan, inplace=True)
+C:\Users\Lyskri\AppData\Local\Temp\ipykernel_16704\1939941203.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  KH_jahr.replace(-999, np.nan, inplace=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    5
+FM    6
+TM    0
+TX    0
+TN    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    1
+FM    0
+TM    0
+TX    0
+TN    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;2023-10-21&#39;</span><span class="p">:</span><span class="s1">&#39;2023-10-25&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-10-21</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>11.5</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-22</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11.7</td>
+      <td>13.8</td>
+      <td>9.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-23</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>13.5</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-24</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.8</td>
+      <td>11.6</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-25</th>
+      <td>11.4</td>
+      <td>NaN</td>
+      <td>9.8</td>
+      <td>11.1</td>
+      <td>8.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2023-09-25&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX     NaN
+FM     3.8
+TM    15.4
+TX    19.5
+TN    12.2
+Name: 2023-09-25 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ersetzen durch NaN ist erfolgreich gewesen. Als nächstes müssen wir diese NaN’s durch sinnvolle Werte füllen. Wir haben dafür die “interpolate()”-Funktion von ChatGPT als Antwort auf diese Folgefrage vorgeschlagen bekommen: “Wie können die fehlenden Tageswerte ersetzt werden?”.
+Beim linearen Interpolieren wird der fehlende Wert mit dem Wert in der Mitte zwischen den benachbarten Werten aufgefüllt. Die vorhandenen Werte werden sozusagen mit einer geraden Linie verbunden. Da wir auf die Gesamtheit der 365 Werte pro Spalte nur sehr wenig Fehlwerte haben, können wir diese einfache Methode wählen, ohne dass wir die Daten stark verfälschen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span> <span class="o">=</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">KH_jahr</span> <span class="o">=</span> <span class="n">KH_jahr</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    0
+FM    0
+TM    0
+TX    0
+TN    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    0
+FM    0
+TM    0
+TX    0
+TN    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>16.416164</td>
+      <td>9.145068</td>
+      <td>10.418356</td>
+      <td>12.889315</td>
+      <td>8.176986</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>6.049522</td>
+      <td>3.922399</td>
+      <td>6.097623</td>
+      <td>6.716984</td>
+      <td>5.794680</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>5.700000</td>
+      <td>2.100000</td>
+      <td>-1.700000</td>
+      <td>0.000000</td>
+      <td>-5.100000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>11.800000</td>
+      <td>6.300000</td>
+      <td>5.700000</td>
+      <td>7.300000</td>
+      <td>3.700000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>15.600000</td>
+      <td>8.600000</td>
+      <td>9.600000</td>
+      <td>11.600000</td>
+      <td>7.800000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>19.900000</td>
+      <td>11.600000</td>
+      <td>16.100000</td>
+      <td>18.500000</td>
+      <td>13.600000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>36.500000</td>
+      <td>24.800000</td>
+      <td>23.500000</td>
+      <td>28.500000</td>
+      <td>18.800000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;2023-10-20&#39;</span><span class="p">:</span><span class="s1">&#39;2023-10-26&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-10-20</th>
+      <td>36.50</td>
+      <td>24.800000</td>
+      <td>8.5</td>
+      <td>9.9</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-21</th>
+      <td>31.48</td>
+      <td>22.816667</td>
+      <td>9.0</td>
+      <td>11.5</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-22</th>
+      <td>26.46</td>
+      <td>20.833333</td>
+      <td>11.7</td>
+      <td>13.8</td>
+      <td>9.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-23</th>
+      <td>21.44</td>
+      <td>18.850000</td>
+      <td>10.0</td>
+      <td>13.5</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-24</th>
+      <td>16.42</td>
+      <td>16.866667</td>
+      <td>10.8</td>
+      <td>11.6</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-25</th>
+      <td>11.40</td>
+      <td>14.883333</td>
+      <td>9.8</td>
+      <td>11.1</td>
+      <td>8.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-26</th>
+      <td>16.90</td>
+      <td>12.900000</td>
+      <td>10.0</td>
+      <td>11.5</td>
+      <td>8.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;2023-09-24&#39;</span><span class="p">:</span><span class="s1">&#39;2023-09-26&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-09-24</th>
+      <td>8.5</td>
+      <td>2.9</td>
+      <td>13.9</td>
+      <td>18.2</td>
+      <td>9.6</td>
+    </tr>
+    <tr>
+      <th>2023-09-25</th>
+      <td>7.3</td>
+      <td>3.8</td>
+      <td>15.4</td>
+      <td>19.5</td>
+      <td>12.2</td>
+    </tr>
+    <tr>
+      <th>2023-09-26</th>
+      <td>6.1</td>
+      <td>2.1</td>
+      <td>15.9</td>
+      <td>20.8</td>
+      <td>10.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Die Überprüfung zeigt, dass wir keine NaN’s mehr in unseren Daten haben. Das Interpolieren war erfolgreich. In den obigen Beispielen kann man außerdem nachvollziehen, wie die Fehlwerte interpoliert wurden. Im Datensatz von Leuchtturm Kiel wurden die NaN’s zwischen dem 20.10.2023 und dem 26.10.2013 bei “FM” und die NaN’s zwischen dem 20.10.2023 und 25.10.2023 bei “FX” und im Datensatz Kiel-Holtenau der Wert am 25.09.2023 aufgefüllt.</p>
+</section>
+</section>
+<section id="analyse-und-visualisierung-der-daten">
+<h2>Analyse und Visualisierung der Daten<a class="headerlink" href="#analyse-und-visualisierung-der-daten" title="Link to this heading">#</a></h2>
+<p>In der Analyse bearbeiten wir die zwei aufgestellten Hypothesen:</p>
+<ol class="arabic simple">
+<li><p>In der Stadt ist die Lufttemperatur durchschnittlich höher als auf dem Meer.</p></li>
+<li><p>Die durchschnittliche Windgeschwindigkeit ist auf dem Meer höher als in der Stadt.</p></li>
+</ol>
+<p>Für die Analyse der Daten müssen die beiden Datensätze der unterschiedlichen Stationen miteinander verglichen werden. Am besten stellt man dafür die erhobenen Werte eines Parameters an beiden Stationen in einem Plot dar und schaut sich daraufhin Auffälligkeiten in den Daten an.</p>
+<section id="uberblick-uber-die-daten-zur-temperatur">
+<h3>Überblick über die Daten zur Temperatur<a class="headerlink" href="#uberblick-uber-die-daten-zur-temperatur" title="Link to this heading">#</a></h3>
+<p>Zunächst plotten wir zum Überblick die vorhandenen Daten zur Temperatur pro Station. In den ersten beiden Plots sieht man, dass bei den Stationen die maximale Temperatur über und die minimale Temperatur unter der mittleren Lufttemperatur liegen. Die Temperaturdaten erscheinen dementsprechend logisch. Die beiden Plots zeigen Unterschiede, die in den nächsten Schritten genauer analysiert werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einladen des nötigen Moduls</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">KL_jahr</span><span class="p">[[</span><span class="s1">&#39;TX&#39;</span><span class="p">,</span> <span class="s1">&#39;TM&#39;</span><span class="p">,</span> <span class="s1">&#39;TN&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;TX, TM und TN in Leuchtturm Kiel&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatur (°C)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;TX (Maximum der Temperatur in 2 m über dem Erdboden)&#39;</span><span class="p">,</span> <span class="s1">&#39;TM (Mittlere Lufttemperatur)&#39;</span><span class="p">,</span><span class="s1">&#39;TN (Minimum der Temperatur in 2 m über dem Erdboden)&#39;</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" src="../../_images/908ca30c7823d833d28937ee1360b88529ab9fa37c22c03163f786a91d8468a8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">KH_jahr</span><span class="p">[[</span><span class="s1">&#39;TX&#39;</span><span class="p">,</span> <span class="s1">&#39;TM&#39;</span><span class="p">,</span> <span class="s1">&#39;TN&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;TX, TM und TN in Kiel Holtenau&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatur (°C)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;TX (Maximum der Temperatur in 2 m über dem Erdboden)&#39;</span><span class="p">,</span> <span class="s1">&#39;TM (Mittlere Lufttemperatur)&#39;</span><span class="p">,</span> <span class="s1">&#39;TN (Minimum der Temperatur in 2 m über dem Erdboden)&#39;</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" src="../../_images/429cedd492fcafb774edeb9dc49c160c5f6f7aebebbfe657c075a6b8e2197b4f.png" />
+</div>
+</div>
+</section>
+<section id="vergleich-der-daten-zur-temperatur">
+<h3>Vergleich der Daten zur Temperatur<a class="headerlink" href="#vergleich-der-daten-zur-temperatur" title="Link to this heading">#</a></h3>
+<p>Für den Vergleich der beiden Datensätze plotten wir als erstes die mittlere Lufttemperatur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Leuchtturm Kiel&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mittlere Lufttemperatur (TM) in Leuchtturm Kiel und Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (°C)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" src="../../_images/e6121ba4f05a00f38fb8133d94c3f249ac3aa69ff5d0808d5c09ec22a7851a00.png" />
+</div>
+</div>
+<p>Die gemessenen Werte an den Stationen scheinen über den Jahresverlauf häufig nah bei einander zu liegen. Diese Beobachtung wollen wir nun rechnerisch mit der Differenz zwischen den Werten der Stationen überprüfen. Dafür haben wir ChatGPT zwei DataFrames als Beispiele vorgegeben und gefragt: “Wie kann ich die Differenz der beiden Datensätze vergleichen?”. In der Berechnung ziehen wir die Werte von der Station Leuchtturm Kiel von den Werten der Station Kiel-Holtenau ab.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Berechnung der Differenz </span>
+<span class="n">tm_differenz</span> <span class="o">=</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Erstellen eines DataFrames mit den Originalwerten und der Differenz</span>
+<span class="n">tm_vergleich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Datum&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;TM_Leuchtturm&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;TM_Holtenau&#39;</span><span class="p">:</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;Differenz_TM&#39;</span><span class="p">:</span> <span class="n">tm_differenz</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tm_vergleich</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Datum  TM_Leuchtturm  TM_Holtenau  Differenz_TM
+Datum                                                          
+2023-02-01 2023-02-01            5.4          6.1           0.7
+2023-02-02 2023-02-02            5.1          5.5           0.4
+2023-02-03 2023-02-03            6.2          6.8           0.6
+2023-02-04 2023-02-04            2.2          2.3           0.1
+2023-02-05 2023-02-05            1.1          0.8          -0.3
+...               ...            ...          ...           ...
+2024-01-27 2024-01-27            5.4          5.3          -0.1
+2024-01-28 2024-01-28            4.3          4.0          -0.3
+2024-01-29 2024-01-29            6.1          6.3           0.2
+2024-01-30 2024-01-30            7.1          7.5           0.4
+2024-01-31 2024-01-31            5.2          5.5           0.3
+
+[365 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tm_differenz</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.07945205479452055
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis zeigt den Durchschnitt der berechneten Differenz. Die mittlere Lufttemperatur in Kiel Leuchtturm über den betrachteten Zeitraum war durchschnittlich um etwa 0,08°C höher als bei der Messstation Kiel-Holtenau. Die Differenz zwischen beiden Stationen ist sehr gering. Dies deutet darauf hin, dass die Temperaturen an den beiden Stationen im gewählten Zeitraum sehr änhlich waren. Damit wurde vorerst die 1. Hypothese widerlegt. Jedoch ist das Ergebnis nicht sehr aussagekräftig, was z.B. an einzelnen Ausschlägen (wie zwischen November 2023 und Januar 2024) liegen könnte. Als nächstes vergleichen wir das Maximum der Temperatur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Leuchtturm Kiel&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vergleich vom Maximum der Temperatur (TX) in Leuchtturm Kiel und Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (°C)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" src="../../_images/3f2f5f47cd5981dcb0d8da90259dbf5e4a4462e05f44a05bb7a5211f0e72b611.png" />
+</div>
+</div>
+<p>Auf den ersten Blick scheinen deutlichere Unterschiede als bei der mittleren Lufttemperatur vorzuliegen. Wir überprüfen diese Beobachtung wieder mit der Berechnung.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tx_differenz</span> <span class="o">=</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">tx_vergleich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Datum&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;TX_Leuchtturm&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;TX_Holtenau&#39;</span><span class="p">:</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;Differenz_TX&#39;</span><span class="p">:</span> <span class="n">tx_differenz</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tx_vergleich</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Datum  TX_Leuchtturm  TX_Holtenau  Differenz_TX
+Datum                                                          
+2023-02-01 2023-02-01            6.6          7.3           0.7
+2023-02-02 2023-02-02           10.1          7.2          -2.9
+2023-02-03 2023-02-03            8.3          8.5           0.2
+2023-02-04 2023-02-04            3.6          4.2           0.6
+2023-02-05 2023-02-05            4.7          2.2          -2.5
+...               ...            ...          ...           ...
+2024-01-27 2024-01-27            7.0          7.1           0.1
+2024-01-28 2024-01-28            6.7          7.4           0.7
+2024-01-29 2024-01-29            7.9          9.1           1.2
+2024-01-30 2024-01-30            9.1          9.6           0.5
+2024-01-31 2024-01-31            6.3          6.6           0.3
+
+[365 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tx_differenz</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.935890410958904
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis zeigt den Durchschnitt der berechneten Differenz. Die maximale Lufttemperatur in Kiel-Holtenau war über den betrachteten Zeitraum durchschnittlich um etwa 0,94°C höher als bei der Messstation Leuchtturm Kiel. Die Differenz zwischen den beiden Stationen beträgt fast 1°C. Dies spricht für eine Bestätigung der 1. Hypothese. Als letztes schauen wir uns noch das Minimum der Lufttemperatur an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Leuchtturm Kiel&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vergleich vom Minimum der Lufttemperatur (TN) in Leuchtturm Kiel und Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lufttemperatur (°C)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" src="../../_images/e546135e4e9df73039538200cef7ed8a9e98639c791bea266ed3bcf5864c7a31.png" />
+</div>
+</div>
+<p>Hier scheinen noch deutlichere Unterschiede als bei der maximalen Lufttemperatur vorzuliegen. Wir überprüfen diese Beobachtung wieder mit der Berechnung.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tn_differenz</span> <span class="o">=</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">tn_vergleich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Datum&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;TN_Leuchtturm&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;TN_Holtenau&#39;</span><span class="p">:</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;TN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;Differenz_TN&#39;</span><span class="p">:</span> <span class="n">tn_differenz</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tn_vergleich</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Datum  TN_Leuchtturm  TN_Holtenau  Differenz_TN
+Datum                                                          
+2023-02-01 2023-02-01            2.3          4.1           1.8
+2023-02-02 2023-02-02            3.5          4.1           0.6
+2023-02-03 2023-02-03            3.4          3.6           0.2
+2023-02-04 2023-02-04            0.0          0.0           0.0
+2023-02-05 2023-02-05           -0.9         -0.7           0.2
+...               ...            ...          ...           ...
+2024-01-27 2024-01-27            3.9          2.7          -1.2
+2024-01-28 2024-01-28            1.9          0.9          -1.0
+2024-01-29 2024-01-29            4.3          3.9          -0.4
+2024-01-30 2024-01-30            4.9          5.2           0.3
+2024-01-31 2024-01-31            4.5          4.3          -0.2
+
+[365 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tn_differenz</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.4915068493150687
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis zeigt den Durchschnitt der berechneten Differenz. Die minimale Lufttemperatur in Leuchtturm Kiel war über den betrachteten Zeitraum durchschnittlich um etwa 1,5°C höher als bei der Messstation Kiel-Holtenau. Dies spricht wiederum für eine Falsifizierung der 1. Hypothese.</p>
+</section>
+<section id="fazit-zur-1-hypothese">
+<h3>Fazit zur 1. Hypothese<a class="headerlink" href="#fazit-zur-1-hypothese" title="Link to this heading">#</a></h3>
+<p>Abschließend kann man aus den Berechnungen schließen, dass die mittlere Lufttemperatur die Unterschiede, wie sie sich in den Berechnungen mit den Maxima und Minima der Temperatur zeigen, nicht darstellt. Die Ergebnisse unterscheiden sich je nachdem, welchen Parameter man sich anschaut. Der größte Unterschied zeigt sich bei dem Minimum der Lufttemperatur im Durchschnitt mit knapp 1,5°C höheren Temperaturen in Leuchtturm Kiel. Der Unterschied in den mittleren Lufttemperaturen liegt mit 0,08°C fast bei 0. In der Stadt ist das Maximum der Lufttemperatur durchschnittlich höher und das Minimum der Lufttemperatur durchschnittlich niedriger als auf dem Meer. Die Temperaturunterschiede sind in Kiel-Holtenau also größer als in Leuchtturm Kiel. Aufgrund der Ergebnisse lässt sich die Hypothese weder eindeutig verifizieren noch falsifizieren.</p>
+</section>
+<section id="uberblick-uber-die-daten-zur-windgeschwindigkeit">
+<h3>Überblick über die Daten zur Windgeschwindigkeit<a class="headerlink" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit" title="Link to this heading">#</a></h3>
+<p>Im zweiten Teil der Analyse schauen wir uns die Daten zur Windgeschwindigkeit an. Als Überblick plotten wir die vorhandenen Daten zur Windgeschwindigkeit pro Station. Die beiden Plots zeigen logischerweise, dass das Maximum der Windgeschwindigkeit über dem Mittel der Windstärke liegt. Die Unterschiede zwischen den beiden Stationen werden in den nächsten Schritten genauer analysiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">KL_jahr</span><span class="p">[[</span><span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="s1">&#39;FM&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;FX und FM in Leuchtturm Kiel&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Windgeschwindigkeit (m/sec)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;FX (Maximum der Windgeschwindigkeit)&#39;</span><span class="p">,</span> <span class="s1">&#39;FM (Mittel der Windstärke)&#39;</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" src="../../_images/5fa2f9b2ec9a2a816ee1c800f9320c7977d3f486477b3ec87940b326e5e904e8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">KH_jahr</span><span class="p">[[</span><span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="s1">&#39;FM&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;FX und FM in Kiel-Holtenau&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Windgeschwindigkeit (m/sec)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;FX (Maximum der Windgeschwindigkeit)&#39;</span><span class="p">,</span> <span class="s1">&#39;FM (Mittel der Windstärke)&#39;</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" src="../../_images/3e3471dcb973ce6e44648a437aa5624d1c5dc570d0a868cce729cee29ed772cf.png" />
+</div>
+</div>
+</section>
+<section id="vergleich-des-maximum-der-windgeschwindigkeit">
+<h3>Vergleich des Maximum der Windgeschwindigkeit<a class="headerlink" href="#vergleich-des-maximum-der-windgeschwindigkeit" title="Link to this heading">#</a></h3>
+<p>Zunächst plotten wir das Maximum der Windgeschwindigkeiten beider Stationen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Leuchtturm Kiel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Kiel-Holtenau&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Maximum der Windgeschwindigkeit (FX) in Leuchtturm Kiel und Kiel-Holtenau&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Windgeschwindigkeit (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" src="../../_images/d6b8f29f53f63f619ad4eff4c6f64afcb0fb4dc8706458a182c2637736bf326c.png" />
+</div>
+</div>
+<p>Auf den ersten Blick scheint das Maximum der Windgeschwindigkeit in Leuchtturm Kiel häufig über den gemessenen Werten in Kiel-Holtenau zu liegen. Folgend werden wir auch hier die Differenz der beiden Stationen berechnen. Dafür ziehen wir die Werte der Station Kiel-Holtenau von den Werten der Station Leuchtturm Kiel ab. In dem Plot sieht man, dass an der Station Leuchtturm Kiel viele Male deutlich höhere Windgeschwindigkeiten als in Kiel-Holtenau erreicht wurden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fx_differenz</span> <span class="o">=</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">fx_vergleich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Datum&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;FX_Leuchtturm&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;FX_Holtenau&#39;</span><span class="p">:</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;Differenz_FM&#39;</span><span class="p">:</span> <span class="n">fx_differenz</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fx_vergleich</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Datum  FX_Leuchtturm  FX_Holtenau  Differenz_FM
+Datum                                                          
+2023-02-01 2023-02-01           26.2         20.6           5.6
+2023-02-02 2023-02-02           16.4         11.9           4.5
+2023-02-03 2023-02-03           27.9         22.0           5.9
+2023-02-04 2023-02-04           11.3          8.8           2.5
+2023-02-05 2023-02-05           12.2          9.0           3.2
+...               ...            ...          ...           ...
+2024-01-27 2024-01-27           16.1         13.0           3.1
+2024-01-28 2024-01-28           13.1          8.7           4.4
+2024-01-29 2024-01-29           12.6          7.8           4.8
+2024-01-30 2024-01-30           18.7         14.7           4.0
+2024-01-31 2024-01-31           28.0         18.7           9.3
+
+[365 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fx_differenz</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.796986301369863
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis zeigt, dass das Maximum der Windgeschwindigkeit in Leuchtturm Kiel durchschnittlich um 4,8 m/sec höher ist als in Kiel-Holtenau.</p>
+<p>Von dem obigen Plot kann man nur ungefähre Zeiträume und keine genauen Tage ablesen. Schauen wir uns aus Interesse beispielsweise konkret den Oktober der Station Leuchtturm Kiel an, da dort ein hoher Ausschlag liegt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_oktober</span> <span class="o">=</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;2023-10-01&#39;</span><span class="p">:</span><span class="s1">&#39;2023-10-31&#39;</span><span class="p">]</span>
+<span class="n">KL_oktober</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FX</th>
+      <th>FM</th>
+      <th>TM</th>
+      <th>TX</th>
+      <th>TN</th>
+    </tr>
+    <tr>
+      <th>Datum</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-10-01</th>
+      <td>11.30</td>
+      <td>7.600000</td>
+      <td>15.3</td>
+      <td>16.7</td>
+      <td>13.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-02</th>
+      <td>12.20</td>
+      <td>6.400000</td>
+      <td>17.7</td>
+      <td>20.6</td>
+      <td>16.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-03</th>
+      <td>29.20</td>
+      <td>12.200000</td>
+      <td>16.3</td>
+      <td>20.0</td>
+      <td>11.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-04</th>
+      <td>24.70</td>
+      <td>12.400000</td>
+      <td>14.3</td>
+      <td>16.5</td>
+      <td>12.8</td>
+    </tr>
+    <tr>
+      <th>2023-10-05</th>
+      <td>21.10</td>
+      <td>10.300000</td>
+      <td>14.5</td>
+      <td>16.8</td>
+      <td>11.6</td>
+    </tr>
+    <tr>
+      <th>2023-10-06</th>
+      <td>23.10</td>
+      <td>15.000000</td>
+      <td>15.3</td>
+      <td>17.7</td>
+      <td>13.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-07</th>
+      <td>23.20</td>
+      <td>10.500000</td>
+      <td>13.6</td>
+      <td>17.2</td>
+      <td>11.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-08</th>
+      <td>10.90</td>
+      <td>5.400000</td>
+      <td>12.2</td>
+      <td>13.1</td>
+      <td>10.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-09</th>
+      <td>11.00</td>
+      <td>5.000000</td>
+      <td>10.8</td>
+      <td>12.9</td>
+      <td>9.1</td>
+    </tr>
+    <tr>
+      <th>2023-10-10</th>
+      <td>13.70</td>
+      <td>7.300000</td>
+      <td>14.5</td>
+      <td>17.1</td>
+      <td>11.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-11</th>
+      <td>22.80</td>
+      <td>13.000000</td>
+      <td>15.8</td>
+      <td>17.8</td>
+      <td>12.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-12</th>
+      <td>18.40</td>
+      <td>8.100000</td>
+      <td>12.9</td>
+      <td>15.0</td>
+      <td>11.4</td>
+    </tr>
+    <tr>
+      <th>2023-10-13</th>
+      <td>27.60</td>
+      <td>13.200000</td>
+      <td>15.9</td>
+      <td>20.3</td>
+      <td>11.1</td>
+    </tr>
+    <tr>
+      <th>2023-10-14</th>
+      <td>23.70</td>
+      <td>13.800000</td>
+      <td>12.0</td>
+      <td>13.9</td>
+      <td>7.8</td>
+    </tr>
+    <tr>
+      <th>2023-10-15</th>
+      <td>19.70</td>
+      <td>12.600000</td>
+      <td>9.0</td>
+      <td>10.4</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-16</th>
+      <td>13.60</td>
+      <td>8.400000</td>
+      <td>9.5</td>
+      <td>11.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>2023-10-17</th>
+      <td>9.80</td>
+      <td>6.700000</td>
+      <td>10.3</td>
+      <td>12.2</td>
+      <td>8.6</td>
+    </tr>
+    <tr>
+      <th>2023-10-18</th>
+      <td>22.30</td>
+      <td>7.600000</td>
+      <td>10.2</td>
+      <td>11.7</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>2023-10-19</th>
+      <td>26.50</td>
+      <td>20.100000</td>
+      <td>10.5</td>
+      <td>11.3</td>
+      <td>8.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-20</th>
+      <td>36.50</td>
+      <td>24.800000</td>
+      <td>8.5</td>
+      <td>9.9</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-21</th>
+      <td>31.48</td>
+      <td>22.816667</td>
+      <td>9.0</td>
+      <td>11.5</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <th>2023-10-22</th>
+      <td>26.46</td>
+      <td>20.833333</td>
+      <td>11.7</td>
+      <td>13.8</td>
+      <td>9.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-23</th>
+      <td>21.44</td>
+      <td>18.850000</td>
+      <td>10.0</td>
+      <td>13.5</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-24</th>
+      <td>16.42</td>
+      <td>16.866667</td>
+      <td>10.8</td>
+      <td>11.6</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-25</th>
+      <td>11.40</td>
+      <td>14.883333</td>
+      <td>9.8</td>
+      <td>11.1</td>
+      <td>8.2</td>
+    </tr>
+    <tr>
+      <th>2023-10-26</th>
+      <td>16.90</td>
+      <td>12.900000</td>
+      <td>10.0</td>
+      <td>11.5</td>
+      <td>8.9</td>
+    </tr>
+    <tr>
+      <th>2023-10-27</th>
+      <td>16.90</td>
+      <td>12.900000</td>
+      <td>8.8</td>
+      <td>9.5</td>
+      <td>8.1</td>
+    </tr>
+    <tr>
+      <th>2023-10-28</th>
+      <td>13.20</td>
+      <td>9.000000</td>
+      <td>9.1</td>
+      <td>10.3</td>
+      <td>8.5</td>
+    </tr>
+    <tr>
+      <th>2023-10-29</th>
+      <td>21.40</td>
+      <td>10.400000</td>
+      <td>12.1</td>
+      <td>15.2</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>2023-10-30</th>
+      <td>19.20</td>
+      <td>10.600000</td>
+      <td>12.1</td>
+      <td>14.3</td>
+      <td>10.8</td>
+    </tr>
+    <tr>
+      <th>2023-10-31</th>
+      <td>18.40</td>
+      <td>9.300000</td>
+      <td>8.1</td>
+      <td>11.3</td>
+      <td>4.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    36.5
+FM    24.8
+TM    23.5
+TX    28.5
+TN    18.8
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FX    28.7
+FM    12.8
+TM    24.0
+TX    30.0
+TN    17.7
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch die Abfrage der Monatswerte im Oktober konnte die höchste Windgeschwindigkeit mit 36,5 m/sec der Station Leuchtturm Kiel dem 20. Oktober 2023 zugeordnet werden. Dies könnte auch die Fehlwerte in den darauffolgenden Tagen bei “FM” und “FX” an diesem Standort erklären. Laut dem DWD bezeichnet man Windgeschwindigkeiten ab 32,7 als Orkan⁴. Womöglich wurde das Messgerät bei dem Orkan beschädigt. Bei der Station Kiel-Holtenau wurde im Vergleich dazu nur ein Peak von 28,7 m/s erreicht.</p>
+</section>
+<section id="vergleich-der-windstarke-der-stationen">
+<h3>Vergleich der Windstärke der Stationen<a class="headerlink" href="#vergleich-der-windstarke-der-stationen" title="Link to this heading">#</a></h3>
+<p>Zuletzt vergleichen wir noch das Mittel der Windstärke, also die mittlere Windgeschwindigkeit, der beiden Stationen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Leuchtturm Kiel&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">KH_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mittel der Windstärke (FM) in Leuchtturm Kiel und Kiel-Holtenau&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Windgeschwindigkeit (m/s)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" src="../../_images/7e207f14a18419fc3489328a178952a1abe7e5cdd95b77fdd5f338e8ba90a53c.png" />
+</div>
+</div>
+<p>Im Plot erkennen wir bereits, dass die Werte, wie auch bei dem Maximum der Windgeschwindikeit, deutlich auseinander liegen. Zur Bestätigung der Beobachtung berechnen wir auch hier die Differenz zwischen den Werten der beiden Stationen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fm_differenz</span> <span class="o">=</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">fm_vergleich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Datum&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;FM_Leuchtturm&#39;</span><span class="p">:</span> <span class="n">KL_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;FM_Holtenau&#39;</span><span class="p">:</span> <span class="n">KH_jahr</span><span class="p">[</span><span class="s1">&#39;FM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">KL_jahr</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;Differenz_FM&#39;</span><span class="p">:</span> <span class="n">fm_differenz</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fm_vergleich</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Datum  FM_Leuchtturm  FM_Holtenau  Differenz_FM
+Datum                                                          
+2023-02-01 2023-02-01           15.4          8.9           6.5
+2023-02-02 2023-02-02            7.6          4.3           3.3
+2023-02-03 2023-02-03           16.2          9.3           6.9
+2023-02-04 2023-02-04            6.1          2.8           3.3
+2023-02-05 2023-02-05            6.9          3.1           3.8
+...               ...            ...          ...           ...
+2024-01-27 2024-01-27           10.4          5.5           4.9
+2024-01-28 2024-01-28            7.9          3.6           4.3
+2024-01-29 2024-01-29            7.2          3.4           3.8
+2024-01-30 2024-01-30            8.7          3.8           4.9
+2024-01-31 2024-01-31           14.3          7.5           6.8
+
+[365 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fm_differenz</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.73904109589041
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das rechnerische Ergebnis sagt aus, dass die mittlere Windgeschwindigkeit an der Station Leuchtturm Kiel ca. 4,7 m/s höher ist als an der Station in Kiel-Holtenau. Somit bestätigt sich die 2. Hypothese.</p>
+</section>
+<section id="fazit-zur-2-hypothese">
+<h3>Fazit zur 2. Hypothese<a class="headerlink" href="#fazit-zur-2-hypothese" title="Link to this heading">#</a></h3>
+<p>Sowohl die durchschnittliche Differenz im Maximum der Windgeschwindigkeit als auch die durchschnittliche Differenz der mittleren Windgeschwindigkeit zeigen, dass die Windgeschwindigkeiten in Leuchtturm Kiel über denen in Kiel-Holtenau liegen. Somit lässt sich die 2. Hypothese bestätigen: Die durchschnittliche Windgeschwindigkeit ist auf dem Meer höher als in der Stadt.</p>
+</section>
+</section>
+<section id="quellen">
+<h2>Quellen<a class="headerlink" href="#quellen" title="Link to this heading">#</a></h2>
+<p>¹ Rudolph, A., Krois, J., Hartmann, K. (2023): Statistics and Geodata Analysis using Python (SOGA-Py). Department of Earth Sciences, Freie Universitaet Berlin.</p>
+<p>² Deutscher Wetterdienst. <em>Klimadaten Deutschland - Monats- und Tageswerte (Archiv)</em>. Abgerunfen unter: <a class="reference external" href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/klarchivtagmonat.html">https://www.dwd.de/DE/leistungen/klimadatendeutschland/klarchivtagmonat.html</a> [16.07.2024]</p>
+<p>³ Deutscher Wetterdienst. <em>Informationen zu den Tages- und Monatswerten</em>. Abgerufen unter: <a class="reference external" href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/beschreibung_tagesmonatswerte.html;jsessionid=A4B768F1F0C84C3C90E869302AE2E49F.live11054?nn=16102&amp;amp;lsbId=526270">https://www.dwd.de/DE/leistungen/klimadatendeutschland/beschreibung_tagesmonatswerte.html;jsessionid=A4B768F1F0C84C3C90E869302AE2E49F.live11054?nn=16102&amp;lsbId=526270</a> [21.07.2024]</p>
+<p>⁴ Deutscher Wetterdienst. Wetter- und Klimalexikon - Beaufort-Skala. Abgerufen unter: <a class="reference external" href="https://www.dwd.de/DE/service/lexikon/Functions/glossar.html?lv3=100390&amp;amp;lv2=100310">https://www.dwd.de/DE/service/lexikon/Functions/glossar.html?lv3=100390&amp;lv2=100310</a> [21.07.2024]</p>
+<p>ChatGPT, aufgerufen unter: <a class="reference external" href="https://chatgpt.com/">https://chatgpt.com/</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ausgelagerter content/Skripnik"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenvorbereitung">Datenvorbereitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anlegen-einer-spalte-mit-dem-datum">Anlegen einer Spalte mit dem Datum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufteilen-der-daten-in-einen-jahresverlauf">Aufteilen der Daten in einen Jahresverlauf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umgang-mit-fehlwerten">Umgang mit Fehlwerten</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-und-visualisierung-der-daten">Analyse und Visualisierung der Daten</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-temperatur">Überblick über die Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-daten-zur-temperatur">Vergleich der Daten zur Temperatur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-1-hypothese">Fazit zur 1. Hypothese</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uberblick-uber-die-daten-zur-windgeschwindigkeit">Überblick über die Daten zur Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-des-maximum-der-windgeschwindigkeit">Vergleich des Maximum der Windgeschwindigkeit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vergleich-der-windstarke-der-stationen">Vergleich der Windstärke der Stationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazit-zur-2-hypothese">Fazit zur 2. Hypothese</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Rudolph, Marie-Christin Eckert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

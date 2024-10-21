@@ -1,0 +1,1460 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg &#8212; Machine Learning Online Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ausgelagerter content/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning Online Reader - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning Online Reader - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Machine Learning Course Projects
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/rf_landing.html">2. Random Forests</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Noura/Abschlussaufgabe_Barakat_Hildebrand.html">2.1. Grundwasservorhersage mittels eines Random Forests, Hessen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/rf/Nelde/Hausarbeit_KI-Seminar_Nelde_Faraji.html">2.2. Grundwasservorhersage mittels eines Random Forests, Rheinland-Pfalz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/timeseries_landing.html">3. Einfache Zeitreihenanalyse</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contents/deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contents/deep_learning/Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/marie202/ML_jupyter_reader/issues/new?title=Issue%20on%20page%20%2Fausgelagerter content/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ausgelagerter content/Lukyanchenko/Abgabe_KI_Zeitreihenanalyse_Lukyanchenko.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse">Analyse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-freiburg">
+<h1>Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Freiburg<a class="headerlink" href="#urban-heat-island-effekt-quantifizierung-mittels-zeitreihenanalyse-freiburg" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>author: Nadiya Lukyanchenko</p>
+<p>area: Freiburg und Emmendingen</p>
+<p>date: 26.08.2024</p>
+</div></blockquote>
+<section id="einleitung">
+<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link to this heading">#</a></h2>
+<p>Im Zuge des globalen Klimawandels und der zunehmenden Urbanisierung rücken die Untersuchung und das Verständnis mikroklimatischer Unterschiede zwischen urbanen und ländlichen Räumen in den Fokus der Klimaforschung. Städte weisen häufig höhere Temperaturen auf als das umliegende ländliche Gebiet, ein Phänomen, das als „städtische Wärmeinsel“ (Urban Heat Island) bezeichnet wird. Dieses Phänomen kann nicht nur das Wohlbefinden der Stadtbewohner beeinflussen, sondern auch ihre Gesundheit. (1)</p>
+<p>Ziel dieser Untersuchung ist es, den Unterschied in den Sommertemperaturen zwischen Freiburg (stellvertretend für einen urbanen Raum) und Emmendingen (stellvertretend für einen ruralen Raum) zu analysieren. Wir haben die zwei Orte aufgrund ihrer Nähe zueinander und ihrer sich stark unterscheidenden Bevölkerungsdichte ausgewählt: Emmendingen hat aktuell ca. 1950 Einwohner (2) und Freiburg ca. 237250 (3). Freiburg hat dementsprechend einen höheren Versieglungsgrad und eine höhere Gebäudedichte als Emmendingen, was sich stark auf die nächtliche Abkühlung auswirkt. (1)
+Darum wollen wir besonders untersuchen, ob Freiburg im Sommer tendenziell höhere Temperaturen aufweist als Emmendingen und ob dieser Unterschied nachts deutlicher ist als tagsüber. Diese Fragestellung ist relevant, um die Auswirkungen der Urbanisierung auf das lokale Klima besser zu verstehen und um mögliche Anpassungsstrategien zur Minderung von Hitzebelastungen in städtischen Gebieten entwickeln zu können.</p>
+<p>Für die Analyse wurden Klimadaten des Deutschen Wetterdienstes (DWD) herangezogen, die stündliche Temperaturmessungen für die letzten 20 Jahre (2003–2023) umfassen. Der Sommer wurde gemäß der meteorologischen Definition des DWD auf den Zeitraum vom 1. Juni bis zum 31. August beschränkt (4). Um eine fundierte statistische Analyse durchzuführen, wurden Tages- und Nachtmittelwerte für jeden Sommer ermittelt und anschließend statistisch ausgewertet, um signifikante Unterschiede zwischen den beiden Untersuchungsgebieten zu identifizieren. Besondere Aufmerksamkeit gilt dabei der Frage, ob die Temperaturdifferenz zwischen urbanem und ruralem Raum nachts stärker ausgeprägt ist als tagsüber, was auf eine verstärkte Wärmeakkumulation in der städtischen Umgebung hinweisen könnte.</p>
+</section>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<p>Das Preprocessing stellt einen entscheidenden ersten Schritt in der Datenanalyse dar, bei dem die Rohdaten für die nachfolgenden Analyseprozesse vorbereitet werden. In diesem Fall wurden stündliche Klimadaten für die Städte Emmendingen und Freiburg eingelesen und anschließend auf ihre grundlegende Struktur überprüft. Das Ziel dieser Schritte ist es, die Daten auf ihre Korrektheit und Vollständigkeit zu überprüfen und ein erstes Verständnis für die Daten zu entwickeln. Diese Überprüfung bildet die Grundlage für weiterführende Schritte, wie die Datenbereinigung, Aggregation und Analyse, die in den nächsten Phasen der Untersuchung folgen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einlesen der Daten </span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># stündliche Klimadaten Emmendingen </span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">nadiy</span><span class="se">\\</span><span class="s1">Downloads</span><span class="se">\\</span><span class="s1">Abgabe</span><span class="se">\\</span><span class="s1">Stundenwerte_Emmendingen</span><span class="se">\\</span><span class="s1">Stundenwerte_Emmendingen.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="c1">#stündliche Klimadaten Freiburg</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">nadiy</span><span class="se">\\</span><span class="s1">Downloads</span><span class="se">\\</span><span class="s1">Abgabe</span><span class="se">\\</span><span class="s1">Stundenwerte_Freiburg</span><span class="se">\\</span><span class="s1">Stundenwerte_Freiburg.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># stündliche Klimadaten Emmendingen </span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">Em</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">nadiy</span><span class="se">\\</span><span class="s1">Downloads</span><span class="se">\\</span><span class="s1">Abgabe</span><span class="se">\\</span><span class="s1">Stundenwerte_Emmendingen</span><span class="se">\\</span><span class="s1">Stundenwerte_Emmendingen.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1">#stündliche Klimadaten Freiburg</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">Fr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">nadiy</span><span class="se">\\</span><span class="s1">Downloads</span><span class="se">\\</span><span class="s1">Abgabe</span><span class="se">\\</span><span class="s1">Stundenwerte_Freiburg</span><span class="se">\\</span><span class="s1">Stundenwerte_Freiburg.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File /opt/anaconda3/envs/jupyter_book_ml/lib/python3.9/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\nadiy\\Downloads\\Abgabe\\Stundenwerte_Emmendingen\\Stundenwerte_Emmendingen.txt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ansehen der Daten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   STATIONS_ID  MESS_DATUM  QN_9  TT_TU  RF_TU  eor
+0         1224  2002120100    10    5.8   95.0  eor
+1         1224  2002120103    10    5.9   91.0  eor
+2         1224  2002120106    10    3.5   96.0  eor
+3         1224  2002120109    10    4.5   93.0  eor
+4         1224  2002120112    10   10.1   58.0  eor
+        STATIONS_ID  MESS_DATUM  QN_9  TT_TU  RF_TU  eor
+183849         1224  2023123119     3    8.1   65.0  eor
+183850         1224  2023123120     3    8.1   66.0  eor
+183851         1224  2023123121     3    7.5   66.0  eor
+183852         1224  2023123122     3    7.7   66.0  eor
+183853         1224  2023123123     3    7.9   67.0  eor
+   STATIONS_ID  MESS_DATUM  QN_9  TT_TU  RF_TU  eor
+0         1443  1951010101     5    2.2   76.0  eor
+1         1443  1951010102     5    2.3   73.0  eor
+2         1443  1951010103     5    1.4   76.0  eor
+3         1443  1951010104     5    0.7   82.0  eor
+4         1443  1951010105     5    0.4   84.0  eor
+        STATIONS_ID  MESS_DATUM  QN_9  TT_TU  RF_TU  eor
+639739         1443  2023123119     3    8.5   65.0  eor
+639740         1443  2023123120     3    8.5   63.0  eor
+639741         1443  2023123121     3    8.2   64.0  eor
+639742         1443  2023123122     3    8.3   65.0  eor
+639743         1443  2023123123     3    8.2   66.0  eor
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nach der ersten Durchsicht der Daten haben wir festgestellt, dass einige Spalten für unsere Analyse irrelevant sind und entfernt werden sollten. Zudem decken die Freiburger Daten einen längeren Zeitraum ab als die Emmendinger Daten, weshalb wir den Analysezeitraum angleichen werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Entfernen der irrelevanten Spalten </span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">Em</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;QN_9&#39;</span><span class="p">,</span> <span class="s1">&#39;eor&#39;</span><span class="p">,</span> <span class="s1">&#39;RF_TU&#39;</span><span class="p">,</span><span class="s1">&#39;STATIONS_ID&#39;</span><span class="p">])</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">Fr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;QN_9&#39;</span><span class="p">,</span> <span class="s1">&#39;eor&#39;</span><span class="p">,</span> <span class="s1">&#39;RF_TU&#39;</span><span class="p">,</span><span class="s1">&#39;STATIONS_ID&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bevor wir mit der Verarbeitung der Daten fortfahren, werfen wir einen Blick auf die Spalten <em>MESS_DATUM</em> und <em>TT_TU</em>, um das Format und die Struktur der Datums- und Temperaturwerte zu überprüfen. Dies ist ein wichtiger Schritt, um sicherzustellen, dass die Daten korrekt formatiert sind und für die weitere Analyse verwendet werden können. Indem wir uns diese Spalten genauer ansehen, können wir mögliche Probleme wie falsche Datentypen oder fehlende Werte frühzeitig erkennen und beheben.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datenformat angucken</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         2002120100
+1         2002120103
+2         2002120106
+3         2002120109
+4         2002120112
+             ...    
+183849    2023123119
+183850    2023123120
+183851    2023123121
+183852    2023123122
+183853    2023123123
+Name: MESS_DATUM, Length: 183854, dtype: int64
+0          5.8
+1          5.9
+2          3.5
+3          4.5
+4         10.1
+          ... 
+183849     8.1
+183850     8.1
+183851     7.5
+183852     7.7
+183853     7.9
+Name: TT_TU, Length: 183854, dtype: float64
+0         1951010101
+1         1951010102
+2         1951010103
+3         1951010104
+4         1951010105
+             ...    
+639739    2023123119
+639740    2023123120
+639741    2023123121
+639742    2023123122
+639743    2023123123
+Name: MESS_DATUM, Length: 639744, dtype: int64
+0         2.2
+1         2.3
+2         1.4
+3         0.7
+4         0.4
+         ... 
+639739    8.5
+639740    8.5
+639741    8.2
+639742    8.3
+639743    8.2
+Name: TT_TU, Length: 639744, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nachdem wir einen ersten Blick auf die Daten geworfen haben, stellen wir fest, dass der Datentyp der Temperaturwerte in der Spalte <em>TT_TU</em> bereits passend ist. Die Spalte <em>MESS_DATUM</em>, die das Datum und die Uhrzeit enthält, ist jedoch derzeit als <em>int64</em> formatiert. Um mit diesen Werten effektiv arbeiten zu können, müssen wir den Datentyp in ein Datum-Format umwandeln. Dies ermöglicht es uns, zeitbasierte Analysen durchzuführen und die Daten sinnvoll zu gruppieren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datentyp ändern</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H&#39;</span><span class="p">)</span>
+<span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Um die Daten für eine vergleichbare Analyse anzupassen, beschränken wir unseren Datensatz auf die letzten 20 Jahre, von 2003 bis 2023. Dies gewährleistet, dass wir für beide Standorte – Emmendingen und Freiburg – den gleichen Zeitraum betrachten und so konsistente und aussagekräftige Ergebnisse erzielen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtern der Daten der letzen 20 Jahre(seit 2003)</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2003-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2023-12-31&#39;</span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">Em</span><span class="p">[(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end_date</span><span class="p">)]</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">Fr</span><span class="p">[(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end_date</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ergebnis ansehen</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             MESS_DATUM  TT_TU
+242 2003-01-01 00:00:00    4.3
+243 2003-01-01 03:00:00    4.4
+244 2003-01-01 06:00:00    4.5
+245 2003-01-01 09:00:00    5.6
+246 2003-01-01 12:00:00    9.7
+                MESS_DATUM  TT_TU
+183826 2023-12-30 20:00:00    2.6
+183827 2023-12-30 21:00:00    1.8
+183828 2023-12-30 22:00:00    1.9
+183829 2023-12-30 23:00:00    0.9
+183830 2023-12-31 00:00:00    0.8
+                MESS_DATUM  TT_TU
+455826 2003-01-01 00:00:00    7.6
+455827 2003-01-01 01:00:00    5.6
+455828 2003-01-01 02:00:00    5.6
+455829 2003-01-01 03:00:00    5.8
+455830 2003-01-01 04:00:00    7.0
+                MESS_DATUM  TT_TU
+639716 2023-12-30 20:00:00    3.9
+639717 2023-12-30 21:00:00    3.4
+639718 2023-12-30 22:00:00    3.0
+639719 2023-12-30 23:00:00    2.3
+639720 2023-12-31 00:00:00    2.3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nachdem wir die Daten auf den gemeinsamen Zeitraum von 2003 bis 2023 angepasst haben, überprüfen wir erneut das Vorhandensein fehlender Werte. Aus den Metadaten wissen wir, dass der Wert <em>-999</em> als Platzhalter für fehlende Daten verwendet wird. Um diese fehlenden Daten korrekt handhaben zu können, ersetzen wir alle <em>-999</em>-Werte durch <em>NaN</em>. Anschließend analysieren wir, wie oft NaN in unseren Daten vorkommt, um das Ausmaß der fehlenden Werte besser einschätzen und entsprechende Maßnahmen ergreifen zu können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Ersetzten des Wertes -999 durch NaN</span>
+<span class="n">Em</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Fr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Fehlende Daten auswerten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MESS_DATUM     0
+TT_TU         54
+dtype: int64
+MESS_DATUM      0
+TT_TU         471
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nachdem wir die <em>-999</em>-Werte durch <em>NaN</em> ersetzt haben, berechnen wir den prozentualen Anteil der <em>NaN</em>-Werte in den Datensätzen. Dies hilft uns zu verstehen, wie stark unsere Daten von fehlenden Werten betroffen sind und wie relevant diese fehlenden Daten für unsere Analyse sind. Ein hoher Anteil an fehlenden Daten könnte die Ergebnisse verzerren, während ein geringer Anteil möglicherweise weniger Einfluss auf die Analyse hat. Die Berechnung des prozentualen Anteils gibt uns eine klare Vorstellung davon, ob und wie wir mit den fehlenden Daten umgehen sollten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Anteil Missing Data Emmendingen </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">Em</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">Fr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MESS_DATUM    0.000000
+TT_TU         0.000294
+dtype: float64
+MESS_DATUM    0.000000
+TT_TU         0.002561
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nachdem wir den Anteil fehlender Daten in den Datensätzen berechnet haben, sehen wir, dass der Anteil in <strong>Emmendingen bei 0.029%</strong> und in <strong>Freiburg bei 0.2%</strong> liegt. Diese Werte sind sehr gering und daher erscheinen die fehlenden Daten vernachlässigbar. Wir können davon ausgehen, dass sie keinen signifikanten Einfluss auf die Analyse haben werden, und es ist wahrscheinlich nicht notwendig, spezielle Maßnahmen zur Behandlung dieser fehlenden Daten zu ergreifen.</p>
+<p>Um die Daten für unsere Analyse weiter vorzubereiten, möchten wir zusätzliche Spalten erstellen, die angeben, ob es sich bei den Zeitstempeln um Tages- oder Nachtwerte handelt. Dabei definieren wir den <strong>Tag als den Zeitraum von 06:00 bis 21:59 Uhr</strong> und die <strong>Nacht von 22:00 bis 05:59 Uhr</strong>.
+Dazu extrahieren wir zunächst aus der Spalte MESS_DATUM das Datum und die Uhrzeit. Aus diesen Informationen erstellen wir zwei neue Spalten:</p>
+<ul class="simple">
+<li><p>Eine Spalte <em>Datum</em>, die nur das Datum ohne Zeitangabe enthält, um eine Gruppierung zu erleichtern.</p></li>
+<li><p>Eine Spalte <em>Tageszeit</em>, die angibt, ob der jeweilige Datensatz dem Tag oder der Nacht zugeordnet wird.</p></li>
+</ul>
+<p>Im Anschluss passen wir das Format der neuen Datum-Spalte an und entfernen schließlich die ursprüngliche <em>MESS_DATUM</em>-Spalte, da diese nicht mehr benötigt wird.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extrahieren des Datums (ohne Zeit) für Gruppierungen</span>
+<span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+
+<span class="c1"># Aufteilen in Nacht- und Tageswerte</span>
+<span class="c1"># Tag: 06:00 - 21:59</span>
+<span class="c1"># Nacht: 22:00 - 05:59</span>
+
+<span class="k">def</span> <span class="nf">part_of_day</span><span class="p">(</span><span class="n">hour</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">22</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;=</span><span class="mi">23</span> <span class="ow">or</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Nacht&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Tag&#39;</span>
+
+<span class="c1"># neue Spalte &quot;Tageszeit&quot;, die angibt ob Nacht oder Tag</span>
+<span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">part_of_day</span><span class="p">)</span>
+<span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">part_of_day</span><span class="p">)</span>
+
+<span class="c1"># # Änderung Datenformat von Spalte Datum </span>
+<span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># irrelevanten Spalten entfernen#</span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">Em</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">])</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">Fr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MESS_DATUM&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In diesem Schritt erstellen wir aus den stündlichen Klimadaten von Emmendingen und Freiburg einen Datensatz, der die durchschnittlichen Temperaturen für Tag und Nacht berechnet.</p>
+<p>Zunächst gruppieren wir die Daten nach Datum und der Spalte <em>Tageszeit</em>, die zwischen Tag und Nacht unterscheidet. Danach berechnen wir für jede Tag und jede Nacht den Mittelwert der Temperatur (<em>TT_TU</em>). Diese Berechnungen werden anschließend aggregiert und die Ergebnisse in einem neuen Datensatz gespeichert, der die aggregierten Durchschnittstemperaturen enthält. Schließlich schauen wir uns die ersten zehn Einträge des neu erstellten Datensatzes an, um die Ergebnisse zu überprüfen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gruppieren nach Datum und Teil des Tages</span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">Em</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="s1">&#39;Tageszeit&#39;</span><span class="p">])</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">Fr</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="s1">&#39;Tageszeit&#39;</span><span class="p">])</span>
+
+<span class="c1"># Berechnung der Mittelwerte für jede Gruppe</span>
+<span class="n">agg_funcs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;TT_TU&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Aggregation anwenden</span>
+<span class="n">Em</span> <span class="o">=</span> <span class="n">Em</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg_funcs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">Fr</span> <span class="o">=</span> <span class="n">Fr</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg_funcs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ansehen der Daten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Datum Tageszeit      TT_TU
+0 2003-01-01     Nacht   4.350000
+1 2003-01-01       Tag   8.500000
+2 2003-01-02     Nacht  13.150000
+3 2003-01-02       Tag  13.100000
+4 2003-01-03     Nacht   9.300000
+5 2003-01-03       Tag   8.900000
+6 2003-01-04     Nacht   7.550000
+7 2003-01-04       Tag   5.416667
+8 2003-01-05     Nacht   0.150000
+9 2003-01-05       Tag  -1.566667
+       Datum Tageszeit     TT_TU
+0 2003-01-01     Nacht   8.13750
+1 2003-01-01       Tag  10.00625
+2 2003-01-02     Nacht  12.66250
+3 2003-01-02       Tag  13.48750
+4 2003-01-03     Nacht   9.01250
+5 2003-01-03       Tag   9.01875
+6 2003-01-04     Nacht   5.86250
+7 2003-01-04       Tag   5.97500
+8 2003-01-05     Nacht  -1.05000
+9 2003-01-05       Tag  -1.63125
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hier wird die Ausgabe der ersten zehn Zeilen der neu aggregierten Daten für Emmendingen und Freiburg angezeigt. Anhand der Ergebnisse können wir sehen, dass für jedes Datum nun zwei Durchschnittswerte vorhanden sind: einer für den Tag und einer für die Nacht. Dies bestätigt, dass die Gruppierung und Aggregation erfolgreich durchgeführt wurden, wodurch für jedes Datum separate Mittelwerte für die Tages- und Nachtstunden berechnet wurden.</p>
+<p>In diesem Schritt teilen wir die aggregierten Datensätze für Emmendingen und Freiburg basierend auf der Tageszeit in separate Datensätze auf. Wir erstellen vier Datensätze:</p>
+<p><strong>1. Emmendingen_Tag:</strong> Enthält die Temperaturdurchschnittswerte für die Tagesstunden in Emmendingen.</p>
+<p><strong>2. Emmendingen_Nacht:</strong> Enthält die Temperaturdurchschnittswerte für die Nachtstunden in Emmendingen.</p>
+<p><strong>3. Freiburg_Tag:</strong> Enthält die Temperaturdurchschnittswerte für die Tagesstunden in Freiburg.</p>
+<p><strong>4. Freiburg_Nacht:</strong> Enthält die Temperaturdurchschnittswerte für die Nachtstunden in Freiburg.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstellen der Datensets</span>
+<span class="c1"># Aufteilen in Tag und Nacht Emmendingen</span>
+<span class="n">Em_Tag</span> <span class="o">=</span> <span class="n">Em</span><span class="p">[</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Tag&#39;</span><span class="p">]</span>
+<span class="n">Em_Nacht</span> <span class="o">=</span> <span class="n">Em</span><span class="p">[</span><span class="n">Em</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Nacht&#39;</span><span class="p">]</span>
+
+<span class="c1"># Aufteilen in Tag und Nacht Freiburg</span>
+<span class="n">Fr_Tag</span> <span class="o">=</span> <span class="n">Fr</span><span class="p">[</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Tag&#39;</span><span class="p">]</span>
+<span class="n">Fr_Nacht</span> <span class="o">=</span> <span class="n">Fr</span><span class="p">[</span><span class="n">Fr</span><span class="p">[</span><span class="s1">&#39;Tageszeit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Nacht&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analyse">
+<h2>Analyse<a class="headerlink" href="#analyse" title="Link to this heading">#</a></h2>
+<p>In unserer Analyse untersuchen wir die Hypothese, dass die Temperaturen in Freiburg, das einen urbanen Raum repräsentiert, im Sommer durchschnittlich höher sind als in Emmendingen, das als ländlicher Raum betrachtet wird. Zudem gehen wir davon aus, dass dieser Temperaturunterschied insbesondere nachts stärker ausgeprägt ist.</p>
+<p>Als nächstes plotten wir die Zwischenergebnisse, um einen ersten Überblick über die Daten zu erhalten. Dabei werden die Temperaturdaten für Tag und Nacht in Emmendingen und Freiburg über den Zeitraum von 2003 bis 2023 visualisiert. Ziel ist es, erste Trends und Unterschiede in den Temperaturverläufen der beiden Standorte, die städtisch und ländlich repräsentieren, sowohl am Tag als auch in der Nacht zu erkennen</p>
+<p>Zunächst passen wir den Plot-Stil auf <em>darkgrid</em> an und erhöhen die Schriftgröße für bessere Lesbarkeit. Dann erstellen wir einen Plot, der die Temperaturdaten für Emmendingen und Freiburg, sowohl am Tag als auch in der Nacht, farblich differenziert darstellt, um Unterschiede zwischen den Standorten klar sichtbar zu machen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aussehen der Graphen</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
+
+<span class="n">register_matplotlib_converters</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;darkgrid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plot erstellen alle zusammen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot für Em_Tag</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Em_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">Em_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Em Tag&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot für Em_Nacht</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Em_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">Em_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Em Nacht&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot für Fr_Tag</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Fr_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">Fr_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fr Tag&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot für Fr_Nacht</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Fr_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">Fr_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fr Nacht&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">)</span>
+
+<span class="c1"># Achsenbeschriftungen und Titel</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;TT_TU über die Jahre (2003-2023)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Anzeigen des Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e382a8ac0fd903d6d0e347f5c1ce4b6cc993d7d060a49e3bcec9ef29bff6fdd9.png" src="../../_images/e382a8ac0fd903d6d0e347f5c1ce4b6cc993d7d060a49e3bcec9ef29bff6fdd9.png" />
+</div>
+</div>
+<p>Der Plot zeigt die Temperaturdaten für Emmendingen und Freiburg über den Zeitraum von 2003 bis 2023, aufgeteilt in Tag- und Nachtwerte. Aufgrund der Vielzahl an überlappenden Linien und Farben ist der Plot jedoch schwer zu interpretieren und wirkt sehr unübersichtlich.</p>
+<p>Um die These zu untersuchen, beschränken wir die Analyse auf den Sommerzeitraum, definiert als 01. Juni bis 31. August. Dazu filtern wir die vorhandenen Datensätze auf diesen Zeitraum und teilen sie in separate Plots für Tag- und Nachtwerte auf, um die Unterschiede in den Temperaturen zwischen Emmendingen und Freiburg spezifisch für den Sommer sichtbar zu machen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datensätze nach Sommer filtern</span>
+<span class="n">Em_Sommer_Tag</span> <span class="o">=</span> <span class="n">Em_Tag</span><span class="p">[(</span><span class="n">Em_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Em_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="n">Em_Sommer_Nacht</span> <span class="o">=</span> <span class="n">Em_Nacht</span><span class="p">[(</span><span class="n">Em_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Em_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+
+<span class="n">Fr_Sommer_Tag</span> <span class="o">=</span> <span class="n">Fr_Tag</span><span class="p">[(</span><span class="n">Fr_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Fr_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="n">Fr_Sommer_Nacht</span> <span class="o">=</span> <span class="n">Fr_Nacht</span><span class="p">[(</span><span class="n">Fr_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Fr_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ergebnis überprüfen</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Datum Tageszeit     TT_TU
+289 2003-06-01       Tag  24.57500
+291 2003-06-02       Tag  24.73125
+293 2003-06-03       Tag  24.05625
+295 2003-06-04       Tag  25.99375
+297 2003-06-05       Tag  25.37500
+           Datum Tageszeit     TT_TU
+15073 2023-08-27       Tag  17.41250
+15075 2023-08-28       Tag  14.60625
+15077 2023-08-29       Tag  16.00625
+15079 2023-08-30       Tag  18.24375
+15081 2023-08-31       Tag  18.16250
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ergebnis überprüfen</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Datum Tageszeit     TT_TU
+289 2003-06-01       Tag  24.57500
+291 2003-06-02       Tag  24.73125
+293 2003-06-03       Tag  24.05625
+295 2003-06-04       Tag  25.99375
+297 2003-06-05       Tag  25.37500
+           Datum Tageszeit     TT_TU
+15073 2023-08-27       Tag  17.41250
+15075 2023-08-28       Tag  14.60625
+15077 2023-08-29       Tag  16.00625
+15079 2023-08-30       Tag  18.24375
+15081 2023-08-31       Tag  18.16250
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nachdem wir den Filterprozess erfolgreich abgeschlossen haben, überprüfen wir nun, wie viele <em>NaN</em>-Werte in jedem Datensatz vorhanden sind. Diese fehlenden Werte werden anschließend durch den Durchschnittswert der jeweiligen Tages- oder Nachtzeit ersetzt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Überprüfen NaN-Werte</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datum        0
+Tageszeit    0
+TT_TU        0
+dtype: int64
+Datum        0
+Tageszeit    0
+TT_TU        4
+dtype: int64
+Datum        0
+Tageszeit    0
+TT_TU        0
+dtype: int64
+Datum        0
+Tageszeit    0
+TT_TU        4
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es zeigt sich, dass nur im Datensatz von Freiburg fehlende Werte existieren. Daher ist es notwendig, diese fehlenden Werte ausschließlich im Freiburger Datensatz durch den Durchschnittswert der jeweiligen Tages- oder Nachtzeit zu ersetzen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sicherstellen, dass der Index im Datetime-Format vorliegt</span>
+<span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Sicherstellen, dass keine Verweise auf die Daten bestehen, sondern echte Kopien</span>
+<span class="n">Fr_Sommer_Tag</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">Fr_Sommer_Nacht</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># NaN-Werte durch den Durchschnitt des jeweiligen Tages ersetzen</span>
+<span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="p">)[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># NaN-Werte durch den Durchschnitt der jeweiligen Nacht ersetzen</span>
+<span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="p">)[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Überprüfen, ob alle NaN-Werte ersetzt wurden</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datum        0
+Tageszeit    0
+TT_TU        4
+dtype: int64
+Datum        0
+Tageszeit    0
+TT_TU        4
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da es Tage gibt, an denen keine Werte vorliegen, ersetzen wir die <em>NaN</em>-Werte durch den monatlichen Durchschnitt für die jeweilige Tages- oder Nachtzeit. Anschließend visualisieren wir die bereinigten Daten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NaN-Werte durch den monatlichen Durchschnittswert ersetzen</span>
+<span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Überprüfen, ob alle NaN-Werte ersetzt wurden</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datum        0
+Tageszeit    0
+TT_TU        0
+dtype: int64
+Datum        0
+Tageszeit    0
+TT_TU        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+
+<span class="c1"># Erstellen einer gemeinsamen Figur mit zwei Unterplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot für den Tag </span>
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU im Sommer tagsüber (01. Juni - 31. August)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot für die Nacht </span>
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Em_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU im Sommer nachts (01. Juni - 31. August)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Manuelle Legende hinzufügen</span>
+<span class="n">legend_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Emmendingen&#39;</span><span class="p">),</span>
+    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Freiburg&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_elements</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_elements</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="c1"># Anzeigen des Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/13771618c0c4717a1136910f82b212fbadd821e3c6d7cabd71aa4b6c7450a5de.png" src="../../_images/13771618c0c4717a1136910f82b212fbadd821e3c6d7cabd71aa4b6c7450a5de.png" />
+</div>
+</div>
+<p>In diesem Doppelplot werden die Temperaturverläufe von Emmendingen (blau) und Freiburg (rot) im Sommer (01. Juni - 31. August) über die Jahre 2003 bis 2023 dargestellt. Der obere Plot zeigt die Temperaturen tagsüber, während der untere Plot die nächtlichen Temperaturen visualisiert. Beide Plots ermöglichen einen direkten Vergleich der Temperaturen zwischen den beiden Standorten im urbanen (Freiburg) und ländlichen (Emmendingen) Raum. Es ist ersichtlich, dass Freiburg tendenziell höhere Temperaturen aufweist, was ein Zeiger des urbanen Wärmeinseleffekts sein könnte.</p>
+<p>Jetzt erstellen wir Boxplots für jeden Sommer in jedem Jahr, um die Verteilung der Temperaturen in Emmendingen und Freiburg übersichtlich darzustellen und so Unterschiede zwischen den Jahren und den beiden Standorten besser erkennen zu können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#Set index</span>
+<span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Filtern der Daten für den Sommer (Juni, Juli, August)</span>
+<span class="n">Em_Sommer_Tag</span> <span class="o">=</span> <span class="n">Em_Sommer_Tag</span><span class="p">[(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="n">Fr_Sommer_Tag</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="p">[(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+
+<span class="c1"># Erstellen einer neuen Spalte &#39;Jahr&#39;, basierend auf dem Index, um die Daten nach Jahr zu gruppieren</span>
+<span class="n">Em_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;Jahr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span>
+<span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;Jahr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span>
+
+<span class="c1"># Erstellen der Subplots für beide Datensätze</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Boxplot für Em_Sommer_Tag erstellen</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Em_Sommer_Tag</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU über Sommer (Juni-August) pro Jahr am Tag - Emmendingen&#39;</span><span class="p">)</span>
+
+<span class="c1"># Boxplot für Fr_Sommer_Tag erstellen</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Fr_Sommer_Tag</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU über Sommer (Juni-August) pro Jahr am Tag - Freiburg&#39;</span><span class="p">)</span>
+
+<span class="c1"># Anzeigen des Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/41109c16a9303d95c16d498e0aa590ca0e70f8a9bc2c4e847bf833d73ac5740a.png" src="../../_images/41109c16a9303d95c16d498e0aa590ca0e70f8a9bc2c4e847bf833d73ac5740a.png" />
+</div>
+</div>
+<p>Die Boxplots geben bereits einen guten Überblick über die Tagestemperaturen im Sommer. Als nächstes werden wir denselben Vergleich für die Nachttemperaturen durchführen, um auch hier mögliche Unterschiede zu erkennen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set index</span>
+<span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Filtern der Daten für den Sommer (Juni, Juli, August)</span>
+<span class="n">Em_Sommer_Nacht</span> <span class="o">=</span> <span class="n">Em_Sommer_Nacht</span><span class="p">[(</span><span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="n">Fr_Sommer_Nacht</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="p">[(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)]</span>
+
+<span class="c1"># Erstellen einer neuen Spalte &#39;Jahr&#39;, basierend auf dem Index, um die Daten nach Jahr zu gruppieren</span>
+<span class="n">Em_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;Jahr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span>
+<span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;Jahr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span>
+
+<span class="c1"># Erstellen der Subplots für beide Datensätze</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Y-Achsenbereich festlegen</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span>
+
+<span class="c1"># Boxplot für Em_Sommer_Nacht erstellen</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Em_Sommer_Nacht</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU über Sommer  (Juni-August) pro Jahr bei Nacht - Emmendingen&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+
+<span class="c1"># Boxplot für Fr_Sommer_Nacht erstellen</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Fr_Sommer_Nacht</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;TT_TU über Sommer (Juni-August) pro Jahr bei Nacht - Freiburg&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+
+<span class="c1"># Anzeigen des Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e0a6077a60242bb828a70f75e837436ecb3f1fe31800aeba381fd29f1071f405.png" src="../../_images/e0a6077a60242bb828a70f75e837436ecb3f1fe31800aeba381fd29f1071f405.png" />
+</div>
+</div>
+<p>Die Boxplots zeigen die Nachttemperaturen im Sommer für jedes Jahr sowohl in Emmendingen als auch in Freiburg. Hier lässt sich erkennen, wie sich die Temperaturverteilungen über die Jahre entwickelt haben. Wieder sehen wir, dass die Temperaturen in Freiburg höher sind, was den urbanen Wärmeinseleffekt, insbesondere bei Nacht, verdeutlicht.</p>
+<p>Aus der optischen Analyse der bisherigen Plots könnten wir vermuten, dass die Temperaturen (TT_TU) in Freiburg im Durchschnitt etwas höher sind als in Emmendingen. Besonders in der Nacht scheinen die Unterschiede größer zu sein. Um diese Vermutung genauer zu untersuchen, erstellen wir zwei neue Datensätze: Unterschied_Tag und Unterschied_Nacht. Diese Datensätze enthalten die täglichen Temperaturdifferenzen, berechnet als Durchschnittstemperaturen von Freiburg abgezogen von den Durchschnittstemperaturen von Emmendingen.</p>
+<p>Um die Daten übersichtlicher darzustellen, zeigen wir diese Differenzen jedoch nicht für jeden einzelnen Tag, sondern mitteln sie zu wöchentlichen Temperaturunterschieden. Zusätzlich fügen wir eine Linie hinzu, die die durchschnittlichen Temperaturunterschiede für jeden Sommer (Juni bis August) darstellt. Diese Darstellung ermöglicht es uns, sowohl die wöchentlichen Schwankungen als auch die langfristigen Trends in den Temperaturunterschieden zwischen den beiden Standorten zu visualisieren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstellen der Datensätze Unterschied_Tag und Unterschied_Nacht</span>
+<span class="n">Unterschied_Tag</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">Unterschied_Nacht</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="c1"># Berechnung der täglichen Temperaturunterschiede</span>
+<span class="n">Unterschied_Tag</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">Em_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span>
+<span class="n">Unterschied_Nacht</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">Em_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">]</span>
+
+<span class="c1"># Berechnung des wöchentlichen Durchschnitts</span>
+<span class="n">Woche_Tag</span> <span class="o">=</span> <span class="n">Unterschied_Tag</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Woche_Nacht</span> <span class="o">=</span> <span class="n">Unterschied_Nacht</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Berechnung des jährlichen Sommer-Mittelwerts</span>
+<span class="n">Sommer_Mean_Tag</span> <span class="o">=</span> <span class="n">Unterschied_Tag</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;YE&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Sommer_Mean_Nacht</span> <span class="o">=</span> <span class="n">Unterschied_Nacht</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;YE&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Scatterplot für die wöchentliche Temperaturdifferenz am Tag</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Woche_Tag</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Woche_Tag</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wöchentliche Temperaturdifferenz (Freiburg - Emmendingen) - Tag&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Sommer_Mean_Tag</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Sommer_Mean_Tag</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sommermittelwert (Freiburg - Emmendingen) - Tag&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Achsenbeschriftungen und Titel für Tag-Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperaturdifferenz (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Wöchentliche Temperaturdifferenz zwischen Freiburg und Emmendingen (Juni - August) - Tag&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Anzeigen des Tag-Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Scatterplot für die wöchentliche Temperaturdifferenz in der Nacht</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Woche_Nacht</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Woche_Nacht</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wöchentliche Temperaturdifferenz (Freiburg - Emmendingen) - Nacht&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Sommer_Mean_Nacht</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Sommer_Mean_Nacht</span><span class="p">[</span><span class="s1">&#39;Temp_Diff&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sommermittelwert (Freiburg - Emmendingen) - Nacht&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Achsenbeschriftungen und Titel für Nacht-Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Datum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperaturdifferenz (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Wöchentliche Temperaturdifferenz zwischen Freiburg und Emmendingen (Juni - August) - Nacht&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Anzeigen des Nacht-Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c10ccd9eb9c72e975a18857eda004cda5606943e20b51f10fc15084e20af1249.png" src="../../_images/c10ccd9eb9c72e975a18857eda004cda5606943e20b51f10fc15084e20af1249.png" />
+<img alt="../../_images/c667bfa3f3ec84809f2714fb5ffb3002b8335dc9e8ca9136e474261b158b6e7e.png" src="../../_images/c667bfa3f3ec84809f2714fb5ffb3002b8335dc9e8ca9136e474261b158b6e7e.png" />
+</div>
+</div>
+<p>Hier wird es noch deutlicher: Die Temperaturdifferenz ist besonders zu Beginn der Datenreihe größer, also ein deutliche positive Differenz. Besonders in der Nacht zeigt sich, dass Freiburg konsistent wärmer ist als Emmendingen, was unsere vorherige Beobachtung stützt. Daher möchten wir nun unsere Hypothese überprüfen, dass es im Sommer in Freiburg (urban) durchschnittlich wärmer ist als in Emmendingen (rural). Auch unsere Vermutung, dass dieser Unterschied in der Nacht größer ist, scheint sich durch die visuelle Analyse zu bestätigen. Um diese Hypothesen statistisch zu überprüfen, werden wir zunächst mit dem Shapiro-Wilk-Test die Normalverteilung unserer Daten prüfen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
+
+<span class="c1"># Shapiro-Wilk-Test für Tag-Daten</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shapiro-Wilk-Test für Freiburg Tag:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Statistik: </span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">Em_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shapiro-Wilk-Test für Emmendingen Tag:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Statistik: </span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Shapiro-Wilk-Test für Nacht-Daten</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shapiro-Wilk-Test für Freiburg Nacht:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Statistik: </span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">Em_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shapiro-Wilk-Test für Emmendingen Nacht:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Statistik: </span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shapiro-Wilk-Test für Freiburg Tag:
+Statistik: 0.9957375058741371, p-Wert: 2.7088668495597212e-05
+Shapiro-Wilk-Test für Emmendingen Tag:
+Statistik: 0.9959906943713426, p-Wert: 5.195818328656741e-05
+Shapiro-Wilk-Test für Freiburg Nacht:
+Statistik: 0.9987073452626066, p-Wert: 0.1573103012357575
+Shapiro-Wilk-Test für Emmendingen Nacht:
+Statistik: 0.997012933460301, p-Wert: 0.0008636350852162805
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Ergebnisse des Shapiro-Wilk-Tests zeigen, dass die <strong>Tag-Daten für Freiburg und Emmendingen (p-Werte &lt; 0,05) nicht normalverteilt</strong> sind. Bei den <strong>Nacht-Daten ist nur Freiburg (p-Wert = 0,157) möglicherweise normalverteilt</strong>, während Emmendingen (p-Wert &lt; 0,05) nicht normalverteilt ist. Für die Tag-Daten: Da beide Datensätze nicht normalverteilt sind, verwenden wir den Mann-Whitney-U-Test für eine einseitige Hypothese, um zu überprüfen, ob die Temperaturen in Freiburg signifikant höher sind als in Emmendingen.
+Für die Nacht-Daten: Auch hier wird aufgrund der Nicht-Normalverteilung der  Emmendinger Daten der Mann-Whitney-U-Test angewendet, um die Hypothese zu überprüfen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
+
+<span class="c1"># Einseitiger Mann-Whitney-U-Test für Tag-Daten (H1: Freiburg &gt; Emmendingen)</span>
+<span class="n">u_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">Fr_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">Em_Sommer_Tag</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;greater&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Einseitiger Mann-Whitney-U-Test für Tag:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;U-Statistik: </span><span class="si">{</span><span class="n">u_stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Einseitiger Mann-Whitney-U-Test für Nacht-Daten (H1: Freiburg &gt; Emmendingen)</span>
+<span class="n">u_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">Fr_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">Em_Sommer_Nacht</span><span class="p">[</span><span class="s1">&#39;TT_TU&#39;</span><span class="p">],</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;greater&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Einseitiger Mann-Whitney-U-Test für Nacht:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;U-Statistik: </span><span class="si">{</span><span class="n">u_stat</span><span class="si">}</span><span class="s1">, p-Wert: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Einseitiger Mann-Whitney-U-Test für Tag:
+U-Statistik: 1936570.5, p-Wert: 0.02136680707121466
+Einseitiger Mann-Whitney-U-Test für Nacht:
+U-Statistik: 2284980.0, p-Wert: 7.179144552898601e-34
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Ergebnisse zeigen:</p>
+<p>Für die <strong>Tag-Daten</strong> ergibt der <strong>p-Wert von etwa 0.021</strong>, dass es einen <strong>signifikanten Unterschied</strong> zwischen den Temperaturen in Freiburg und Emmendingen gibt. Da der p-Wert kleiner als 0,05 ist, können wir die Nullhypothese ablehnen und annehmen, dass die Temperaturen in Freiburg am Tag signifikant höher sind als in Emmendingen.</p>
+<p>Für die <strong>Nacht-Daten</strong> ist der <strong>p-Wert extrem klein</strong> (etwa 7.17e-34), was ebenfalls auf einen <strong>hoch signifikanten Unterschied</strong> zwischen den Temperaturen in Freiburg und Emmendingen in der Nacht hinweist. Dies bestätigt, dass die Temperaturunterschiede nachts noch deutlicher ausgeprägt sind.</p>
+<p>Diese Ergebnisse unterstützen unsere Hypothese, dass Freiburg im Sommer im Durchschnitt wärmer ist als Emmendingen, insbesondere in der Nacht.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Unsere Untersuchung bestätigt die Hypothese, dass die Temperaturen im Sommer in Freiburg (als urbaner Raum) im Durchschnitt höher sind als in Emmendingen (als ländlicher Raum). Dies gilt sowohl für die Tages- als auch für die Nachtwerte, wobei die Unterschiede in der Nacht stärker sind. Durch die statistischen Analysen, einschließlich des Mann-Whitney-U-Tests, konnten wir signifikante Temperaturunterschiede zwischen den beiden Standorten nachweisen. Die städtische Umgebung Freiburgs zeigt eine stärkere Erwärmung, was möglicherweise auf den urbanen Wärmeinseleffekt zurückzuführen ist.</p>
+</section>
+<section id="quellen">
+<h2>Quellen<a class="headerlink" href="#quellen" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Matzarakis, A., Muthers, S., &amp; Graw, K. (2020). Thermische Belastung von Bewohnern in Städten bei Hitzewellen am Beispiel von Freiburg (Breisgau). Bundesgesundheitsblatt-Gesundheitsforschung-Gesundheitsschutz, 63(8), 1004-1012.
+URL: <a class="reference external" href="https://scholar.archive.org/work/7qodjod2fjbllnfxvklverl4ou/access/wayback/https://link.springer.com/content/pdf/10.1007/s00103-020-03181-0.pdf">https://scholar.archive.org/work/7qodjod2fjbllnfxvklverl4ou/access/wayback/https://link.springer.com/content/pdf/10.1007/s00103-020-03181-0.pdf</a> (12.08.24)</p></li>
+<li><p>Einwohnerzahl Emmendingen-Mundingen
+URL: <a class="reference external" href="https://www.emmendingen.de/stadt-info/stadt-emmendingen/ortschaften-stadtteile">https://www.emmendingen.de/stadt-info/stadt-emmendingen/ortschaften-stadtteile</a> (12.08.24)</p></li>
+<li><p>Einwohnerzahl Freiburg
+URL: <a class="reference external" href="https://www.freiburg.de/pb/207904.html">https://www.freiburg.de/pb/207904.html</a> (12.08.24)</p></li>
+<li><p>meteorologischer Sommer, DWD
+URL: <a class="reference external" href="https://www.dwd.de/DE/service/lexikon/Functions/glossar.html?lv3=102524&amp;amp;lv2=102248">https://www.dwd.de/DE/service/lexikon/Functions/glossar.html?lv3=102524&amp;lv2=102248</a> (12.08.24)</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ausgelagerter content/Lukyanchenko"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einleitung">Einleitung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse">Analyse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quellen">Quellen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Rudolph, Marie-Christin Eckert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
