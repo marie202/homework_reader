@@ -20,6 +20,7 @@ parts:
   - file: contents/deep-learning
     sections:
      - file: contents/deep_learning/Sommer/Hausarbeit_workflow
+     - file: contents/deep_learning/Samdani/CNN_PlantDisease-SaribSamdani
 
      
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern &#8212; Machine Learning Online Reader</title>
+    <title>4.2. Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern &#8212; Machine Learning Online Reader</title>
   
   
   
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'contents/deep_learning/Samdani/CNN_PlantDisease-SaribSamdani';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten" href="../Sommer/Hausarbeit_workflow.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,7 +181,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hausarbeiten Sommersemester 2024</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../dt_landing.html">1. Decision Trees</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../dt/Schwind/Hausarbeit_Anne%20Schwind_456737.html">1.1. Grundwasservorhersage mittels eines Decision Trees, Brandenburg</a></li>
 </ul>
@@ -196,8 +195,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../tsa/Thran/Hausarbeit_Thran.html">3.1. Urban-Heat-Island-Effekt Quantifizierung mittels Zeitreihenanalyse, Berlin</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../deep-learning.html">4. Deep Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Sommer/Hausarbeit_workflow.html">4.1. Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -395,17 +396,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">Abschließende Worte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">Quellenverzeichnis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4.2. Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">4.3. Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">4.3.1. 1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">4.3.2. 2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">4.3.3. 3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4.3.4. 4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">4.3.5. 5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">4.3.6. 6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">4.3.7. 7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">4.3.7.1. Abschließende Worte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">4.3.7.2. Quellenverzeichnis</a></li>
 </ul>
 </li>
 </ul>
@@ -423,7 +424,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="gesundheitsstatus-von-pflanzen-erkennen-einsatz-von-convolutional-neural-networks-zur-klassifizierung-von-pflanzen-bildern">
-<h1>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern<a class="headerlink" href="#gesundheitsstatus-von-pflanzen-erkennen-einsatz-von-convolutional-neural-networks-zur-klassifizierung-von-pflanzen-bildern" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4.2. </span>Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern<a class="headerlink" href="#gesundheitsstatus-von-pflanzen-erkennen-einsatz-von-convolutional-neural-networks-zur-klassifizierung-von-pflanzen-bildern" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p>author: Sarib Samdani</p>
 <p>date: 11.08.2024</p>
@@ -434,7 +435,7 @@ Zudem ist das Dataset in drei Versionen verfügbar: farbig, Grautönen und segme
 <p><img alt="Bild_Einleitung.png" src="contents/deep_learning/Samdani/attachment:cf4f4e78-b4c4-49fd-8512-41ad99757376.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="inhaltsverzeichnis">
-<h1>Inhaltsverzeichnis<a class="headerlink" href="#inhaltsverzeichnis" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4.3. </span>Inhaltsverzeichnis<a class="headerlink" href="#inhaltsverzeichnis" title="Link to this heading">#</a></h1>
 <p><a class="reference internal" href="#chapter1"><span class="xref myst">1. Datenaufbereitung</span></a> <br>
 <a class="reference internal" href="#chapter2"><span class="xref myst">2. Train-Test-Split</span></a><br>
 <a class="reference internal" href="#chapter3"><span class="xref myst">3. Modellwahl - CNN</span></a><br>
@@ -443,7 +444,7 @@ Zudem ist das Dataset in drei Versionen verfügbar: farbig, Grautönen und segme
 <a class="reference internal" href="#chapter6"><span class="xref myst">6. Modell mit Segmented Data</span></a><br>
 <a class="reference internal" href="#chapter7"><span class="xref myst">7. Auswertung und Diskussion</span></a><br></p>
 <section id="dartenaufbereitung">
-<h2>1. Dartenaufbereitung <a class="anchor" id="chapter1"></a><a class="headerlink" href="#dartenaufbereitung" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.1. </span>1. Dartenaufbereitung <a class="anchor" id="chapter1"></a><a class="headerlink" href="#dartenaufbereitung" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># mathematische Operationen</span>
@@ -598,7 +599,7 @@ Zudem ist das Dataset in drei Versionen verfügbar: farbig, Grautönen und segme
 </div>
 </section>
 <section id="train-test-split">
-<h2>2. Train-Test-Split <a class="anchor" id="chapter2"></a><a class="headerlink" href="#train-test-split" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.2. </span>2. Train-Test-Split <a class="anchor" id="chapter2"></a><a class="headerlink" href="#train-test-split" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -690,7 +691,7 @@ Found 216 validated image filenames belonging to 3 classes.
 </div>
 </section>
 <section id="modellwahl-cnn">
-<h2>3. Modellwahl - CNN <a class="anchor" id="chapter3"></a><a class="headerlink" href="#modellwahl-cnn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.3. </span>3. Modellwahl - CNN <a class="anchor" id="chapter3"></a><a class="headerlink" href="#modellwahl-cnn" title="Link to this heading">#</a></h2>
 <p>Unter den vielen ML/DL-Modellen die es heute gibt, ist die Entscheidung für dennoch CNN eindeutig, da es sich als leistungsstarker Standard für Bildklassifikation etabliert hat. Die Funktionsweise dieses neuronalen Netzes entspricht der Arbeitsweise unseres Gehirns bei visuellen Wahrnehmungen. Erst erkennt es durch Partitionierung einzelne Bestandteile des Ganzen (Bildes) und aggregiert diese dann wieder zusammen, um dann zu entscheiden was es sieht. Hierzu ein High-Level Beispiel: Dem Gehirn ist die Wahrnehmung eines Pandas möglich, indem zunächst die Farbe, die Ohren, die Augen, die Nase, der Mund sowie die Größe des Kopfes als charakteristische Merkmale eines Pandas identifiziert werden. Im Anschluss werden die Arme, Hände, Beine und der Bauch als weitere pandatypische Körpermerkmale erkannt und schließlich zu einem Gesamtbild eines Pandas aggregiert<span class="math notranslate nohighlight">\(^{2}\)</span>. In den meisten Fällen erfolgt die Wahrnehmung dieser Prozesse so schnell, dass sie nicht bewusst wahrgenommen werden. Erst bei der Betrachtung neuer Objekte wird man sich diesem bewusst.</p>
 <p>Was ist aber, wenn der Panda nicht im Zentrum des Bildes ist, sondern links, rechts oder in der Ecke? Genau dieses Problem haben einfache neuronale Netze. Artificial Neural Network war der Vorgänger,  der es größtenteils schaffte,  auch Bilder mit Varianz in Position der Subjekte korrekt zu klassifizieren. Aufgrund der enormen Rechenkapazität, die ANNs aber benötigten<span class="math notranslate nohighlight">\(^{3}\)</span>, wurden diese von CNNs mit Augmentationstechniken abgelöst. Die Convolutional Layers verwenden Filter (Kernels), die über das gesamte Bild gleiten und lokale Merkmale wie Kanten, Texturen und kleine Strukturen erkennen. Sie sind also in der Lage, dieselben Merkmale überall im Bild zu identifizieren, unabhängig von der Position. Für die Mathematik hinter CNNs empfehle ich <a class="reference external" href="https://www.youtube.com/watch?v=Lakz2MoHy6o">dieses Video</a>.</p>
 <p>Unter den convolutional neural network gibt es wieder eine große Auswahl an Architekturen, welche je nach Anwendungsgebiet unterschiedlich effizient sind.
@@ -755,7 +756,7 @@ Batch Size 16: 81/81 ━━━━━━━━━━━━━━━━━━━�
 <p>Batch Size 32: 41/41 ━━━━━━━━━━━━━━━━━━━━ 130s 3s/step - accuracy: 0.9895 - loss: 0.0393 - val_accuracy: 0.9962 - val_loss: 0.0051</p>
 </section>
 <section id="ergebnisse">
-<h2>4. Ergebnisse <a class="anchor" id="chapter4"></a><a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.4. </span>4. Ergebnisse <a class="anchor" id="chapter4"></a><a class="headerlink" href="#ergebnisse" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_and_print</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_generator</span><span class="p">):</span>
@@ -943,7 +944,7 @@ Potato___Early_blight       0.99      1.00      0.99        97
 <p style="text-align: center; font-size: 24px; font-weight: bold;">Zweiter Teil</p>
 Nach einer ausführlichen Beschreibung der Farbbilder wird die Darstellung der Graubilder und der Segmentbilder minimalistisch gehalten, da der Ablauf identisch ist. Aus diesem Grund wurden Teile des Codes in Funktionen geschrieben, um sie im Folgenden wiederverwenden zu können. Nachdem alle drei Varianten des Datensatzes mit dem gleichen (aber seperaten) Modell trainiert wurden, erfolgt in Abschnitt sieben der Vergleich und die Auswertung, um den zweiten Teil der Arbeit zu beantworten. </section>
 <section id="modell-mit-grayscale-data">
-<h2>5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a><a class="headerlink" href="#modell-mit-grayscale-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.5. </span>5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a><a class="headerlink" href="#modell-mit-grayscale-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data = &#39;/content/drive/MyDrive/Colab Notebooks/plant_grayscale&#39;</span>
@@ -1071,7 +1072,7 @@ Test Accuracy: 0.9352
 </div>
 </section>
 <section id="modell-mit-segmented-data">
-<h2>6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a><a class="headerlink" href="#modell-mit-segmented-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.6. </span>6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a><a class="headerlink" href="#modell-mit-segmented-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data = &#39;/content/drive/MyDrive/Colab Notebooks/plant_segmented&#39;</span>
@@ -1199,7 +1200,7 @@ Test Accuracy: 0.9954
 </div>
 </section>
 <section id="auswertung-und-diskussion">
-<h2>7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a><a class="headerlink" href="#auswertung-und-diskussion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.7. </span>7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a><a class="headerlink" href="#auswertung-und-diskussion" title="Link to this heading">#</a></h2>
 <p>Da die Resultate bei jedem Durchlauf in geringfügig variierender Form vorliegen (mal color, mal segmented als optimale Lösung), wurden folgende Funktionen implementiert, um die Hervorhebung automatisch zu bewerkstelligen. Der kleinste Wert beim loss und der größte Wert bei Accuracy wird grün ausgegeben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1272,13 +1273,13 @@ Test Accuracy: 0.9954
 <p>Die Wahl zwischen segmentierten und nicht-segmentierten (originalen) Bilddaten hängt vom spezifischen Anwendungsfall ab. In der vorliegenden Untersuchung stellt der Hintergrund lediglich störendes Rauschen dar. Für die Erkennung von Pflanzenkrankheiten ist es nicht notwendig, den Hintergrund zu berücksichtigen, da dieser keine relevanten Informationen liefert. Auch der Mensch ist in der Lage, ohne Hintergrundinformationen eine schnelle Einschätzung darüber abzugeben, ob eine Pflanze erkrankt ist. Ein Anwendungsbereich, in dem das Segmentieren von Bildern zu suboptimalen Resultaten führt, ist die Entscheidungsfindung in autonomen Fahrsystemen. Der Hintergrund enthält Kontextinformationen, die für eine korrekte Interpretation der Situation und das Treffen sicherer Fahrentscheidungen erforderlich sind. Dazu zählen beispielsweise Informationen zu Straßenverhältnissen, Verkehrsfluss, Hindernissen und der allgemeinen Umgebung. Ein Vorfahrtstraßen-Schild neben der Ampel ist nur zu berücksichtigen, wenn die Ampel ausfällt. Würde das Modell sich nur auf das Schild konzentrieren, weil der Hintergrund segmentiert wurde, so wäre eine korrekte Entscheidung nicht möglich, da der wichtige Kontext der Ampel und der gesamten Verkehrssituation verloren geht.</p>
 <p>Wie eingangs erwähnt, sollte auch untersucht werden, wie sich die predictions verhalten, wenn zwei Ordner 1000 (<em>Potato_Early_blight, Potato_Late_blight</em>) Bilder enthalten und eines (<em>potato_healthy</em>) nur 152. Es konnte festgestellt werden, dass bei einer Anzahl von 152 falschen Vorhersagen die betroffenen Objekte nahezu ausschließlich die Klasse <em>potato_healthy</em> betrafen. Dies deutet darauf hin, dass das Modell durch das Ungleichgewicht der Klassen dazu verleitet wurde, die häufigeren Klassen besser zu erkennen, während es die selteneren Klassen weniger präzise identifizierte.</p>
 <section id="abschlieszende-worte">
-<h3>Abschließende Worte<a class="headerlink" href="#abschlieszende-worte" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.3.7.1. </span>Abschließende Worte<a class="headerlink" href="#abschlieszende-worte" title="Link to this heading">#</a></h3>
 <p>Als Al-Engineer muss man kontinuierlich wichtige Entscheidungen darüber treffen, welche Inhalte priorisiert werden sollten. So antwortete Mark Zuckerberg, im Interview <a class="reference external" href="https://www.youtube.com/watch?v=YuIc4mq7zMU&amp;amp;t=684s">“Inside Mark Zuckerberg’s Al Era | The Circuit” (24.07.24)</a> auf die Frage wie er AGI definiert, mit einem spezifischen Schwerpunkt, da “es keine einheitliche Definition für AGI gibt und multivariate ist”. Für Meta ist es laut ihm das Lesen von Gesichtern und Emotionen, also eine Betonung auf die soziale Komponente. Andere Unternehmen wie Microsoft und OpenAI entschieden sich für die “[..] Behandlung globaler Probleme” <span class="math notranslate nohighlight">\(^{7}\)</span>. <br>
 Wie zu Beginn erläutert, war meine Entscheidung für diese Arbeit, angesichts sehr begrenzter Rechenkapazität, mit einem Teil der Daten zu arbeiten und dafür alle drei Hauptordner für die Vergleiche zu nutzen, sowie mehr grafische Darstellungen abzubilden für Analysen. Dieses Notebook wurde nahezu fünfzig auf meinem Rechner oder auf Google Colab ausgeführt. Mehr Daten hinzuzufügen würde nicht nur erheblich mehr Zeitaufwand bedeuten, sondern auch den Durchblick beeinträchtigen. Aus diesem Grund habe ich auf die Durchführung eines letzten Durchlaufs mit einer größeren Datenmenge verzichtet, um eine Überforderung der Leserschaft zu vermeiden und eine schnelle Verständlichkeit zu gewährleisten. Der große Vorteil des gewählten Architekturstils besteht darin, dass das Hinzufügen von Daten im Nachhinein nur mit minimalen Änderungen im Code verbunden ist. Mithilfe der Funktionen konnte ich für das Wiederverwenden des Codes für das segmentierte und Graustufen Modell mit minimaler Anzahl an Zeilen erstellen. Sofern also das Interesse besteht, das gesamte Dataset zu nutzen, kann dies auf einfache und schnelle Weise erfolgen.
 Die durchgeführte Arbeit ermöglichte mir, in kürzester Zeit umfangreiche Einblicke in die Funktionsweise von CNNs zu gewinnen und diese praktisch zu vertiefen. Daher freue ich mich auf die nächsten, noch anspruchsvolleren Projekte und möchte jeden dazu ermutigen, selber Notebooks zu verfassen, da ich dies als die beste Lernmethode empfinde.</p>
 </section>
 <section id="quellenverzeichnis">
-<h3>Quellenverzeichnis<a class="headerlink" href="#quellenverzeichnis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.3.7.2. </span>Quellenverzeichnis<a class="headerlink" href="#quellenverzeichnis" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(^{1}\)</span> James M. (2020) Convolutional Neural Networks - Image Classification w. Keras, available at:  <br> <a class="reference external" href="https://www.learndatasci.com/tutorials/convolutional-neural-networks-image-classification/">https://www.learndatasci.com/tutorials/convolutional-neural-networks-image-classification/</a></p></li>
 <li><p><span class="math notranslate nohighlight">\(^{2}\)</span> Codebasics (2020) Simple explanation of convolutional neural network | deep learning tutorial 23 (Tensorflow &amp; Python), YouTube. Available at: <a class="reference external" href="https://www.youtube.com/watch?v=zfiSAzpy9NM">https://www.youtube.com/watch?v=zfiSAzpy9NM</a></p></li>
@@ -1323,6 +1324,15 @@ Die durchgeführte Arbeit ermöglichte mir, in kürzester Zeit umfangreiche Einb
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../Sommer/Hausarbeit_workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.1. </span>Deep Learning von Baumarten mit hochauflösenden RGB-Drohnendaten</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -1339,17 +1349,17 @@ Die durchgeführte Arbeit ermöglichte mir, in kürzester Zeit umfangreiche Einb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">Abschließende Worte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">Quellenverzeichnis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4.2. Gesundheitsstatus von Pflanzen erkennen: Einsatz von Convolutional Neural Networks zur Klassifizierung von Pflanzen-Bildern</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">4.3. Inhaltsverzeichnis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dartenaufbereitung">4.3.1. 1. Dartenaufbereitung <a class="anchor" id="chapter1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">4.3.2. 2. Train-Test-Split <a class="anchor" id="chapter2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellwahl-cnn">4.3.3. 3. Modellwahl - CNN <a class="anchor" id="chapter3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergebnisse">4.3.4. 4. Ergebnisse <a class="anchor" id="chapter4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-grayscale-data">4.3.5. 5. Modell mit Grayscale Data <a class="anchor" id="chapter5"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modell-mit-segmented-data">4.3.6. 6. Modell mit Segmented Data <a class="anchor" id="chapter6"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auswertung-und-diskussion">4.3.7. 7. Auswertung und Diskussion <a class="anchor" id="chapter7"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abschlieszende-worte">4.3.7.1. Abschließende Worte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quellenverzeichnis">4.3.7.2. Quellenverzeichnis</a></li>
 </ul>
 </li>
 </ul>
